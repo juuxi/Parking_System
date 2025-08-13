@@ -4,12 +4,14 @@
 #include <QWidget>
 #include <QPaintEvent>
 #include "trafficlight.h"
+#include "barrier.h"
 
 class Widget : public QWidget
 {
     Q_OBJECT
 
     TrafficLight tl;
+    Barrier br;
 public:
     Widget(QWidget *parent = nullptr);
     void paintEvent(QPaintEvent *);

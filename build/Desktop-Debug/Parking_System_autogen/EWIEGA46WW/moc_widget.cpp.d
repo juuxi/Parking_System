@@ -1,5 +1,6 @@
 /home/juuxi/Desktop/prog/else/Parking_System/build/Desktop-Debug/Parking_System_autogen/EWIEGA46WW/moc_widget.cpp: /home/juuxi/Desktop/prog/else/Parking_System/widget.h \
   /home/juuxi/Desktop/prog/else/Parking_System/build/Desktop-Debug/Parking_System_autogen/moc_predefs.h \
+  /home/juuxi/Desktop/prog/else/Parking_System/barrier.h \
   /home/juuxi/Desktop/prog/else/Parking_System/controlelement.h \
   /home/juuxi/Desktop/prog/else/Parking_System/trafficlight.h \
   /usr/include/asm-generic/errno-base.h \

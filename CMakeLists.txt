@@ -39,6 +39,7 @@ else()
             ${PROJECT_SOURCES}
             controlelement.h controlelement.cpp
             trafficlight.h trafficlight.cpp
+            barrier.h barrier.cpp
 
 
         )

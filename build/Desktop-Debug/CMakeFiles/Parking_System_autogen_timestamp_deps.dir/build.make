@@ -66,9 +66,9 @@ include CMakeFiles/Parking_System_autogen_timestamp_deps.dir/compiler_depend.mak
 # Include the progress variables for this target.
 include CMakeFiles/Parking_System_autogen_timestamp_deps.dir/progress.make
 
+CMakeFiles/Parking_System_autogen_timestamp_deps: /usr/lib/qt5/bin/uic
 CMakeFiles/Parking_System_autogen_timestamp_deps: /usr/lib/x86_64-linux-gnu/libQt5Widgets.so.5.15.13
 CMakeFiles/Parking_System_autogen_timestamp_deps: /usr/lib/qt5/bin/moc
-CMakeFiles/Parking_System_autogen_timestamp_deps: /usr/lib/qt5/bin/uic
 
 Parking_System_autogen_timestamp_deps: CMakeFiles/Parking_System_autogen_timestamp_deps
 Parking_System_autogen_timestamp_deps: CMakeFiles/Parking_System_autogen_timestamp_deps.dir/build.make

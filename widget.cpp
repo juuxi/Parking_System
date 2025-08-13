@@ -10,6 +10,7 @@ void Widget::paintEvent(QPaintEvent*) {
     QPainter p;
     p.begin(this);
     tl.draw(&p);
+    br.draw(&p);
     p.end();
 }
 

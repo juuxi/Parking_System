@@ -76,6 +76,12 @@
 	"HEADERS" : 
 	[
 		[
+			"/home/juuxi/Desktop/prog/else/Parking_System/barrier.h",
+			"MU",
+			"EWIEGA46WW/moc_barrier.cpp",
+			null
+		],
+		[
 			"/home/juuxi/Desktop/prog/else/Parking_System/controlelement.h",
 			"MU",
 			"EWIEGA46WW/moc_controlelement.cpp",
@@ -145,6 +151,11 @@
 	"SETTINGS_FILE" : "/home/juuxi/Desktop/prog/else/Parking_System/build/Desktop-Debug/CMakeFiles/Parking_System_autogen.dir/AutogenUsed.txt",
 	"SOURCES" : 
 	[
+		[
+			"/home/juuxi/Desktop/prog/else/Parking_System/barrier.cpp",
+			"MU",
+			null
+		],
 		[
 			"/home/juuxi/Desktop/prog/else/Parking_System/controlelement.cpp",
 			"MU",

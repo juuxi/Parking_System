@@ -1,5 +1,7 @@
 Parking_System_autogen/timestamp: \
 	/home/juuxi/Desktop/prog/else/Parking_System/CMakeLists.txt \
+	/home/juuxi/Desktop/prog/else/Parking_System/barrier.cpp \
+	/home/juuxi/Desktop/prog/else/Parking_System/barrier.h \
 	/home/juuxi/Desktop/prog/else/Parking_System/build/Desktop-Debug/.qtc/package-manager/auto-setup.cmake \
 	/home/juuxi/Desktop/prog/else/Parking_System/build/Desktop-Debug/CMakeFiles/3.28.3/CMakeCXXCompiler.cmake \
 	/home/juuxi/Desktop/prog/else/Parking_System/build/Desktop-Debug/CMakeFiles/3.28.3/CMakeSystem.cmake \
