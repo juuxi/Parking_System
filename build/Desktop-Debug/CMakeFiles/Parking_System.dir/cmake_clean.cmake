@@ -8,6 +8,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/Parking_System.dir/controlelement.cpp.o.d"
   "CMakeFiles/Parking_System.dir/main.cpp.o"
   "CMakeFiles/Parking_System.dir/main.cpp.o.d"
+  "CMakeFiles/Parking_System.dir/trafficlight.cpp.o"
+  "CMakeFiles/Parking_System.dir/trafficlight.cpp.o.d"
   "CMakeFiles/Parking_System.dir/widget.cpp.o"
   "CMakeFiles/Parking_System.dir/widget.cpp.o.d"
   "Parking_System"

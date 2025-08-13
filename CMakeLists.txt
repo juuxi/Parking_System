@@ -38,6 +38,7 @@ else()
         add_executable(Parking_System
             ${PROJECT_SOURCES}
             controlelement.h controlelement.cpp
+            trafficlight.h trafficlight.cpp
 
 
         )

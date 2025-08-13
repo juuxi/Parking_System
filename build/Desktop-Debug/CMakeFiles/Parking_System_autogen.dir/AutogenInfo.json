@@ -82,6 +82,12 @@
 			null
 		],
 		[
+			"/home/juuxi/Desktop/prog/else/Parking_System/trafficlight.h",
+			"MU",
+			"EWIEGA46WW/moc_trafficlight.cpp",
+			null
+		],
+		[
 			"/home/juuxi/Desktop/prog/else/Parking_System/widget.h",
 			"MU",
 			"EWIEGA46WW/moc_widget.cpp",
@@ -145,6 +151,11 @@
 			null
 		],
 		[ "/home/juuxi/Desktop/prog/else/Parking_System/main.cpp", "MU", null ],
+		[
+			"/home/juuxi/Desktop/prog/else/Parking_System/trafficlight.cpp",
+			"MU",
+			null
+		],
 		[ "/home/juuxi/Desktop/prog/else/Parking_System/widget.cpp", "MU", null ]
 	],
 	"UIC_OPTIONS" : [],

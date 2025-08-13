@@ -6,4 +6,11 @@ Widget::Widget(QWidget *parent)
     setWindowState(Qt::WindowMaximized);
 }
 
+void Widget::paintEvent(QPaintEvent*) {
+    QPainter p;
+    p.begin(this);
+    tl.draw(&p);
+    p.end();
+}
+
 Widget::~Widget() {}

@@ -3,14 +3,14 @@
 
 #include <QPainter>
 
-class ControlElement : QPainter
+class ControlElement
 {
     bool is_opened;
 public:
     ControlElement();
     void open();
     void close();
-    virtual void draw(QPainter*) = 0;
+    virtual void draw(QPainter *) = 0;
 };
 
 #endif // CONTROLELEMENT_H
