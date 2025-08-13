@@ -40,6 +40,7 @@ else()
             controlelement.h controlelement.cpp
             trafficlight.h trafficlight.cpp
             barrier.h barrier.cpp
+            vehicle.h vehicle.cpp
 
 
         )

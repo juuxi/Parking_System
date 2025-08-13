@@ -94,6 +94,12 @@
 			null
 		],
 		[
+			"/home/juuxi/Desktop/prog/else/Parking_System/vehicle.h",
+			"MU",
+			"EWIEGA46WW/moc_vehicle.cpp",
+			null
+		],
+		[
 			"/home/juuxi/Desktop/prog/else/Parking_System/widget.h",
 			"MU",
 			"EWIEGA46WW/moc_widget.cpp",
@@ -164,6 +170,11 @@
 		[ "/home/juuxi/Desktop/prog/else/Parking_System/main.cpp", "MU", null ],
 		[
 			"/home/juuxi/Desktop/prog/else/Parking_System/trafficlight.cpp",
+			"MU",
+			null
+		],
+		[
+			"/home/juuxi/Desktop/prog/else/Parking_System/vehicle.cpp",
 			"MU",
 			null
 		],

@@ -11,6 +11,8 @@ Parking_System_autogen/timestamp: \
 	/home/juuxi/Desktop/prog/else/Parking_System/main.cpp \
 	/home/juuxi/Desktop/prog/else/Parking_System/trafficlight.cpp \
 	/home/juuxi/Desktop/prog/else/Parking_System/trafficlight.h \
+	/home/juuxi/Desktop/prog/else/Parking_System/vehicle.cpp \
+	/home/juuxi/Desktop/prog/else/Parking_System/vehicle.h \
 	/home/juuxi/Desktop/prog/else/Parking_System/widget.cpp \
 	/home/juuxi/Desktop/prog/else/Parking_System/widget.h \
 	/usr/include/asm-generic/errno-base.h \

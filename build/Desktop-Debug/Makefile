@@ -320,6 +320,30 @@ trafficlight.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Parking_System.dir/build.make CMakeFiles/Parking_System.dir/trafficlight.cpp.s
 .PHONY : trafficlight.cpp.s
 
+vehicle.o: vehicle.cpp.o
+.PHONY : vehicle.o
+
+# target to build an object file
+vehicle.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Parking_System.dir/build.make CMakeFiles/Parking_System.dir/vehicle.cpp.o
+.PHONY : vehicle.cpp.o
+
+vehicle.i: vehicle.cpp.i
+.PHONY : vehicle.i
+
+# target to preprocess a source file
+vehicle.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Parking_System.dir/build.make CMakeFiles/Parking_System.dir/vehicle.cpp.i
+.PHONY : vehicle.cpp.i
+
+vehicle.s: vehicle.cpp.s
+.PHONY : vehicle.s
+
+# target to generate assembly for a file
+vehicle.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Parking_System.dir/build.make CMakeFiles/Parking_System.dir/vehicle.cpp.s
+.PHONY : vehicle.cpp.s
+
 widget.o: widget.cpp.o
 .PHONY : widget.o
 
@@ -374,6 +398,9 @@ help:
 	@echo "... trafficlight.o"
 	@echo "... trafficlight.i"
 	@echo "... trafficlight.s"
+	@echo "... vehicle.o"
+	@echo "... vehicle.i"
+	@echo "... vehicle.s"
 	@echo "... widget.o"
 	@echo "... widget.i"
 	@echo "... widget.s"
