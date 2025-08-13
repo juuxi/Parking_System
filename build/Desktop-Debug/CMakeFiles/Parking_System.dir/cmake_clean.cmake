@@ -4,6 +4,8 @@ file(REMOVE_RECURSE
   "Parking_System_autogen"
   "CMakeFiles/Parking_System.dir/Parking_System_autogen/mocs_compilation.cpp.o"
   "CMakeFiles/Parking_System.dir/Parking_System_autogen/mocs_compilation.cpp.o.d"
+  "CMakeFiles/Parking_System.dir/controlelement.cpp.o"
+  "CMakeFiles/Parking_System.dir/controlelement.cpp.o.d"
   "CMakeFiles/Parking_System.dir/main.cpp.o"
   "CMakeFiles/Parking_System.dir/main.cpp.o.d"
   "CMakeFiles/Parking_System.dir/widget.cpp.o"

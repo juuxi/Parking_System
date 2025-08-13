@@ -224,6 +224,30 @@ Parking_System_autogen/mocs_compilation.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Parking_System.dir/build.make CMakeFiles/Parking_System.dir/Parking_System_autogen/mocs_compilation.cpp.s
 .PHONY : Parking_System_autogen/mocs_compilation.cpp.s
 
+controlelement.o: controlelement.cpp.o
+.PHONY : controlelement.o
+
+# target to build an object file
+controlelement.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Parking_System.dir/build.make CMakeFiles/Parking_System.dir/controlelement.cpp.o
+.PHONY : controlelement.cpp.o
+
+controlelement.i: controlelement.cpp.i
+.PHONY : controlelement.i
+
+# target to preprocess a source file
+controlelement.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Parking_System.dir/build.make CMakeFiles/Parking_System.dir/controlelement.cpp.i
+.PHONY : controlelement.cpp.i
+
+controlelement.s: controlelement.cpp.s
+.PHONY : controlelement.s
+
+# target to generate assembly for a file
+controlelement.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Parking_System.dir/build.make CMakeFiles/Parking_System.dir/controlelement.cpp.s
+.PHONY : controlelement.cpp.s
+
 main.o: main.cpp.o
 .PHONY : main.o
 
@@ -290,6 +314,9 @@ help:
 	@echo "... Parking_System_autogen/mocs_compilation.o"
 	@echo "... Parking_System_autogen/mocs_compilation.i"
 	@echo "... Parking_System_autogen/mocs_compilation.s"
+	@echo "... controlelement.o"
+	@echo "... controlelement.i"
+	@echo "... controlelement.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"

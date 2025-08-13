@@ -2,6 +2,7 @@
 #define WIDGET_H
 
 #include <QWidget>
+#include "controlelement.h"
 
 class Widget : public QWidget
 {
