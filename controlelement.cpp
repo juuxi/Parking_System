@@ -4,6 +4,10 @@ ControlElement::ControlElement() {
     is_opened = false;
 }
 
+ControlElement::ControlElement(int _type) : type(_type) {
+    is_opened = false;
+}
+
 void ControlElement::open() {
     is_opened = true;
 }

@@ -3,11 +3,18 @@
 
 #include <QPainter>
 
+enum ConctrolElementType {
+    TRAFFIC_LIGHT = 0,
+    BARRIER = 1
+};
+
 class ControlElement
 {
     bool is_opened;
 public:
+    int type;
     ControlElement();
+    ControlElement(int);
     void open();
     void close();
     virtual void draw(QPainter *) = 0;
