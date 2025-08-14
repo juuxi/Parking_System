@@ -31,5 +31,7 @@ public:
     Widget(QWidget *parent = nullptr);
     void paintEvent(QPaintEvent *);
     ~Widget();
+public slots:
+    void loginHandler();
 };
 #endif // WIDGET_H

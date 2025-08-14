@@ -24,6 +24,7 @@ Widget::Widget(QWidget *parent)
 
     login_push_button = new QPushButton("Log in", this);
     login_push_button->setGeometry(mid_screen - 130, 650, 260, 80);
+    connect(login_push_button, SIGNAL(clicked()), this, SLOT(loginHandler()));
 }
 
 void Widget::paintEvent(QPaintEvent*) {
@@ -32,6 +33,14 @@ void Widget::paintEvent(QPaintEvent*) {
     tl.draw(&p);
     br.draw(&p);
     p.end();
+}
+
+void Widget::loginHandler() {
+    if (username_line_edit->text() == "admin" && password_line_edit->text() == "admin_pwd") {
+        login_label->setText("true");
+        return;
+    }
+    login_label->setText("false");
 }
 
 Widget::~Widget() {
