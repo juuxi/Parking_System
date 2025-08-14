@@ -42,6 +42,7 @@ else()
             barrier.h barrier.cpp
             vehicle.h vehicle.cpp
             ticket.h
+            level.h level.cpp
 
 
         )

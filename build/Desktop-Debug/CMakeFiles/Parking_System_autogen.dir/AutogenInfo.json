@@ -88,6 +88,12 @@
 			null
 		],
 		[
+			"/home/juuxi/Desktop/prog/else/Parking_System/level.h",
+			"MU",
+			"EWIEGA46WW/moc_level.cpp",
+			null
+		],
+		[
 			"/home/juuxi/Desktop/prog/else/Parking_System/ticket.h",
 			"MU",
 			"EWIEGA46WW/moc_ticket.cpp",
@@ -173,6 +179,7 @@
 			"MU",
 			null
 		],
+		[ "/home/juuxi/Desktop/prog/else/Parking_System/level.cpp", "MU", null ],
 		[ "/home/juuxi/Desktop/prog/else/Parking_System/main.cpp", "MU", null ],
 		[
 			"/home/juuxi/Desktop/prog/else/Parking_System/trafficlight.cpp",

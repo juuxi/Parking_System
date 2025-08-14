@@ -272,6 +272,30 @@ controlelement.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Parking_System.dir/build.make CMakeFiles/Parking_System.dir/controlelement.cpp.s
 .PHONY : controlelement.cpp.s
 
+level.o: level.cpp.o
+.PHONY : level.o
+
+# target to build an object file
+level.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Parking_System.dir/build.make CMakeFiles/Parking_System.dir/level.cpp.o
+.PHONY : level.cpp.o
+
+level.i: level.cpp.i
+.PHONY : level.i
+
+# target to preprocess a source file
+level.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Parking_System.dir/build.make CMakeFiles/Parking_System.dir/level.cpp.i
+.PHONY : level.cpp.i
+
+level.s: level.cpp.s
+.PHONY : level.s
+
+# target to generate assembly for a file
+level.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Parking_System.dir/build.make CMakeFiles/Parking_System.dir/level.cpp.s
+.PHONY : level.cpp.s
+
 main.o: main.cpp.o
 .PHONY : main.o
 
@@ -392,6 +416,9 @@ help:
 	@echo "... controlelement.o"
 	@echo "... controlelement.i"
 	@echo "... controlelement.s"
+	@echo "... level.o"
+	@echo "... level.i"
+	@echo "... level.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
