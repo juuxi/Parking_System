@@ -2,18 +2,25 @@
 #define LEVEL_H
 
 #include "vehicle.h"
-#include "controlelement.h"
+#include "trafficlight.h"
+#include "barrier.h"
+#include <QVector>
+#include <QSharedPointer>
+#include <algorithm>
 
 class Level
 {
     int serial_number;
-    Vehicle* vehicles;
-    ControlElement* control_elements;
+    QVector<Vehicle> vehicles;
+    QVector<QSharedPointer<ControlElement>> control_elements;
     bool is_opened;
 
 public:
     Level();
     Level(int);
+
+    void add_vehicle(Vehicle);
+    void remove_vehicle(Vehicle);
 };
 
 #endif // LEVEL_H

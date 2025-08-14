@@ -8,6 +8,8 @@ Parking_System_autogen/timestamp: \
 	/home/juuxi/Desktop/prog/else/Parking_System/build/Desktop-Debug/Parking_System_autogen/moc_predefs.h \
 	/home/juuxi/Desktop/prog/else/Parking_System/controlelement.cpp \
 	/home/juuxi/Desktop/prog/else/Parking_System/controlelement.h \
+	/home/juuxi/Desktop/prog/else/Parking_System/level.cpp \
+	/home/juuxi/Desktop/prog/else/Parking_System/level.h \
 	/home/juuxi/Desktop/prog/else/Parking_System/main.cpp \
 	/home/juuxi/Desktop/prog/else/Parking_System/ticket.h \
 	/home/juuxi/Desktop/prog/else/Parking_System/trafficlight.cpp \

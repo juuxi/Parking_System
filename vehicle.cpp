@@ -14,3 +14,11 @@ void Vehicle::updateDuration() {
     secs += enter_time.second();
     duration = QTime(QDateTime::currentDateTime().time()).addSecs(-secs);
 }
+
+
+bool Vehicle::operator==(const Vehicle& other) {
+    if (this->plate != other.plate) {
+        return false;
+    }
+    return true;
+}
