@@ -351,6 +351,11 @@ CMakeFiles/Parking_System.dir/main.cpp.o: \
  /home/juuxi/Desktop/prog/else/Parking_System/vehicle.h \
  /usr/include/x86_64-linux-gnu/qt5/QtCore/QTime \
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qdatetime.h \
+ /home/juuxi/Desktop/prog/else/Parking_System/level.h \
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/QVector \
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/qvector.h \
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/QSharedPointer \
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/qsharedpointer.h \
  /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QApplication \
  /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qapplication.h \
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qcoreapplication.h \

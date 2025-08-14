@@ -2,6 +2,7 @@
   /home/juuxi/Desktop/prog/else/Parking_System/build/Desktop-Debug/Parking_System_autogen/moc_predefs.h \
   /home/juuxi/Desktop/prog/else/Parking_System/barrier.h \
   /home/juuxi/Desktop/prog/else/Parking_System/controlelement.h \
+  /home/juuxi/Desktop/prog/else/Parking_System/level.h \
   /home/juuxi/Desktop/prog/else/Parking_System/ticket.h \
   /home/juuxi/Desktop/prog/else/Parking_System/trafficlight.h \
   /home/juuxi/Desktop/prog/else/Parking_System/vehicle.h \
@@ -250,8 +251,10 @@
   /usr/include/x86_64-linux-gnu/c++/13/bits/os_defines.h \
   /usr/include/x86_64-linux-gnu/gnu/stubs-64.h \
   /usr/include/x86_64-linux-gnu/gnu/stubs.h \
+  /usr/include/x86_64-linux-gnu/qt5/QtCore/QSharedPointer \
   /usr/include/x86_64-linux-gnu/qt5/QtCore/QString \
   /usr/include/x86_64-linux-gnu/qt5/QtCore/QTime \
+  /usr/include/x86_64-linux-gnu/qt5/QtCore/QVector \
   /usr/include/x86_64-linux-gnu/qt5/QtCore/qalgorithms.h \
   /usr/include/x86_64-linux-gnu/qt5/QtCore/qarraydata.h \
   /usr/include/x86_64-linux-gnu/qt5/QtCore/qatomic.h \

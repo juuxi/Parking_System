@@ -21,6 +21,8 @@ public:
 
     void add_vehicle(Vehicle);
     void remove_vehicle(Vehicle);
+    void add_control_element(QSharedPointer<ControlElement>&);
+    void remove_control_element(QSharedPointer<ControlElement>&);
 };
 
 #endif // LEVEL_H

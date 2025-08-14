@@ -6,6 +6,7 @@
 #include "trafficlight.h"
 #include "barrier.h"
 #include "ticket.h"
+#include "level.h"
 
 class Widget : public QWidget
 {
