@@ -5,6 +5,7 @@
 #include <QPaintEvent>
 #include "trafficlight.h"
 #include "barrier.h"
+#include "ticket.h"
 
 class Widget : public QWidget
 {

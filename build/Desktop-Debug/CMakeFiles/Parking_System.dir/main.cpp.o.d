@@ -345,6 +345,12 @@ CMakeFiles/Parking_System.dir/main.cpp.o: \
  /usr/include/x86_64-linux-gnu/qt5/QtGui/qtextoption.h \
  /usr/include/x86_64-linux-gnu/qt5/QtGui/qpen.h \
  /home/juuxi/Desktop/prog/else/Parking_System/barrier.h \
+ /home/juuxi/Desktop/prog/else/Parking_System/ticket.h \
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/QString \
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/qstring.h \
+ /home/juuxi/Desktop/prog/else/Parking_System/vehicle.h \
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/QTime \
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/qdatetime.h \
  /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QApplication \
  /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qapplication.h \
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qcoreapplication.h \

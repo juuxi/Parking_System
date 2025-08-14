@@ -2,7 +2,9 @@
   /home/juuxi/Desktop/prog/else/Parking_System/build/Desktop-Debug/Parking_System_autogen/moc_predefs.h \
   /home/juuxi/Desktop/prog/else/Parking_System/barrier.h \
   /home/juuxi/Desktop/prog/else/Parking_System/controlelement.h \
+  /home/juuxi/Desktop/prog/else/Parking_System/ticket.h \
   /home/juuxi/Desktop/prog/else/Parking_System/trafficlight.h \
+  /home/juuxi/Desktop/prog/else/Parking_System/vehicle.h \
   /usr/include/asm-generic/errno-base.h \
   /usr/include/asm-generic/errno.h \
   /usr/include/assert.h \
@@ -248,6 +250,8 @@
   /usr/include/x86_64-linux-gnu/c++/13/bits/os_defines.h \
   /usr/include/x86_64-linux-gnu/gnu/stubs-64.h \
   /usr/include/x86_64-linux-gnu/gnu/stubs.h \
+  /usr/include/x86_64-linux-gnu/qt5/QtCore/QString \
+  /usr/include/x86_64-linux-gnu/qt5/QtCore/QTime \
   /usr/include/x86_64-linux-gnu/qt5/QtCore/qalgorithms.h \
   /usr/include/x86_64-linux-gnu/qt5/QtCore/qarraydata.h \
   /usr/include/x86_64-linux-gnu/qt5/QtCore/qatomic.h \
@@ -262,6 +266,7 @@
   /usr/include/x86_64-linux-gnu/qt5/QtCore/qcontainertools_impl.h \
   /usr/include/x86_64-linux-gnu/qt5/QtCore/qcoreevent.h \
   /usr/include/x86_64-linux-gnu/qt5/QtCore/qdatastream.h \
+  /usr/include/x86_64-linux-gnu/qt5/QtCore/qdatetime.h \
   /usr/include/x86_64-linux-gnu/qt5/QtCore/qfile.h \
   /usr/include/x86_64-linux-gnu/qt5/QtCore/qfiledevice.h \
   /usr/include/x86_64-linux-gnu/qt5/QtCore/qflags.h \

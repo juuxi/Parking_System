@@ -341,4 +341,10 @@ CMakeFiles/Parking_System.dir/Parking_System_autogen/mocs_compilation.cpp.o: \
  /usr/include/x86_64-linux-gnu/qt5/QtGui/qpainter.h \
  /usr/include/x86_64-linux-gnu/qt5/QtGui/qtextoption.h \
  /usr/include/x86_64-linux-gnu/qt5/QtGui/qpen.h \
- /home/juuxi/Desktop/prog/else/Parking_System/build/Desktop-Debug/Parking_System_autogen/EWIEGA46WW/../../../../barrier.h
+ /home/juuxi/Desktop/prog/else/Parking_System/build/Desktop-Debug/Parking_System_autogen/EWIEGA46WW/../../../../barrier.h \
+ /home/juuxi/Desktop/prog/else/Parking_System/build/Desktop-Debug/Parking_System_autogen/EWIEGA46WW/../../../../ticket.h \
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/QString \
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/qstring.h \
+ /home/juuxi/Desktop/prog/else/Parking_System/build/Desktop-Debug/Parking_System_autogen/EWIEGA46WW/../../../../vehicle.h \
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/QTime \
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/qdatetime.h

@@ -41,6 +41,7 @@ else()
             trafficlight.h trafficlight.cpp
             barrier.h barrier.cpp
             vehicle.h vehicle.cpp
+            ticket.h
 
 
         )
