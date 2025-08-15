@@ -12,6 +12,7 @@
 #include "barrier.h"
 #include "ticket.h"
 #include "level.h"
+#include "database.h"
 
 class Widget : public QWidget
 {

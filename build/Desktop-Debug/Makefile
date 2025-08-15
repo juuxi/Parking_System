@@ -272,6 +272,30 @@ controlelement.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Parking_System.dir/build.make CMakeFiles/Parking_System.dir/controlelement.cpp.s
 .PHONY : controlelement.cpp.s
 
+database.o: database.cpp.o
+.PHONY : database.o
+
+# target to build an object file
+database.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Parking_System.dir/build.make CMakeFiles/Parking_System.dir/database.cpp.o
+.PHONY : database.cpp.o
+
+database.i: database.cpp.i
+.PHONY : database.i
+
+# target to preprocess a source file
+database.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Parking_System.dir/build.make CMakeFiles/Parking_System.dir/database.cpp.i
+.PHONY : database.cpp.i
+
+database.s: database.cpp.s
+.PHONY : database.s
+
+# target to generate assembly for a file
+database.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Parking_System.dir/build.make CMakeFiles/Parking_System.dir/database.cpp.s
+.PHONY : database.cpp.s
+
 level.o: level.cpp.o
 .PHONY : level.o
 
@@ -319,6 +343,30 @@ main.s: main.cpp.s
 main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Parking_System.dir/build.make CMakeFiles/Parking_System.dir/main.cpp.s
 .PHONY : main.cpp.s
+
+pgconnection.o: pgconnection.cpp.o
+.PHONY : pgconnection.o
+
+# target to build an object file
+pgconnection.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Parking_System.dir/build.make CMakeFiles/Parking_System.dir/pgconnection.cpp.o
+.PHONY : pgconnection.cpp.o
+
+pgconnection.i: pgconnection.cpp.i
+.PHONY : pgconnection.i
+
+# target to preprocess a source file
+pgconnection.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Parking_System.dir/build.make CMakeFiles/Parking_System.dir/pgconnection.cpp.i
+.PHONY : pgconnection.cpp.i
+
+pgconnection.s: pgconnection.cpp.s
+.PHONY : pgconnection.s
+
+# target to generate assembly for a file
+pgconnection.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Parking_System.dir/build.make CMakeFiles/Parking_System.dir/pgconnection.cpp.s
+.PHONY : pgconnection.cpp.s
 
 trafficlight.o: trafficlight.cpp.o
 .PHONY : trafficlight.o
@@ -416,12 +464,18 @@ help:
 	@echo "... controlelement.o"
 	@echo "... controlelement.i"
 	@echo "... controlelement.s"
+	@echo "... database.o"
+	@echo "... database.i"
+	@echo "... database.s"
 	@echo "... level.o"
 	@echo "... level.i"
 	@echo "... level.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
+	@echo "... pgconnection.o"
+	@echo "... pgconnection.i"
+	@echo "... pgconnection.s"
 	@echo "... trafficlight.o"
 	@echo "... trafficlight.i"
 	@echo "... trafficlight.s"

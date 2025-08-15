@@ -25,6 +25,8 @@ Widget::Widget(QWidget *parent)
     login_push_button = new QPushButton("Log in", this);
     login_push_button->setGeometry(mid_screen - 130, 650, 260, 80);
     connect(login_push_button, SIGNAL(clicked()), this, SLOT(loginHandler()));
+
+    DataBase db;
 }
 
 void Widget::paintEvent(QPaintEvent*) {

@@ -188,6 +188,34 @@ CMakeFiles/Parking_System.dir/level.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Parking_System.dir/level.cpp.s"
 	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/juuxi/Desktop/prog/else/Parking_System/level.cpp -o CMakeFiles/Parking_System.dir/level.cpp.s
 
+CMakeFiles/Parking_System.dir/pgconnection.cpp.o: CMakeFiles/Parking_System.dir/flags.make
+CMakeFiles/Parking_System.dir/pgconnection.cpp.o: /home/juuxi/Desktop/prog/else/Parking_System/pgconnection.cpp
+CMakeFiles/Parking_System.dir/pgconnection.cpp.o: CMakeFiles/Parking_System.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/juuxi/Desktop/prog/else/Parking_System/build/Desktop-Debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/Parking_System.dir/pgconnection.cpp.o"
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Parking_System.dir/pgconnection.cpp.o -MF CMakeFiles/Parking_System.dir/pgconnection.cpp.o.d -o CMakeFiles/Parking_System.dir/pgconnection.cpp.o -c /home/juuxi/Desktop/prog/else/Parking_System/pgconnection.cpp
+
+CMakeFiles/Parking_System.dir/pgconnection.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/Parking_System.dir/pgconnection.cpp.i"
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/juuxi/Desktop/prog/else/Parking_System/pgconnection.cpp > CMakeFiles/Parking_System.dir/pgconnection.cpp.i
+
+CMakeFiles/Parking_System.dir/pgconnection.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Parking_System.dir/pgconnection.cpp.s"
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/juuxi/Desktop/prog/else/Parking_System/pgconnection.cpp -o CMakeFiles/Parking_System.dir/pgconnection.cpp.s
+
+CMakeFiles/Parking_System.dir/database.cpp.o: CMakeFiles/Parking_System.dir/flags.make
+CMakeFiles/Parking_System.dir/database.cpp.o: /home/juuxi/Desktop/prog/else/Parking_System/database.cpp
+CMakeFiles/Parking_System.dir/database.cpp.o: CMakeFiles/Parking_System.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/juuxi/Desktop/prog/else/Parking_System/build/Desktop-Debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/Parking_System.dir/database.cpp.o"
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Parking_System.dir/database.cpp.o -MF CMakeFiles/Parking_System.dir/database.cpp.o.d -o CMakeFiles/Parking_System.dir/database.cpp.o -c /home/juuxi/Desktop/prog/else/Parking_System/database.cpp
+
+CMakeFiles/Parking_System.dir/database.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/Parking_System.dir/database.cpp.i"
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/juuxi/Desktop/prog/else/Parking_System/database.cpp > CMakeFiles/Parking_System.dir/database.cpp.i
+
+CMakeFiles/Parking_System.dir/database.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Parking_System.dir/database.cpp.s"
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/juuxi/Desktop/prog/else/Parking_System/database.cpp -o CMakeFiles/Parking_System.dir/database.cpp.s
+
 # Object files for target Parking_System
 Parking_System_OBJECTS = \
 "CMakeFiles/Parking_System.dir/Parking_System_autogen/mocs_compilation.cpp.o" \
@@ -197,7 +225,9 @@ Parking_System_OBJECTS = \
 "CMakeFiles/Parking_System.dir/trafficlight.cpp.o" \
 "CMakeFiles/Parking_System.dir/barrier.cpp.o" \
 "CMakeFiles/Parking_System.dir/vehicle.cpp.o" \
-"CMakeFiles/Parking_System.dir/level.cpp.o"
+"CMakeFiles/Parking_System.dir/level.cpp.o" \
+"CMakeFiles/Parking_System.dir/pgconnection.cpp.o" \
+"CMakeFiles/Parking_System.dir/database.cpp.o"
 
 # External object files for target Parking_System
 Parking_System_EXTERNAL_OBJECTS =
@@ -210,12 +240,15 @@ Parking_System: CMakeFiles/Parking_System.dir/trafficlight.cpp.o
 Parking_System: CMakeFiles/Parking_System.dir/barrier.cpp.o
 Parking_System: CMakeFiles/Parking_System.dir/vehicle.cpp.o
 Parking_System: CMakeFiles/Parking_System.dir/level.cpp.o
+Parking_System: CMakeFiles/Parking_System.dir/pgconnection.cpp.o
+Parking_System: CMakeFiles/Parking_System.dir/database.cpp.o
 Parking_System: CMakeFiles/Parking_System.dir/build.make
 Parking_System: /usr/lib/x86_64-linux-gnu/libQt5Widgets.so.5.15.13
+Parking_System: /usr/lib/x86_64-linux-gnu/libpq.so
 Parking_System: /usr/lib/x86_64-linux-gnu/libQt5Gui.so.5.15.13
 Parking_System: /usr/lib/x86_64-linux-gnu/libQt5Core.so.5.15.13
 Parking_System: CMakeFiles/Parking_System.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/juuxi/Desktop/prog/else/Parking_System/build/Desktop-Debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Linking CXX executable Parking_System"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/juuxi/Desktop/prog/else/Parking_System/build/Desktop-Debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Linking CXX executable Parking_System"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/Parking_System.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
