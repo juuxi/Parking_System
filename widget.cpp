@@ -23,6 +23,19 @@ Widget::Widget(QWidget *parent)
     login_push_button = new QPushButton("Log in", this);
     login_push_button->setFixedSize(260, 80);
     connect(login_push_button, SIGNAL(clicked()), this, SLOT(loginHandler()));
+
+
+    account_button = new QPushButton("Account", this);
+    account_button->hide();
+
+    change_vehicles_info_button = new QPushButton("Change Vehicles", this);
+    change_vehicles_info_button->hide();
+
+    get_vehicles_info_button = new QPushButton("Get Vehicles Info", this);
+    get_vehicles_info_button->hide();
+
+    operate_button = new QPushButton("Operate", this);
+    operate_button->hide();
 }
 
 void Widget::paintEvent(QPaintEvent*) {
@@ -47,17 +60,29 @@ void Widget::RepositionUI() {
     login_push_button->move(mid_screen - 130, 650);
 }
 
+void Widget::hideLoginUI() {
+    login_label->hide();
+    username_label->hide();
+    password_label->hide();
+    username_line_edit->hide();
+    password_line_edit->hide();
+    login_push_button->hide();
+}
+
+void Widget::showMainMenuUI() {
+    account_button->show();
+    change_vehicles_info_button->show();
+    get_vehicles_info_button->show();
+    operate_button->show();
+}
+
 void Widget::loginHandler() {
     DataBase db;
     bool is_correct = db.check_login(username_line_edit->text(), password_line_edit->text());
     login_label->setText(QString::number(is_correct));
     if (is_correct) {
-        login_label->hide();
-        username_label->hide();
-        password_label->hide();
-        username_line_edit->hide();
-        password_line_edit->hide();
-        login_push_button->hide();
+        hideLoginUI();
+        showMainMenuUI();
     }
     else {
         QMessageBox::critical(this, tr("Error"), tr("Wrong Username/Password"));
@@ -71,4 +96,9 @@ Widget::~Widget() {
     delete login_push_button;
     delete username_line_edit;
     delete password_line_edit;
+
+    delete account_button;
+    delete change_vehicles_info_button;
+    delete get_vehicles_info_button;
+    delete operate_button;
 }

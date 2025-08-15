@@ -28,6 +28,14 @@ class Widget : public QWidget
     QLineEdit* username_line_edit;
     QLineEdit* password_line_edit;
 
+    QPushButton* account_button;
+    QPushButton* change_vehicles_info_button;
+    QPushButton* get_vehicles_info_button;
+    QPushButton* operate_button;
+
+    void hideLoginUI();
+    void showMainMenuUI();
+
 public:
     Widget(QWidget *parent = nullptr);
 
