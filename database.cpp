@@ -14,3 +14,17 @@ DataBase::DataBase() {
     pg.reconnect();
     db_info.close();
 }
+
+bool DataBase::check_login(QString username, QString password) {
+    QString query;
+    if (pg.res) {
+        char query[256];
+        sprintf(query, "SELECT * FROM passwords \
+            WHERE username='%s' AND password='%s'", username.toStdString().c_str(), password.toStdString().c_str());
+        PGresult* result = PQexec(pg.res, query);
+        if (PQntuples(result) > 0) {
+            return true;
+        }
+    }
+    return false;
+}

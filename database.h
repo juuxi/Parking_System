@@ -10,6 +10,7 @@ class DataBase
     PGConnection pg;
 public:
     DataBase();
+    bool check_login(QString, QString);
 };
 
 #endif // DATABASE_H
