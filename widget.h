@@ -30,7 +30,12 @@ class Widget : public QWidget
 
 public:
     Widget(QWidget *parent = nullptr);
+
     void paintEvent(QPaintEvent *);
+    void resizeEvent(QResizeEvent *);
+
+    void RepositionUI();
+
     ~Widget();
 public slots:
     void loginHandler();

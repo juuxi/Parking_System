@@ -5,40 +5,52 @@ Widget::Widget(QWidget *parent)
     setWindowTitle("Парковочная система");
     setWindowState(Qt::WindowMaximized);
 
-    int mid_screen = 1180; //to be changed later via moves and resize event
-
     login_label = new QLabel("Введите имя пользователя и пароль", this);
-    login_label->setGeometry(mid_screen - 130, 500, 260, 30);
+    login_label->setFixedSize(260, 30);
 
     username_label = new QLabel("Имя пользователя: ", this);
-    username_label->setGeometry(mid_screen - 280, 550, 150, 30);
+    username_label->setFixedSize(150, 30);
 
     password_label = new QLabel("Пароль: ", this);
-    password_label->setGeometry(mid_screen - 280, 600, 150, 30);
+    password_label->setFixedSize(150, 30);
 
     username_line_edit = new QLineEdit(this);
-    username_line_edit->setGeometry(mid_screen - 130, 550, 260, 30);
+    username_line_edit->setFixedSize(260, 30);
 
     password_line_edit = new QLineEdit(this);
-    password_line_edit->setGeometry(mid_screen - 130, 600, 260, 30);
+    password_line_edit->setFixedSize(260, 30);
 
     login_push_button = new QPushButton("Log in", this);
-    login_push_button->setGeometry(mid_screen - 130, 650, 260, 80);
+    login_push_button->setFixedSize(260, 80);
     connect(login_push_button, SIGNAL(clicked()), this, SLOT(loginHandler()));
 }
 
 void Widget::paintEvent(QPaintEvent*) {
     QPainter p;
-    p.begin(this);
-    tl.draw(&p);
-    br.draw(&p);
-    p.end();
+}
+
+void Widget::resizeEvent(QResizeEvent *event) {
+    QWidget::resizeEvent(event);
+    RepositionUI();
+}
+
+void Widget::RepositionUI() {
+    int mid_screen = this->width() / 2;
+
+    login_label->move(mid_screen - 130, 500);
+    username_label->move(mid_screen - 280, 550);
+    password_label->move(mid_screen - 280, 600);
+
+    username_line_edit->move(mid_screen - 130, 550);
+    password_line_edit->move(mid_screen - 130, 600);
+
+    login_push_button->move(mid_screen - 130, 650);
 }
 
 void Widget::loginHandler() {
     DataBase db;
-    bool res = db.check_login(username_line_edit->text(), password_line_edit->text());
-    login_label->setText(QString::number(res));
+    bool is_correct = db.check_login(username_line_edit->text(), password_line_edit->text());
+    login_label->setText(QString::number(is_correct));
 }
 
 Widget::~Widget() {
