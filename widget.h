@@ -6,7 +6,7 @@
 #include <QLabel>
 #include <QPushButton>
 #include <QLineEdit>
-#include <QTimer>
+#include <QMessageBox>
 
 #include "trafficlight.h"
 #include "barrier.h"

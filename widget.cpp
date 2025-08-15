@@ -51,6 +51,17 @@ void Widget::loginHandler() {
     DataBase db;
     bool is_correct = db.check_login(username_line_edit->text(), password_line_edit->text());
     login_label->setText(QString::number(is_correct));
+    if (is_correct) {
+        login_label->hide();
+        username_label->hide();
+        password_label->hide();
+        username_line_edit->hide();
+        password_line_edit->hide();
+        login_push_button->hide();
+    }
+    else {
+        QMessageBox::critical(this, tr("Error"), tr("Wrong Username/Password"));
+    }
 }
 
 Widget::~Widget() {
