@@ -44,10 +44,11 @@ void Widget::paintEvent(QPaintEvent*) {
 
 void Widget::resizeEvent(QResizeEvent *event) {
     QWidget::resizeEvent(event);
-    RepositionUI();
+    RepositionLoginUI();
+    RepositionMainMenuUI();
 }
 
-void Widget::RepositionUI() {
+void Widget::RepositionLoginUI() {
     int mid_screen = this->width() / 2;
 
     login_label->move(mid_screen - 130, 500);
@@ -58,6 +59,21 @@ void Widget::RepositionUI() {
     password_line_edit->move(mid_screen - 130, 600);
 
     login_push_button->move(mid_screen - 130, 650);
+}
+
+void Widget::RepositionMainMenuUI() {
+    int mid_width = this->width() / 2;
+    int mid_height = this->height() / 2;
+
+    account_button->setFixedSize(mid_width, mid_height);
+    change_vehicles_info_button->setFixedSize(mid_width, mid_height);
+    get_vehicles_info_button->setFixedSize(mid_width, mid_height);
+    operate_button->setFixedSize(mid_width, mid_height);
+
+    account_button->move(0, 0);
+    change_vehicles_info_button->move(mid_width, 0);
+    get_vehicles_info_button->move(0, mid_height);
+    operate_button->move(mid_width, mid_height);
 }
 
 void Widget::hideLoginUI() {

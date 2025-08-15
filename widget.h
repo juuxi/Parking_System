@@ -42,7 +42,8 @@ public:
     void paintEvent(QPaintEvent *);
     void resizeEvent(QResizeEvent *);
 
-    void RepositionUI();
+    void RepositionLoginUI();
+    void RepositionMainMenuUI();
 
     ~Widget();
 public slots:
