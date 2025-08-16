@@ -36,6 +36,31 @@ Widget::Widget(QWidget *parent)
 
     operate_button = std::make_unique<QPushButton>("Operate", this);
     operate_button.get()->hide();
+
+
+    account_name_label = std::make_unique<QLabel>("ФИО: ", this);
+    account_name_label.get()->hide();
+
+    account_birth_date_label = std::make_unique<QLabel>("Дата рождения: ", this);
+    account_birth_date_label.get()->hide();
+
+    account_phone_label = std::make_unique<QLabel>("Номер телефона: ", this);
+    account_phone_label.get()->hide();
+
+    account_email_label = std::make_unique<QLabel>("Email: ", this);
+    account_email_label.get()->hide();
+
+    account_current_name = std::make_unique<QLabel>("1", this);
+    account_current_name.get()->hide();
+
+    account_current_birth_date = std::make_unique<QLabel>("2", this);
+    account_current_birth_date.get()->hide();
+
+    account_current_phone = std::make_unique<QLabel>("3", this);
+    account_current_phone.get()->hide();
+
+    account_current_email = std::make_unique<QLabel>("4", this);
+    account_current_email.get()->hide();
 }
 
 void Widget::paintEvent(QPaintEvent*) {
