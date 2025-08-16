@@ -77,6 +77,11 @@ void Widget::setupAccountUI() {
     account_current_email = std::make_unique<QLabel>("4", this);
     account_current_email.get()->hide();
     account_current_email.get()->setFixedSize(150, 50);
+
+    account_change_button = std::make_unique<QPushButton>("Изменить", this);
+    account_change_button.get()->hide();
+    account_change_button.get()->setFixedSize(100, 50);
+    connect(account_change_button.get(), SIGNAL(clicked()), this, SLOT(accountChangeHandler()));
 }
 
 void Widget::paintEvent(QPaintEvent*) {
@@ -131,6 +136,8 @@ void Widget::repositionAccountUI() {
     account_current_birth_date.get()->move(mid_width + 50, mid_height - 25);
     account_current_phone.get()->move(mid_width + 50, mid_height + 25);
     account_current_email.get()->move(mid_width + 50, mid_height + 75);
+
+    account_change_button.get()->move(mid_width - 50, mid_height + 125);
 }
 
 void Widget::hideLoginUI() {
@@ -166,6 +173,8 @@ void Widget::showAccountUI() {
     account_current_birth_date.get()->show();
     account_current_phone.get()->show();
     account_current_email.get()->show();
+
+    account_change_button.get()->show();
 }
 
 void Widget::loginHandler() {
@@ -184,6 +193,50 @@ void Widget::loginHandler() {
 void Widget::accountHandler() {
     hideMainMenuUI();
     showAccountUI();
+}
+
+void Widget::accountChangeHandler() {
+    const QStringList items{tr("ФИО"), tr("Дата рождения"), tr("Номер телефона"), tr("Email")};
+
+    bool ok{};
+    QString item = QInputDialog::getItem(this, tr("Изменение информации аккаунта"),
+                                         tr("Что изменить?"), items, 0, false, &ok); //увеличить размеры если возможно
+
+    if (item == "ФИО") {
+        QString text = QInputDialog::getText(this, tr("Изменение ФИО"),
+                                              tr("Новое ФИО:"), QLineEdit::Normal,
+                                              QDir::home().dirName(), &ok);
+        if (ok) {
+            account_current_name->setText(text);
+        }
+    }
+
+    if (item == "Дата рождения") {
+        QString text = QInputDialog::getText(this, tr("Изменение даты рождения"),
+                                             tr("Новая дата рождения:"), QLineEdit::Normal,
+                                             QDir::home().dirName(), &ok);
+        if (ok) {
+            account_current_birth_date->setText(text);
+        }
+    }
+
+    if (item == "Номер телефона") {
+        QString text = QInputDialog::getText(this, tr("Изменение номера телефона"),
+                                             tr("Новый номер телефона:"), QLineEdit::Normal,
+                                             QDir::home().dirName(), &ok);
+        if (ok) {
+            account_current_phone->setText(text);
+        }
+    }
+
+    if (item == "Email") {
+        QString text = QInputDialog::getText(this, tr("Изменение Email"),
+                                             tr("Новый Email:"), QLineEdit::Normal,
+                                             QDir::home().dirName(), &ok);
+        if (ok) {
+            account_current_email->setText(text);
+        }
+    }
 }
 
 Widget::~Widget() {

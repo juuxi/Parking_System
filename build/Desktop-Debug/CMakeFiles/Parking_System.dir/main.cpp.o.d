@@ -355,6 +355,12 @@ CMakeFiles/Parking_System.dir/main.cpp.o: \
  /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QMessageBox \
  /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qmessagebox.h \
  /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qdialog.h \
+ /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QInputDialog \
+ /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qinputdialog.h \
+ /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qlineedit.h \
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/QDir \
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/qdir.h \
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/qfileinfo.h \
  /home/juuxi/Desktop/prog/else/Parking_System/trafficlight.h \
  /home/juuxi/Desktop/prog/else/Parking_System/controlelement.h \
  /usr/include/x86_64-linux-gnu/qt5/QtGui/QPainter \

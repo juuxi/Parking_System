@@ -7,6 +7,8 @@
 #include <QPushButton>
 #include <QLineEdit>
 #include <QMessageBox>
+#include <QInputDialog>
+#include <QDir>
 
 #include <memory>
 
@@ -43,6 +45,7 @@ class Widget : public QWidget
     std::unique_ptr<QLabel> account_current_birth_date;
     std::unique_ptr<QLabel> account_current_phone;
     std::unique_ptr<QLabel> account_current_email;
+    std::unique_ptr<QPushButton> account_change_button;
 
     void hideLoginUI();
     void hideMainMenuUI();
@@ -66,5 +69,6 @@ public:
 public slots:
     void loginHandler();
     void accountHandler();
+    void accountChangeHandler();
 };
 #endif // WIDGET_H
