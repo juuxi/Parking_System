@@ -4,7 +4,12 @@ Widget::Widget(QWidget *parent)
     : QWidget(parent) {
     setWindowTitle("Парковочная система");
     setWindowState(Qt::WindowMaximized);
+    setupLoginUI();
+    setupMainMenuUI();
+    setupAccountUI();
+}
 
+void Widget::setupLoginUI() {
     login_label = std::make_unique<QLabel>("Введите имя пользователя и пароль", this);
     login_label.get()->setFixedSize(260, 30);
 
@@ -23,8 +28,9 @@ Widget::Widget(QWidget *parent)
     login_push_button = std::make_unique<QPushButton>("Log in", this);
     login_push_button.get()->setFixedSize(260, 80);
     connect(login_push_button.get(), SIGNAL(clicked()), this, SLOT(loginHandler()));
+}
 
-
+void Widget::setupMainMenuUI() {
     account_button = std::make_unique<QPushButton>("Account", this);
     account_button.get()->hide();
 
@@ -36,8 +42,9 @@ Widget::Widget(QWidget *parent)
 
     operate_button = std::make_unique<QPushButton>("Operate", this);
     operate_button.get()->hide();
+}
 
-
+void Widget::setupAccountUI() {
     account_name_label = std::make_unique<QLabel>("ФИО: ", this);
     account_name_label.get()->hide();
 

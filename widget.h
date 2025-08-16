@@ -53,6 +53,9 @@ public:
     void paintEvent(QPaintEvent *);
     void resizeEvent(QResizeEvent *);
 
+    void setupLoginUI();
+    void setupMainMenuUI();
+    void setupAccountUI();
     void RepositionLoginUI();
     void RepositionMainMenuUI();
     void ShowAccountInfo();
