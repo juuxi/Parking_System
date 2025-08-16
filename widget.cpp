@@ -33,6 +33,7 @@ void Widget::setupLoginUI() {
 void Widget::setupMainMenuUI() {
     account_button = std::make_unique<QPushButton>("Account", this);
     account_button.get()->hide();
+    connect(account_button.get(), SIGNAL(clicked()), this, SLOT(accountHandler()));
 
     change_vehicles_info_button = std::make_unique<QPushButton>("Change Vehicles", this);
     change_vehicles_info_button.get()->hide();
@@ -47,27 +48,35 @@ void Widget::setupMainMenuUI() {
 void Widget::setupAccountUI() {
     account_name_label = std::make_unique<QLabel>("ФИО: ", this);
     account_name_label.get()->hide();
+    account_name_label.get()->setFixedSize(150, 50);
 
     account_birth_date_label = std::make_unique<QLabel>("Дата рождения: ", this);
     account_birth_date_label.get()->hide();
+    account_birth_date_label.get()->setFixedSize(150, 50);
 
     account_phone_label = std::make_unique<QLabel>("Номер телефона: ", this);
     account_phone_label.get()->hide();
+    account_phone_label.get()->setFixedSize(150, 50);
 
     account_email_label = std::make_unique<QLabel>("Email: ", this);
     account_email_label.get()->hide();
+    account_email_label.get()->setFixedSize(150, 50);
 
     account_current_name = std::make_unique<QLabel>("1", this);
     account_current_name.get()->hide();
+    account_current_name.get()->setFixedSize(150, 50);
 
     account_current_birth_date = std::make_unique<QLabel>("2", this);
     account_current_birth_date.get()->hide();
+    account_current_birth_date.get()->setFixedSize(150, 50);
 
     account_current_phone = std::make_unique<QLabel>("3", this);
     account_current_phone.get()->hide();
+    account_current_phone.get()->setFixedSize(150, 50);
 
     account_current_email = std::make_unique<QLabel>("4", this);
     account_current_email.get()->hide();
+    account_current_email.get()->setFixedSize(150, 50);
 }
 
 void Widget::paintEvent(QPaintEvent*) {
@@ -76,11 +85,12 @@ void Widget::paintEvent(QPaintEvent*) {
 
 void Widget::resizeEvent(QResizeEvent *event) {
     QWidget::resizeEvent(event);
-    RepositionLoginUI();
-    RepositionMainMenuUI();
+    repositionLoginUI();
+    repositionMainMenuUI();
+    repositionAccountUI();
 }
 
-void Widget::RepositionLoginUI() {
+void Widget::repositionLoginUI() {
     int mid_screen = this->width() / 2;
 
     login_label.get()->move(mid_screen - 130, 500);
@@ -93,7 +103,7 @@ void Widget::RepositionLoginUI() {
     login_push_button.get()->move(mid_screen - 130, 650);
 }
 
-void Widget::RepositionMainMenuUI() {
+void Widget::repositionMainMenuUI() {
     int mid_width = this->width() / 2;
     int mid_height = this->height() / 2;
 
@@ -108,6 +118,21 @@ void Widget::RepositionMainMenuUI() {
     operate_button.get()->move(mid_width, mid_height);
 }
 
+void Widget::repositionAccountUI() {
+    int mid_width = this->width() / 2;
+    int mid_height = this->height() / 2;
+
+    account_name_label.get()->move(mid_width - 150, mid_height - 75);
+    account_birth_date_label.get()->move(mid_width - 150, mid_height - 25);
+    account_phone_label.get()->move(mid_width - 150, mid_height + 25);
+    account_email_label.get()->move(mid_width - 150, mid_height + 75);
+
+    account_current_name.get()->move(mid_width + 50, mid_height - 75);
+    account_current_birth_date.get()->move(mid_width + 50, mid_height - 25);
+    account_current_phone.get()->move(mid_width + 50, mid_height + 25);
+    account_current_email.get()->move(mid_width + 50, mid_height + 75);
+}
+
 void Widget::hideLoginUI() {
     login_label.get()->hide();
     username_label.get()->hide();
@@ -117,11 +142,30 @@ void Widget::hideLoginUI() {
     login_push_button.get()->hide();
 }
 
+void Widget::hideMainMenuUI() {
+    account_button.get()->hide();
+    change_vehicles_info_button.get()->hide();
+    get_vehicles_info_button.get()->hide();
+    operate_button.get()->hide();
+}
+
 void Widget::showMainMenuUI() {
     account_button.get()->show();
     change_vehicles_info_button.get()->show();
     get_vehicles_info_button.get()->show();
     operate_button.get()->show();
+}
+
+void Widget::showAccountUI() {
+    account_name_label.get()->show();
+    account_birth_date_label.get()->show();
+    account_phone_label.get()->show();
+    account_email_label.get()->show();
+
+    account_current_name.get()->show();
+    account_current_birth_date.get()->show();
+    account_current_phone.get()->show();
+    account_current_email.get()->show();
 }
 
 void Widget::loginHandler() {
@@ -135,6 +179,11 @@ void Widget::loginHandler() {
     else {
         QMessageBox::critical(this, tr("Error"), tr("Wrong Username/Password"));
     }
+}
+
+void Widget::accountHandler() {
+    hideMainMenuUI();
+    showAccountUI();
 }
 
 Widget::~Widget() {

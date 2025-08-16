@@ -45,7 +45,9 @@ class Widget : public QWidget
     std::unique_ptr<QLabel> account_current_email;
 
     void hideLoginUI();
+    void hideMainMenuUI();
     void showMainMenuUI();
+    void showAccountUI();
 
 public:
     Widget(QWidget *parent = nullptr);
@@ -56,12 +58,13 @@ public:
     void setupLoginUI();
     void setupMainMenuUI();
     void setupAccountUI();
-    void RepositionLoginUI();
-    void RepositionMainMenuUI();
-    void ShowAccountInfo();
+    void repositionLoginUI();
+    void repositionMainMenuUI();
+    void repositionAccountUI();
 
     ~Widget();
 public slots:
     void loginHandler();
+    void accountHandler();
 };
 #endif // WIDGET_H
