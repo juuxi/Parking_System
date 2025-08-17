@@ -1,17 +1,20 @@
 #include "level.h"
 
-Level::Level() : serial_number(0), is_opened(true) {}
+Level::Level() : serial_number(0), lines(5, QVector<Vehicle>(30, Vehicle())), is_opened(true) {}
 
 Level::Level(int num) : serial_number(num), is_opened(true) {}
 
-void Level::add_vehicle(Vehicle v) {
-    vehicles.push_back(v);
+void Level::add_vehicle(Vehicle v, int line, int pos) {
+    lines[line][pos] = v;
 }
 
 void Level::remove_vehicle(Vehicle v) {
-    const auto to_del = std::find(vehicles.begin(), vehicles.end(), v);
-    if (to_del != vehicles.end()) {
-        vehicles.erase(to_del);
+    for (int row = 0; row < lines.size(); row++) {
+        for (int col = 0; col < lines[row].size(); col++) {
+            if (lines[row][col] == v) {
+                lines[row][col] = Vehicle();
+            }
+        }
     }
 }
 

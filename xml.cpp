@@ -6,7 +6,6 @@ void Xml::write() {
     QString file_path = "../../2d.xml";
     QFile file(file_path);
     if (!file.open(QIODevice::WriteOnly | QIODevice::Text)) {
-        qWarning() << "Failed to open file for writing:" << file_path;
         return;
     }
 

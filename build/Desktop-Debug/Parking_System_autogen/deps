@@ -22,6 +22,8 @@ Parking_System_autogen/timestamp: \
 	/home/juuxi/Desktop/prog/else/Parking_System/vehicle.h \
 	/home/juuxi/Desktop/prog/else/Parking_System/widget.cpp \
 	/home/juuxi/Desktop/prog/else/Parking_System/widget.h \
+	/home/juuxi/Desktop/prog/else/Parking_System/xml.cpp \
+	/home/juuxi/Desktop/prog/else/Parking_System/xml.h \
 	/usr/include/asm-generic/errno-base.h \
 	/usr/include/asm-generic/errno.h \
 	/usr/include/assert.h \
