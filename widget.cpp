@@ -47,7 +47,7 @@ void Widget::setupMainMenuUI() {
 
 void Widget::setupAccountUI() {
     account_name_label = std::make_unique<QLabel>("ФИО: ", this);
-    account_name_label.get()->setFixedSize(150, 50); //увеличить длину под сами данные
+    account_name_label.get()->setFixedSize(150, 50);
 
     account_birth_date_label = std::make_unique<QLabel>("Дата рождения: ", this);
     account_birth_date_label.get()->setFixedSize(150, 50);
@@ -59,19 +59,19 @@ void Widget::setupAccountUI() {
     account_email_label.get()->setFixedSize(150, 50);
 
     account_current_name = std::make_unique<QLabel>("1", this);
-    account_current_name.get()->setFixedSize(150, 50);
+    account_current_name.get()->setFixedSize(250, 50);
 
     account_current_birth_date = std::make_unique<QLabel>("2", this);
-    account_current_birth_date.get()->setFixedSize(150, 50);
+    account_current_birth_date.get()->setFixedSize(250, 50);
 
     account_current_phone = std::make_unique<QLabel>("3", this);
-    account_current_phone.get()->setFixedSize(150, 50);
+    account_current_phone.get()->setFixedSize(250, 50);
 
     account_current_email = std::make_unique<QLabel>("4", this);
-    account_current_email.get()->setFixedSize(150, 50);
+    account_current_email.get()->setFixedSize(250, 50);
 
     account_change_button = std::make_unique<QPushButton>("Изменить", this);
-    account_change_button.get()->setFixedSize(100, 50);
+    account_change_button.get()->setFixedSize(200, 50);
     connect(account_change_button.get(), SIGNAL(clicked()), this, SLOT(accountChangeHandler()));
     hideAccountUI();
 }
@@ -129,7 +129,7 @@ void Widget::repositionAccountUI() {
     account_current_phone.get()->move(mid_width + 50, mid_height + 25);
     account_current_email.get()->move(mid_width + 50, mid_height + 75);
 
-    account_change_button.get()->move(mid_width - 50, mid_height + 125);
+    account_change_button.get()->move(mid_width - 100, mid_height + 125);
 }
 
 void Widget::hideLoginUI() {
@@ -205,42 +205,65 @@ void Widget::accountChangeHandler() {
     const QStringList items{tr("ФИО"), tr("Дата рождения"), tr("Номер телефона"), tr("Email")};
 
     bool ok{};
-    QString item = QInputDialog::getItem(this, tr("Изменение информации аккаунта"),
-                                         tr("Что изменить?"), items, 0, false, &ok); //увеличить размеры если возможно
+    QString item;
+    QInputDialog dlg;
+    dlg.setWindowTitle("Изменение информации аккаунта");
+    dlg.setLabelText("Что изменить?");
+    dlg.setComboBoxItems(items);
+    dlg.resize(400, 300); //проблемы с местом появления
+    if (dlg.exec() == QDialog::Accepted) {
+        item = dlg.textValue();
+    }
+    else {
+        return;
+    }
 
+    QInputDialog internal_dlg;
     if (item == "ФИО") {
-        QString text = QInputDialog::getText(this, tr("Изменение ФИО"),
-                                              tr("Новое ФИО:"), QLineEdit::Normal,
-                                              QDir::home().dirName(), &ok);
-        if (ok) {
-            account_current_name->setText(text);
+        internal_dlg.setWindowTitle("Изменение ФИО");
+        internal_dlg.setLabelText("Новое ФИО:");
+        internal_dlg.resize(300, 300);
+        if (internal_dlg.exec() == QDialog::Accepted) {
+            account_current_name->setText(internal_dlg.textValue());
+        }
+        else {
+            return;
         }
     }
 
     if (item == "Дата рождения") {
-        QString text = QInputDialog::getText(this, tr("Изменение даты рождения"),
-                                             tr("Новая дата рождения:"), QLineEdit::Normal,
-                                             QDir::home().dirName(), &ok);
-        if (ok) {
-            account_current_birth_date->setText(text);
+        internal_dlg.setWindowTitle("Изменение даты рождения");
+        internal_dlg.setLabelText("Новая дата рождения:");
+        internal_dlg.resize(300, 300);
+        if (internal_dlg.exec() == QDialog::Accepted) {
+            account_current_birth_date->setText(internal_dlg.textValue());
+        }
+        else {
+            return;
         }
     }
 
     if (item == "Номер телефона") {
-        QString text = QInputDialog::getText(this, tr("Изменение номера телефона"),
-                                             tr("Новый номер телефона:"), QLineEdit::Normal,
-                                             QDir::home().dirName(), &ok);
-        if (ok) {
-            account_current_phone->setText(text);
+        internal_dlg.setWindowTitle("Изменение номера телефона");
+        internal_dlg.setLabelText("Новый номер телефона:");
+        internal_dlg.resize(300, 300);
+        if (internal_dlg.exec() == QDialog::Accepted) {
+            account_current_phone->setText(internal_dlg.textValue());
+        }
+        else {
+            return;
         }
     }
 
     if (item == "Email") {
-        QString text = QInputDialog::getText(this, tr("Изменение Email"),
-                                             tr("Новый Email:"), QLineEdit::Normal,
-                                             QDir::home().dirName(), &ok);
-        if (ok) {
-            account_current_email->setText(text);
+        internal_dlg.setWindowTitle("Изменение Email");
+        internal_dlg.setLabelText("Новый Email:");
+        internal_dlg.resize(300, 300);
+        if (internal_dlg.exec() == QDialog::Accepted) {
+            account_current_email->setText(internal_dlg.textValue());
+        }
+        else {
+            return;
         }
     }
 }
