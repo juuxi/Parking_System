@@ -2,7 +2,7 @@
 
 Xml::Xml() {}
 
-void Xml::write() {
+void Xml::write(QVector<Level> levels) {
     QString file_path = "../../2d.xml";
     QFile file(file_path);
     if (!file.open(QIODevice::WriteOnly | QIODevice::Text)) {
@@ -15,21 +15,21 @@ void Xml::write() {
     xml.writeStartDocument();
     xml.writeStartElement("Parking");
 
-    for (int i = 0; i < 15; i++) {
-        xml.writeStartElement("Floor");
-        xml.writeAttribute("width", QString::number(1));
+    for (const auto& level : levels) {
+        xml.writeStartElement("Level");
+        xml.writeAttribute("width", QString::number(level.lines.size()));
         xml.writeAttribute("length", QString::number(2));
-        for (int j = 0; j < 10; j++) {
+        for (const auto& line: level.lines) {
             xml.writeStartElement("Line");
-            xml.writeAttribute("length", QString::number(3));
-            for (int k = 0; k < 5; k++) {
+            xml.writeAttribute("length", QString::number(line.size()));
+            for (const auto& v : line) {
                 xml.writeStartElement("Spot");
                 xml.writeAttribute("taken", QString::number(false));
                 xml.writeEndElement(); //Spot
             }
             xml.writeEndElement(); //Line
         }
-        xml.writeEndElement(); //Floor
+        xml.writeEndElement(); //Level
     }
 
     xml.writeEndElement(); // Parking

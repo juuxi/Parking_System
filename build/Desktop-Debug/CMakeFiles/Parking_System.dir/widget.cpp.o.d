@@ -385,4 +385,9 @@ CMakeFiles/Parking_System.dir/widget.cpp.o: \
  /usr/include/postgresql/pg_config_ext.h /usr/include/c++/13/fstream \
  /usr/include/x86_64-linux-gnu/c++/13/bits/basic_file.h \
  /usr/include/x86_64-linux-gnu/c++/13/bits/c++io.h \
- /usr/include/c++/13/bits/fstream.tcc
+ /usr/include/c++/13/bits/fstream.tcc \
+ /home/juuxi/Desktop/prog/else/Parking_System/xml.h \
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/QXmlStreamWriter \
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/qxmlstream.h \
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/QFile \
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/qfile.h

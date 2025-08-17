@@ -7,6 +7,13 @@ Widget::Widget(QWidget *parent)
     setupLoginUI();
     setupMainMenuUI();
     setupAccountUI();
+
+    Level lvl;
+    QVector<Level> vec;
+    vec.push_back(lvl);
+    vec.push_back(lvl);
+    Xml xml;
+    xml.write(vec);
 }
 
 void Widget::setupLoginUI() {

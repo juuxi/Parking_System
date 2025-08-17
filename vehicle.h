@@ -15,7 +15,7 @@ class Vehicle
 public:
     Vehicle();
     void updateDuration();
-    bool operator==(const Vehicle&);
+    bool operator==(const Vehicle&) const;
 };
 
 #endif // VEHICLE_H

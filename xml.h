@@ -3,12 +3,15 @@
 
 #include <QXmlStreamWriter>
 #include <QFile>
+#include <QVector>
+
+#include "level.h"
 
 class Xml
 {
 public:
     Xml();
-    void write();
+    void write(QVector<Level>);
 };
 
 #endif // XML_H

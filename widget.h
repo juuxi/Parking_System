@@ -17,6 +17,7 @@
 #include "ticket.h"
 #include "level.h"
 #include "database.h"
+#include "xml.h"
 
 class Widget : public QWidget
 {

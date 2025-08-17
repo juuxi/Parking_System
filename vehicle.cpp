@@ -10,7 +10,7 @@ void Vehicle::updateDuration() {
     duration = QTime(QDateTime::currentDateTime().time()).addSecs(-secs);
 }
 
-bool Vehicle::operator==(const Vehicle& other) {
+bool Vehicle::operator==(const Vehicle& other) const {
     if (this->plate != other.plate) {
         return false;
     }

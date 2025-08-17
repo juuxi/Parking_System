@@ -11,11 +11,12 @@
 class Level
 {
     int serial_number;
-    QVector<QVector<Vehicle>> lines;
     QVector<QSharedPointer<ControlElement>> control_elements;
     bool is_opened;
 
 public:
+    QVector<QVector<Vehicle>> lines;
+
     Level();
     Level(int);
 
