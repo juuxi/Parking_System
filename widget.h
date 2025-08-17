@@ -49,6 +49,7 @@ class Widget : public QWidget
 
     void hideLoginUI();
     void hideMainMenuUI();
+    void hideAccountUI();
     void showMainMenuUI();
     void showAccountUI();
 
