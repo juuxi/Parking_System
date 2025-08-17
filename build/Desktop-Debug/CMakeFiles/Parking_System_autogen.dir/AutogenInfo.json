@@ -132,6 +132,12 @@
 			"MU",
 			"EWIEGA46WW/moc_widget.cpp",
 			null
+		],
+		[
+			"/home/juuxi/Desktop/prog/else/Parking_System/xml.h",
+			"MU",
+			"EWIEGA46WW/moc_xml.cpp",
+			null
 		]
 	],
 	"HEADER_EXTENSIONS" : [ "h", "hh", "h++", "hm", "hpp", "hxx", "in", "txx" ],
@@ -218,7 +224,8 @@
 			"MU",
 			null
 		],
-		[ "/home/juuxi/Desktop/prog/else/Parking_System/widget.cpp", "MU", null ]
+		[ "/home/juuxi/Desktop/prog/else/Parking_System/widget.cpp", "MU", null ],
+		[ "/home/juuxi/Desktop/prog/else/Parking_System/xml.cpp", "MU", null ]
 	],
 	"UIC_OPTIONS" : [],
 	"UIC_SEARCH_PATHS" : [],

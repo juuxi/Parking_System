@@ -440,6 +440,30 @@ widget.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Parking_System.dir/build.make CMakeFiles/Parking_System.dir/widget.cpp.s
 .PHONY : widget.cpp.s
 
+xml.o: xml.cpp.o
+.PHONY : xml.o
+
+# target to build an object file
+xml.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Parking_System.dir/build.make CMakeFiles/Parking_System.dir/xml.cpp.o
+.PHONY : xml.cpp.o
+
+xml.i: xml.cpp.i
+.PHONY : xml.i
+
+# target to preprocess a source file
+xml.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Parking_System.dir/build.make CMakeFiles/Parking_System.dir/xml.cpp.i
+.PHONY : xml.cpp.i
+
+xml.s: xml.cpp.s
+.PHONY : xml.s
+
+# target to generate assembly for a file
+xml.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Parking_System.dir/build.make CMakeFiles/Parking_System.dir/xml.cpp.s
+.PHONY : xml.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -485,6 +509,9 @@ help:
 	@echo "... widget.o"
 	@echo "... widget.i"
 	@echo "... widget.s"
+	@echo "... xml.o"
+	@echo "... xml.i"
+	@echo "... xml.s"
 .PHONY : help
 
 

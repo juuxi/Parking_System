@@ -22,6 +22,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/Parking_System.dir/vehicle.cpp.o.d"
   "CMakeFiles/Parking_System.dir/widget.cpp.o"
   "CMakeFiles/Parking_System.dir/widget.cpp.o.d"
+  "CMakeFiles/Parking_System.dir/xml.cpp.o"
+  "CMakeFiles/Parking_System.dir/xml.cpp.o.d"
   "Parking_System"
   "Parking_System.pdb"
   "Parking_System_autogen/mocs_compilation.cpp"

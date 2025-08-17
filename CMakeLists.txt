@@ -46,6 +46,7 @@ else()
             level.h level.cpp
             pgconnection.h pgconnection.cpp
             database.h database.cpp
+            xml.h xml.cpp
 
 
         )
