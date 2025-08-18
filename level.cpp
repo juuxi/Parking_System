@@ -28,3 +28,19 @@ void Level::remove_control_element(QSharedPointer<ControlElement>& ce) {
         control_elements.erase(to_del);
     }
 }
+
+void Level::drawLine(const QVector<Vehicle>& line, int index, QPainter* p) {
+    int line_height = p->device()->height() / lines.size();
+    int spot_width = p->device()->width() / line.size();
+    for (int i = 0; i < line.size(); i++) {
+        p->drawRect(i * spot_width, line_height * index, spot_width, line_height);
+    }
+}
+
+void Level::draw(QPainter* p) {
+    int index = 0;
+    for (const auto& line : lines) {
+        drawLine(line, index, p);
+        index++;
+    }
+}

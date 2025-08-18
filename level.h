@@ -14,6 +14,8 @@ class Level
     QVector<QSharedPointer<ControlElement>> control_elements;
     bool is_opened;
 
+    void drawLine(const QVector<Vehicle>&, int, QPainter*);
+
 public:
     QVector<QVector<Vehicle>> lines;
 
@@ -24,6 +26,7 @@ public:
     void remove_vehicle(Vehicle);
     void add_control_element(QSharedPointer<ControlElement>&);
     void remove_control_element(QSharedPointer<ControlElement>&);
+    void draw(QPainter*);
 };
 
 #endif // LEVEL_H
