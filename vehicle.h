@@ -15,6 +15,7 @@ class Vehicle
 public:
     Vehicle();
     void updateDuration();
+    QTime getDuration() const;
     bool operator==(const Vehicle&) const;
 };
 
