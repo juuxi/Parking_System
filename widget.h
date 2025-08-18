@@ -26,6 +26,8 @@ class Widget : public QWidget
     TrafficLight tl;
     Barrier br;
 
+    bool is_getting_vehicles_info;
+
     std::unique_ptr<QLabel> login_label;
     std::unique_ptr<QLabel> username_label;
     std::unique_ptr<QLabel> password_label;
@@ -72,5 +74,6 @@ public slots:
     void loginHandler();
     void accountHandler();
     void accountChangeHandler();
+    void getVehiclesInfoHandler();
 };
 #endif // WIDGET_H

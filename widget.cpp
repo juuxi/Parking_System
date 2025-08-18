@@ -7,6 +7,8 @@ Widget::Widget(QWidget *parent)
     setupLoginUI();
     setupMainMenuUI();
     setupAccountUI();
+
+    is_getting_vehicles_info = false;
 }
 
 void Widget::setupLoginUI() {
@@ -40,6 +42,7 @@ void Widget::setupMainMenuUI() {
 
     get_vehicles_info_button = std::make_unique<QPushButton>("Get Vehicles Info", this);
     get_vehicles_info_button.get()->hide();
+    connect(get_vehicles_info_button.get(), SIGNAL(clicked()), this, SLOT(getVehiclesInfoHandler()));
 
     operate_button = std::make_unique<QPushButton>("Operate", this);
     operate_button.get()->hide();
@@ -79,8 +82,10 @@ void Widget::setupAccountUI() {
 void Widget::paintEvent(QPaintEvent*) {
     QPainter p;
     p.begin(this);
-    Level lvl;
-    lvl.draw(&p);
+    if (is_getting_vehicles_info) {
+        Level lvl;
+        lvl.draw(&p);
+    }
     p.end();
 }
 
@@ -270,6 +275,11 @@ void Widget::accountChangeHandler() {
             return;
         }
     }
+}
+
+void Widget::getVehiclesInfoHandler() {
+    hideMainMenuUI();
+    is_getting_vehicles_info = true;
 }
 
 Widget::~Widget() {
