@@ -9,6 +9,16 @@ Widget::Widget(QWidget *parent)
     setupAccountUI();
 
     is_getting_vehicles_info = false;
+
+
+    Level lvl;
+    Vehicle v;
+    v.updateDuration();
+    lvl.add_vehicle(v, 4, 2);
+    QVector<Level> vec;
+    vec.push_back(lvl);
+    Xml xml;
+    xml.write(vec);
 }
 
 void Widget::setupLoginUI() {

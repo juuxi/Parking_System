@@ -24,7 +24,12 @@ void Xml::write(QVector<Level> levels) {
             xml.writeAttribute("length", QString::number(line.size()));
             for (const auto& v : line) {
                 xml.writeStartElement("Spot");
-                xml.writeAttribute("taken", QString::number(false));
+                if (v.getDuration().isNull()) {
+                    xml.writeAttribute("taken", "false");
+                }
+                else {
+                    xml.writeAttribute("taken", "true");
+                }
                 xml.writeEndElement(); //Spot
             }
             xml.writeEndElement(); //Line

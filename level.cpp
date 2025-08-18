@@ -33,8 +33,7 @@ void Level::drawLine(const QVector<Vehicle>& line, int index, QPainter* p) {
     int line_height = p->device()->height() / lines.size();
     int spot_width = p->device()->width() / line.size();
     for (int i = 0; i < line.size(); i++) {
-        QTime time = line[i].getDuration();
-        if (time.isNull()) {
+        if (line[i].getDuration().isNull()) {
             p->setBrush(QBrush(QColor(0, 255, 0)));
         }
         else {
