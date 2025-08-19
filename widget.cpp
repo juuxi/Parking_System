@@ -321,6 +321,7 @@ void Widget::getVehiclesInfoHandler() {
 void Widget::getVehiclesInfoVisualHandler() {
     hideGetInfoUI();
     is_getting_vehicles_info = true;
+    update();
 }
 
 void Widget::getVehiclesInfoDetailedHandler() {

@@ -8,7 +8,6 @@
 #include <QLineEdit>
 #include <QMessageBox>
 #include <QInputDialog>
-#include <QDir>
 
 #include <memory>
 
