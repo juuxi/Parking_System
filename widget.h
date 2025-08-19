@@ -74,6 +74,7 @@ public:
     void repositionLoginUI();
     void repositionMainMenuUI();
     void repositionAccountUI();
+    void repositionGetInfoUI();
 
     ~Widget();
 public slots:

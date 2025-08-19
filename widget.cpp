@@ -107,6 +107,7 @@ void Widget::resizeEvent(QResizeEvent *event) {
     repositionLoginUI();
     repositionMainMenuUI();
     repositionAccountUI();
+    repositionGetInfoUI();
 }
 
 void Widget::repositionLoginUI() {
@@ -152,6 +153,17 @@ void Widget::repositionAccountUI() {
     account_current_email.get()->move(mid_width + 50, mid_height + 75);
 
     account_change_button.get()->move(mid_width - 100, mid_height + 125);
+}
+
+void Widget::repositionGetInfoUI() {
+    int screen_width = this->width();
+    int screen_height = this->height();
+
+    get_info_visual_button->setFixedSize(screen_width / 2, screen_height / 4);
+    get_info_detailed_button->setFixedSize(screen_width / 2, screen_height / 4);
+
+    get_info_visual_button->move(screen_width / 4, screen_height / 4);
+    get_info_detailed_button->move(screen_width / 4, screen_height / 2);
 }
 
 void Widget::hideLoginUI() {
