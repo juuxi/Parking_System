@@ -7,18 +7,9 @@ Widget::Widget(QWidget *parent)
     setupLoginUI();
     setupMainMenuUI();
     setupAccountUI();
+    setupGetInfoUI();
 
     is_getting_vehicles_info = false;
-
-
-    Level lvl;
-    Vehicle v;
-    v.updateDuration();
-    lvl.add_vehicle(v, 4, 2);
-    QVector<Level> vec;
-    vec.push_back(lvl);
-    Xml xml;
-    xml.write(vec);
 }
 
 void Widget::setupLoginUI() {
@@ -87,6 +78,15 @@ void Widget::setupAccountUI() {
     account_change_button.get()->setFixedSize(200, 50);
     connect(account_change_button.get(), SIGNAL(clicked()), this, SLOT(accountChangeHandler()));
     hideAccountUI();
+}
+
+void Widget::setupGetInfoUI() {
+    get_info_visual_button = std::make_unique<QPushButton>("Визуальное представление", this);
+    connect(get_info_visual_button.get(), SIGNAL(clicked()), this, SLOT(getVehiclesInfoVisualHandler()));
+
+    get_info_detailed_button = std::make_unique<QPushButton>("Подробная информация", this);
+
+    hideGetInfoUI();
 }
 
 void Widget::paintEvent(QPaintEvent*) {
@@ -184,6 +184,11 @@ void Widget::hideAccountUI() {
     account_change_button.get()->hide();
 }
 
+void Widget::hideGetInfoUI() {
+    get_info_visual_button.get()->hide();
+    get_info_detailed_button.get()->hide();
+}
+
 void Widget::showMainMenuUI() {
     account_button.get()->show();
     change_vehicles_info_button.get()->show();
@@ -203,6 +208,11 @@ void Widget::showAccountUI() {
     account_current_email.get()->show();
 
     account_change_button.get()->show();
+}
+
+void Widget::showGetInfoUI() {
+    get_info_visual_button.get()->show();
+    get_info_detailed_button.get()->show();
 }
 
 void Widget::loginHandler() {
@@ -292,6 +302,11 @@ void Widget::accountChangeHandler() {
 
 void Widget::getVehiclesInfoHandler() {
     hideMainMenuUI();
+    showGetInfoUI();
+}
+
+void Widget::getVehiclesInfoVisualHandler() {
+    hideGetInfoUI();
     is_getting_vehicles_info = true;
 }
 

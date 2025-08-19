@@ -50,11 +50,16 @@ class Widget : public QWidget
     std::unique_ptr<QLabel> account_current_email;
     std::unique_ptr<QPushButton> account_change_button;
 
+    std::unique_ptr<QPushButton> get_info_visual_button;
+    std::unique_ptr<QPushButton> get_info_detailed_button;
+
     void hideLoginUI();
     void hideMainMenuUI();
     void hideAccountUI();
+    void hideGetInfoUI();
     void showMainMenuUI();
     void showAccountUI();
+    void showGetInfoUI();
 
 public:
     Widget(QWidget *parent = nullptr);
@@ -65,6 +70,7 @@ public:
     void setupLoginUI();
     void setupMainMenuUI();
     void setupAccountUI();
+    void setupGetInfoUI();
     void repositionLoginUI();
     void repositionMainMenuUI();
     void repositionAccountUI();
@@ -75,5 +81,6 @@ public slots:
     void accountHandler();
     void accountChangeHandler();
     void getVehiclesInfoHandler();
+    void getVehiclesInfoVisualHandler();
 };
 #endif // WIDGET_H
