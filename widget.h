@@ -83,5 +83,6 @@ public slots:
     void accountChangeHandler();
     void getVehiclesInfoHandler();
     void getVehiclesInfoVisualHandler();
+    void getVehiclesInfoDetailedHandler();
 };
 #endif // WIDGET_H

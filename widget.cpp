@@ -85,6 +85,7 @@ void Widget::setupGetInfoUI() {
     connect(get_info_visual_button.get(), SIGNAL(clicked()), this, SLOT(getVehiclesInfoVisualHandler()));
 
     get_info_detailed_button = std::make_unique<QPushButton>("Подробная информация", this);
+    connect(get_info_detailed_button.get(), SIGNAL(clicked()), this, SLOT(getVehiclesInfoDetailedHandler()));
 
     hideGetInfoUI();
 }
@@ -320,6 +321,10 @@ void Widget::getVehiclesInfoHandler() {
 void Widget::getVehiclesInfoVisualHandler() {
     hideGetInfoUI();
     is_getting_vehicles_info = true;
+}
+
+void Widget::getVehiclesInfoDetailedHandler() {
+    hideGetInfoUI();
 }
 
 Widget::~Widget() {
