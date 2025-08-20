@@ -30,6 +30,14 @@ bool Vehicle::getIsPlacedCorrectly() const {
     return is_placed_correctly;
 }
 
+void Vehicle::setPlate(QString _plate) {
+    plate = _plate;
+}
+
+void Vehicle::setModel(QString _model) {
+    model = _model;
+}
+
 bool Vehicle::operator==(const Vehicle& other) const {
     if (this->plate != other.plate) {
         return false;

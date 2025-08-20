@@ -14,12 +14,17 @@ class Vehicle
 
 public:
     Vehicle();
+
     void updateDuration();
     QString getPlate() const;
     QString getModel() const;
     QTime getEnterTime() const;
     QTime getDuration() const;
     bool getIsPlacedCorrectly() const;
+
+    void setPlate(QString);
+    void setModel(QString);
+
     bool operator==(const Vehicle&) const;
 };
 
