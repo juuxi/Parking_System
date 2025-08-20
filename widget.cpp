@@ -87,6 +87,11 @@ void Widget::setupGetInfoUI() {
     get_info_detailed_button = std::make_unique<QPushButton>("Подробная информация", this);
     connect(get_info_detailed_button.get(), SIGNAL(clicked()), this, SLOT(getVehiclesInfoDetailedHandler()));
 
+
+    get_info_detailed_levels_button = std::make_unique<QPushButton>("По этажам", this);
+
+    get_info_detailed_full_button = std::make_unique<QPushButton>("Все ТС", this);
+
     hideGetInfoUI();
 }
 
@@ -162,9 +167,13 @@ void Widget::repositionGetInfoUI() {
 
     get_info_visual_button->setFixedSize(screen_width / 2, screen_height / 4);
     get_info_detailed_button->setFixedSize(screen_width / 2, screen_height / 4);
+    get_info_detailed_levels_button->setFixedSize(screen_width / 2, screen_height / 4);
+    get_info_detailed_full_button->setFixedSize(screen_width / 2, screen_height / 4);
 
     get_info_visual_button->move(screen_width / 4, screen_height / 4);
     get_info_detailed_button->move(screen_width / 4, screen_height / 2);
+    get_info_detailed_levels_button->move(screen_width / 4, screen_height / 4);
+    get_info_detailed_full_button->move(screen_width / 4, screen_height / 2);
 }
 
 void Widget::hideLoginUI() {
@@ -200,6 +209,11 @@ void Widget::hideAccountUI() {
 void Widget::hideGetInfoUI() {
     get_info_visual_button.get()->hide();
     get_info_detailed_button.get()->hide();
+}
+
+void Widget::hideGetInfoDetailedUI() {
+    get_info_detailed_levels_button.get()->hide();
+    get_info_detailed_full_button.get()->hide();
 }
 
 void Widget::showMainMenuUI() {
