@@ -9,7 +9,7 @@
 #include <QMessageBox>
 #include <QInputDialog>
 #include <QGroupBox>
-#include <QVBoxLayout>
+#include <QGridLayout>
 
 #include <memory>
 
@@ -58,13 +58,18 @@ class Widget : public QWidget
     std::unique_ptr<QPushButton> get_info_detailed_next_button;
     std::unique_ptr<QPushButton> get_info_detailed_prev_button;
 
-    std::unique_ptr<QGroupBox> info;
-    std::unique_ptr<QLabel> plate;
-    std::unique_ptr<QLabel> model;
-    std::unique_ptr<QLabel> enter_time;
-    std::unique_ptr<QLabel> duration;
-    std::unique_ptr<QLabel> is_placed_correctly;
-    std::unique_ptr<QVBoxLayout> vbox;
+    std::unique_ptr<QGroupBox> get_info_detailed_card;
+    std::unique_ptr<QLabel> get_info_detailed_card_plate_label;
+    std::unique_ptr<QLabel> get_info_detailed_card_model_label;
+    std::unique_ptr<QLabel> get_info_detailed_card_enter_time_label;
+    std::unique_ptr<QLabel> get_info_detailed_card_duration_label;
+    std::unique_ptr<QLabel> get_info_detailed_card_is_placed_correctly_label;
+    std::unique_ptr<QLabel> get_info_detailed_card_plate_data;
+    std::unique_ptr<QLabel> get_info_detailed_card_model_data;
+    std::unique_ptr<QLabel> get_info_detailed_card_enter_time_data;
+    std::unique_ptr<QLabel> get_info_detailed_card_duration_data;
+    std::unique_ptr<QLabel> get_info_detailed_card_is_placed_correctly_data;
+    std::unique_ptr<QGridLayout> get_info_detailed_card_layout;
 
     void hideLoginUI();
     void hideMainMenuUI();

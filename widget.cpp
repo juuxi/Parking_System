@@ -98,22 +98,32 @@ void Widget::setupGetInfoUI() {
     get_info_detailed_prev_button = std::make_unique<QPushButton>("< Prev", this);
     get_info_detailed_prev_button.get()->setFixedSize(75, 30);
 
-    info = std::make_unique<QGroupBox>("Инофрмация о ТС", this); //поменять название
+    get_info_detailed_card = std::make_unique<QGroupBox>("Инофрмация о ТС", this);
 
-    plate = std::make_unique<QLabel>("plate: ", this);
-    model = std::make_unique<QLabel>("model: ", this);
-    enter_time = std::make_unique<QLabel>("enter_time: ", this);
-    duration = std::make_unique<QLabel>("duration: ", this);
-    is_placed_correctly = std::make_unique<QLabel>("is_placed_correctly: ", this);
+    get_info_detailed_card_plate_label = std::make_unique<QLabel>("plate: ", this);
+    get_info_detailed_card_model_label = std::make_unique<QLabel>("model: ", this);
+    get_info_detailed_card_enter_time_label = std::make_unique<QLabel>("enter_time: ", this);
+    get_info_detailed_card_duration_label = std::make_unique<QLabel>("duration: ", this);
+    get_info_detailed_card_is_placed_correctly_label = std::make_unique<QLabel>("is_placed_correctly: ", this);
 
-    vbox = std::make_unique<QVBoxLayout>(this);
-    vbox.get()->addWidget(plate.get());
-    vbox.get()->addWidget(model.get());
-    vbox.get()->addWidget(enter_time.get());
-    vbox.get()->addWidget(duration.get());
-    vbox.get()->addWidget(is_placed_correctly.get());
-    vbox.get()->addStretch(1);
-    info.get()->setLayout(vbox.get());
+    get_info_detailed_card_plate_data = std::make_unique<QLabel>(this);
+    get_info_detailed_card_model_data = std::make_unique<QLabel>(this);
+    get_info_detailed_card_enter_time_data = std::make_unique<QLabel>(this);
+    get_info_detailed_card_duration_data = std::make_unique<QLabel>(this);
+    get_info_detailed_card_is_placed_correctly_data = std::make_unique<QLabel>(this);
+
+    get_info_detailed_card_layout = std::make_unique<QGridLayout>(this);
+    get_info_detailed_card_layout.get()->addWidget(get_info_detailed_card_plate_label.get(), 0, 0, 1, 1);
+    get_info_detailed_card_layout.get()->addWidget(get_info_detailed_card_model_label.get(), 1, 0, 1, 1);
+    get_info_detailed_card_layout.get()->addWidget(get_info_detailed_card_enter_time_label.get(), 2, 0, 1, 1);
+    get_info_detailed_card_layout.get()->addWidget(get_info_detailed_card_duration_label.get(), 3, 0, 1, 1);
+    get_info_detailed_card_layout.get()->addWidget(get_info_detailed_card_is_placed_correctly_label.get(), 4, 0, 1, 1);
+    get_info_detailed_card_layout.get()->addWidget(get_info_detailed_card_plate_data.get(), 0, 1, 1, 1);
+    get_info_detailed_card_layout.get()->addWidget(get_info_detailed_card_model_data.get(), 1, 1, 1, 1);
+    get_info_detailed_card_layout.get()->addWidget(get_info_detailed_card_enter_time_data.get(), 2, 1, 1, 1);
+    get_info_detailed_card_layout.get()->addWidget(get_info_detailed_card_duration_data.get(), 3, 1, 1, 1);
+    get_info_detailed_card_layout.get()->addWidget(get_info_detailed_card_is_placed_correctly_data.get(), 4, 1, 1, 1);
+    get_info_detailed_card.get()->setLayout(get_info_detailed_card_layout.get());
 
     hideGetInfoUI();
     hideGetInfoDetailedUI();
@@ -202,7 +212,7 @@ void Widget::repositionGetInfoUI() {
 
     get_info_detailed_next_button->move(3 * screen_width / 4, 3 * screen_height / 4);
     get_info_detailed_prev_button->move(screen_width / 4, 3 * screen_height / 4);
-    info->move(screen_width / 2 - info->width() / 2, screen_height / 2 - info->height() / 2);
+    get_info_detailed_card->move(screen_width / 2 - get_info_detailed_card->width() / 2, screen_height / 2 - get_info_detailed_card->height() / 2);
 }
 
 void Widget::hideLoginUI() {
@@ -248,7 +258,7 @@ void Widget::hideGetInfoDetailedUI() {
 void Widget::hideGetInfoDetailedFullUI() {
     get_info_detailed_next_button->hide();
     get_info_detailed_prev_button->hide();
-    info->hide();
+    get_info_detailed_card->hide();
 }
 
 void Widget::showMainMenuUI() {
@@ -285,7 +295,7 @@ void Widget::showGetInfoDetailedUI() {
 void Widget::showGetInfoDetailedFullUI() {
     get_info_detailed_next_button->show();
     get_info_detailed_prev_button->show();
-    info->show();
+    get_info_detailed_card->show();
 }
 
 void Widget::loginHandler() {
