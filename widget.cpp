@@ -402,10 +402,8 @@ void Widget::getVehiclesInfoDetailedHandler() {
 void Widget::getVehiclesInfoDetailedFullHandler() {
     hideGetInfoDetailedUI();
     showGetInfoDetailedFullUI();
-    Level lvl;
-    Vehicle veh;
-    veh.updateDuration();
-    lvl.lines[4][2] = veh;
+
+    bool flag = false;
     for (const auto& line : lvl.lines) {
         for (const auto& v : line) {
             if (!v.getDuration().isNull()) {
@@ -414,7 +412,11 @@ void Widget::getVehiclesInfoDetailedFullHandler() {
                 get_info_detailed_card_enter_time_data->setText(v.getEnterTime().toString());
                 get_info_detailed_card_duration_data->setText(v.getDuration().toString());
                 get_info_detailed_card_is_placed_correctly_data->setText(QString::number(v.getIsPlacedCorrectly()));
+                break;
             }
+        }
+        if (flag) {
+            break;
         }
     }
 }
