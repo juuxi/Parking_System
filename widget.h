@@ -62,6 +62,7 @@ class Widget : public QWidget
     void showMainMenuUI();
     void showAccountUI();
     void showGetInfoUI();
+    void showGetInfoDetailedUI();
 
 public:
     Widget(QWidget *parent = nullptr);

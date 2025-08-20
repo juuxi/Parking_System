@@ -93,6 +93,7 @@ void Widget::setupGetInfoUI() {
     get_info_detailed_full_button = std::make_unique<QPushButton>("Все ТС", this);
 
     hideGetInfoUI();
+    hideGetInfoDetailedUI();
 }
 
 void Widget::paintEvent(QPaintEvent*) {
@@ -242,6 +243,11 @@ void Widget::showGetInfoUI() {
     get_info_detailed_button.get()->show();
 }
 
+void Widget::showGetInfoDetailedUI() {
+    get_info_detailed_levels_button.get()->show();
+    get_info_detailed_full_button.get()->show();
+}
+
 void Widget::loginHandler() {
     DataBase db;
     bool is_correct = db.check_login(username_line_edit.get()->text(), password_line_edit.get()->text());
@@ -340,6 +346,7 @@ void Widget::getVehiclesInfoVisualHandler() {
 
 void Widget::getVehiclesInfoDetailedHandler() {
     hideGetInfoUI();
+    showGetInfoDetailedUI();
 }
 
 Widget::~Widget() {
