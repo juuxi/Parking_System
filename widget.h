@@ -53,16 +53,20 @@ class Widget : public QWidget
     std::unique_ptr<QPushButton> get_info_detailed_button;
     std::unique_ptr<QPushButton> get_info_detailed_levels_button;
     std::unique_ptr<QPushButton> get_info_detailed_full_button;
+    std::unique_ptr<QPushButton> get_info_detailed_next_button;
+    std::unique_ptr<QPushButton> get_info_detailed_prev_button;
 
     void hideLoginUI();
     void hideMainMenuUI();
     void hideAccountUI();
     void hideGetInfoUI();
     void hideGetInfoDetailedUI();
+    void hideGetInfoDetailedNextPrev();
     void showMainMenuUI();
     void showAccountUI();
     void showGetInfoUI();
     void showGetInfoDetailedUI();
+    void showGetInfoDetailedNextPrev();
 
 public:
     Widget(QWidget *parent = nullptr);
