@@ -10,6 +10,7 @@
 #include <QInputDialog>
 #include <QGroupBox>
 #include <QGridLayout>
+#include <QTime>
 
 #include <memory>
 

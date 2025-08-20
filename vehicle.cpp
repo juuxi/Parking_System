@@ -10,8 +10,24 @@ void Vehicle::updateDuration() {
     duration = QTime(QDateTime::currentDateTime().time()).addSecs(-secs);
 }
 
+QString Vehicle::getPlate() const {
+    return plate;
+}
+
+QString Vehicle::getModel() const {
+    return model;
+}
+
+QTime Vehicle::getEnterTime() const {
+    return enter_time;
+}
+
 QTime Vehicle::getDuration() const {
     return duration;
+}
+
+bool Vehicle::getIsPlacedCorrectly() const {
+    return is_placed_correctly;
 }
 
 bool Vehicle::operator==(const Vehicle& other) const {
