@@ -380,17 +380,24 @@
  mdp:/usr/include/x86_64-linux-gnu/qt5/QtGui/qtransform.h
  mdp:/usr/include/x86_64-linux-gnu/qt5/QtGui/qvector2d.h
  mdp:/usr/include/x86_64-linux-gnu/qt5/QtGui/qwindowdefs.h
+ mdp:/usr/include/x86_64-linux-gnu/qt5/QtWidgets/QGroupBox
  mdp:/usr/include/x86_64-linux-gnu/qt5/QtWidgets/QInputDialog
  mdp:/usr/include/x86_64-linux-gnu/qt5/QtWidgets/QLabel
  mdp:/usr/include/x86_64-linux-gnu/qt5/QtWidgets/QLineEdit
  mdp:/usr/include/x86_64-linux-gnu/qt5/QtWidgets/QMessageBox
  mdp:/usr/include/x86_64-linux-gnu/qt5/QtWidgets/QPushButton
+ mdp:/usr/include/x86_64-linux-gnu/qt5/QtWidgets/QVBoxLayout
  mdp:/usr/include/x86_64-linux-gnu/qt5/QtWidgets/QWidget
  mdp:/usr/include/x86_64-linux-gnu/qt5/QtWidgets/qabstractbutton.h
+ mdp:/usr/include/x86_64-linux-gnu/qt5/QtWidgets/qboxlayout.h
  mdp:/usr/include/x86_64-linux-gnu/qt5/QtWidgets/qdialog.h
  mdp:/usr/include/x86_64-linux-gnu/qt5/QtWidgets/qframe.h
+ mdp:/usr/include/x86_64-linux-gnu/qt5/QtWidgets/qgridlayout.h
+ mdp:/usr/include/x86_64-linux-gnu/qt5/QtWidgets/qgroupbox.h
  mdp:/usr/include/x86_64-linux-gnu/qt5/QtWidgets/qinputdialog.h
  mdp:/usr/include/x86_64-linux-gnu/qt5/QtWidgets/qlabel.h
+ mdp:/usr/include/x86_64-linux-gnu/qt5/QtWidgets/qlayout.h
+ mdp:/usr/include/x86_64-linux-gnu/qt5/QtWidgets/qlayoutitem.h
  mdp:/usr/include/x86_64-linux-gnu/qt5/QtWidgets/qlineedit.h
  mdp:/usr/include/x86_64-linux-gnu/qt5/QtWidgets/qmessagebox.h
  mdp:/usr/include/x86_64-linux-gnu/qt5/QtWidgets/qpushbutton.h

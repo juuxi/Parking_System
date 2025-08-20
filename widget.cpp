@@ -90,14 +90,34 @@ void Widget::setupGetInfoUI() {
     get_info_detailed_levels_button = std::make_unique<QPushButton>("По этажам", this);
 
     get_info_detailed_full_button = std::make_unique<QPushButton>("Все ТС", this);
+    connect(get_info_detailed_full_button.get(), SIGNAL(clicked()), this, SLOT(getVehiclesInfoDetailedFullHandler()));
 
     get_info_detailed_next_button = std::make_unique<QPushButton>("Next >", this);
+    get_info_detailed_next_button.get()->setFixedSize(75, 30);
 
     get_info_detailed_prev_button = std::make_unique<QPushButton>("< Prev", this);
+    get_info_detailed_prev_button.get()->setFixedSize(75, 30);
+
+    info = std::make_unique<QGroupBox>("Инофрмация о ТС", this); //поменять название
+
+    plate = std::make_unique<QLabel>("plate: ", this);
+    model = std::make_unique<QLabel>("model: ", this);
+    enter_time = std::make_unique<QLabel>("enter_time: ", this);
+    duration = std::make_unique<QLabel>("duration: ", this);
+    is_placed_correctly = std::make_unique<QLabel>("is_placed_correctly: ", this);
+
+    vbox = std::make_unique<QVBoxLayout>(this);
+    vbox.get()->addWidget(plate.get());
+    vbox.get()->addWidget(model.get());
+    vbox.get()->addWidget(enter_time.get());
+    vbox.get()->addWidget(duration.get());
+    vbox.get()->addWidget(is_placed_correctly.get());
+    vbox.get()->addStretch(1);
+    info.get()->setLayout(vbox.get());
 
     hideGetInfoUI();
     hideGetInfoDetailedUI();
-    hideGetInfoDetailedNextPrev();
+    hideGetInfoDetailedFullUI();
 }
 
 void Widget::paintEvent(QPaintEvent*) {
@@ -179,6 +199,10 @@ void Widget::repositionGetInfoUI() {
     get_info_detailed_button->move(screen_width / 4, screen_height / 2);
     get_info_detailed_levels_button->move(screen_width / 4, screen_height / 4);
     get_info_detailed_full_button->move(screen_width / 4, screen_height / 2);
+
+    get_info_detailed_next_button->move(3 * screen_width / 4, 3 * screen_height / 4);
+    get_info_detailed_prev_button->move(screen_width / 4, 3 * screen_height / 4);
+    info->move(screen_width / 2 - info->width() / 2, screen_height / 2 - info->height() / 2);
 }
 
 void Widget::hideLoginUI() {
@@ -221,9 +245,10 @@ void Widget::hideGetInfoDetailedUI() {
     get_info_detailed_full_button.get()->hide();
 }
 
-void Widget::hideGetInfoDetailedNextPrev() {
+void Widget::hideGetInfoDetailedFullUI() {
     get_info_detailed_next_button->hide();
     get_info_detailed_prev_button->hide();
+    info->hide();
 }
 
 void Widget::showMainMenuUI() {
@@ -257,9 +282,10 @@ void Widget::showGetInfoDetailedUI() {
     get_info_detailed_full_button.get()->show();
 }
 
-void Widget::showGetInfoDetailedNextPrev() {
+void Widget::showGetInfoDetailedFullUI() {
     get_info_detailed_next_button->show();
     get_info_detailed_prev_button->show();
+    info->show();
 }
 
 void Widget::loginHandler() {
@@ -361,6 +387,11 @@ void Widget::getVehiclesInfoVisualHandler() {
 void Widget::getVehiclesInfoDetailedHandler() {
     hideGetInfoUI();
     showGetInfoDetailedUI();
+}
+
+void Widget::getVehiclesInfoDetailedFullHandler() {
+    hideGetInfoDetailedUI();
+    showGetInfoDetailedFullUI();
 }
 
 Widget::~Widget() {

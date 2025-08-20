@@ -8,6 +8,8 @@
 #include <QLineEdit>
 #include <QMessageBox>
 #include <QInputDialog>
+#include <QGroupBox>
+#include <QVBoxLayout>
 
 #include <memory>
 
@@ -56,17 +58,25 @@ class Widget : public QWidget
     std::unique_ptr<QPushButton> get_info_detailed_next_button;
     std::unique_ptr<QPushButton> get_info_detailed_prev_button;
 
+    std::unique_ptr<QGroupBox> info;
+    std::unique_ptr<QLabel> plate;
+    std::unique_ptr<QLabel> model;
+    std::unique_ptr<QLabel> enter_time;
+    std::unique_ptr<QLabel> duration;
+    std::unique_ptr<QLabel> is_placed_correctly;
+    std::unique_ptr<QVBoxLayout> vbox;
+
     void hideLoginUI();
     void hideMainMenuUI();
     void hideAccountUI();
     void hideGetInfoUI();
     void hideGetInfoDetailedUI();
-    void hideGetInfoDetailedNextPrev();
+    void hideGetInfoDetailedFullUI();
     void showMainMenuUI();
     void showAccountUI();
     void showGetInfoUI();
     void showGetInfoDetailedUI();
-    void showGetInfoDetailedNextPrev();
+    void showGetInfoDetailedFullUI();
 
 public:
     Widget(QWidget *parent = nullptr);
@@ -91,5 +101,6 @@ public slots:
     void getVehiclesInfoHandler();
     void getVehiclesInfoVisualHandler();
     void getVehiclesInfoDetailedHandler();
+    void getVehiclesInfoDetailedFullHandler();
 };
 #endif // WIDGET_H
