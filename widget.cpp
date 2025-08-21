@@ -93,17 +93,16 @@ void Widget::setupGetInfoUI() {
     connect(get_info_detailed_button.get(), SIGNAL(clicked()), this, SLOT(getVehiclesInfoDetailedHandler()));
 
     get_info_detailed_levels_button = std::make_unique<QPushButton>("По этажам", this);
+    connect(get_info_detailed_levels_button.get(), SIGNAL(clicked()), this, SLOT(getVehiclesInfoDetailedLevelsHandler()));
 
     get_info_detailed_full_button = std::make_unique<QPushButton>("Все ТС", this);
     connect(get_info_detailed_full_button.get(), SIGNAL(clicked()), this, SLOT(getVehiclesInfoDetailedFullHandler()));
 
     get_info_detailed_next_button = std::make_unique<QPushButton>("Next >", this);
     get_info_detailed_next_button.get()->setFixedSize(75, 30);
-    connect(get_info_detailed_next_button.get(), SIGNAL(clicked()), this, SLOT(getVehiclesInfoDetailedNextHandler()));
 
     get_info_detailed_prev_button = std::make_unique<QPushButton>("< Prev", this);
     get_info_detailed_prev_button.get()->setFixedSize(75, 30);
-    connect(get_info_detailed_prev_button.get(), SIGNAL(clicked()), this, SLOT(getVehiclesInfoDetailedPrevHandler()));
 
     get_info_detailed_card = std::make_unique<QGroupBox>("Инофрмация о ТС", this);
 
@@ -311,7 +310,7 @@ void Widget::showGetInfoDetailedUI() {
     get_info_detailed_full_button.get()->show();
 }
 
-void Widget::showGetInfoDetailedFullUI() {
+void Widget::showGetInfoDetailedInternalUI() {
     get_info_detailed_next_button->show();
     get_info_detailed_prev_button->show();
     get_info_detailed_card->show();
@@ -420,7 +419,9 @@ void Widget::getVehiclesInfoDetailedHandler() {
 
 void Widget::getVehiclesInfoDetailedFullHandler() {
     hideGetInfoDetailedUI();
-    showGetInfoDetailedFullUI();
+    showGetInfoDetailedInternalUI();
+    connect(get_info_detailed_next_button.get(), SIGNAL(clicked()), this, SLOT(getVehiclesInfoDetailedNextFullHandler()));
+    connect(get_info_detailed_prev_button.get(), SIGNAL(clicked()), this, SLOT(getVehiclesInfoDetailedPrevFullHandler()));
 
     bool flag = false;
     for (int i = 0; i < levels.size(); i++) {
@@ -441,7 +442,7 @@ void Widget::getVehiclesInfoDetailedFullHandler() {
     }
 }
 
-void Widget::getVehiclesInfoDetailedNextHandler() {
+void Widget::getVehiclesInfoDetailedNextFullHandler() {
     bool flag = false;
     for (int i = get_info_detailed_card_lvl_data->text().toInt() - 1; i < levels.size(); i++) {
         Level lvl = levels[i];
@@ -461,7 +462,7 @@ void Widget::getVehiclesInfoDetailedNextHandler() {
     }
 }
 
-void Widget::getVehiclesInfoDetailedPrevHandler() {
+void Widget::getVehiclesInfoDetailedPrevFullHandler() {
     bool flag = false;
     for (int i = get_info_detailed_card_lvl_data->text().toInt() - 1; i >= 0; i--) {
         Level lvl = levels[i];
@@ -491,6 +492,74 @@ void Widget::setCardData(Vehicle v, int i, int j, int k) {
     get_info_detailed_card_row_data->setText(QString::number(j + 1));
     get_info_detailed_card_col_data->setText(QString::number(k + 1));
 }
+
+void Widget::getVehiclesInfoDetailedLevelsHandler() {
+    bool ok{};
+    int level = QInputDialog::getInt(this, "Выберите этаж", "Этаж", 1, 1, levels.size(), 1, &ok) - 1;
+    if (!ok) {
+        return;
+    }
+    hideGetInfoDetailedUI();
+    showGetInfoDetailedInternalUI();
+    connect(get_info_detailed_next_button.get(), SIGNAL(clicked()), this, SLOT(getVehiclesInfoDetailedNextLevelsHandler()));
+    connect(get_info_detailed_prev_button.get(), SIGNAL(clicked()), this, SLOT(getVehiclesInfoDetailedPrevLevelsHandler()));
+
+    bool flag = false;
+    Level lvl = levels[level];
+    for (int j = 0; j < lvl.lines.size(); j++) {
+        for (int k = 0; k < lvl.lines[j].size(); k++) {
+            if (!lvl.lines[j][k].getDuration().isNull()) {
+                Vehicle v = lvl.lines[j][k];
+                setCardData(v, level, j, k);
+                flag = true;
+                break;
+            }
+        }
+        if (flag) {
+            break;
+        }
+    }
+}
+
+
+void Widget::getVehiclesInfoDetailedNextLevelsHandler() {
+    bool flag = false;
+    int level = get_info_detailed_card_lvl_data->text().toInt() - 1;
+    Level lvl = levels[level];
+    for (int j = get_info_detailed_card_row_data->text().toInt() - 1; j < lvl.lines.size(); j++) {
+        for (int k = get_info_detailed_card_col_data->text().toInt(); k < lvl.lines[j].size(); k++) {
+            if (!lvl.lines[j][k].getDuration().isNull()) {
+                Vehicle v = lvl.lines[j][k];
+                setCardData(v, level, j, k);
+                flag = true;
+                break;
+            }
+        }
+        if (flag) {
+            break;
+        }
+    }
+}
+
+void Widget::getVehiclesInfoDetailedPrevLevelsHandler() {
+    bool flag = false;
+    int level = get_info_detailed_card_lvl_data->text().toInt() - 1;
+    Level lvl = levels[level];
+    for (int j = get_info_detailed_card_row_data->text().toInt() - 1; j >= 0; j--) {
+        for (int k = get_info_detailed_card_col_data->text().toInt() - 2; k >= 0; k--) {
+            if (!lvl.lines[j][k].getDuration().isNull()) {
+                Vehicle v = lvl.lines[j][k];
+                setCardData(v, level, j, k);
+                flag = true;
+                break;
+            }
+        }
+        if (flag) {
+            break;
+        }
+    }
+}
+
 
 Widget::~Widget() {
 }

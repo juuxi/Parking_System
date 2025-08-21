@@ -88,7 +88,7 @@ class Widget : public QWidget
     void showAccountUI();
     void showGetInfoUI();
     void showGetInfoDetailedUI();
-    void showGetInfoDetailedFullUI();
+    void showGetInfoDetailedInternalUI();
 
     void setCardData(Vehicle, int, int, int);
 
@@ -118,7 +118,10 @@ public slots:
     void getVehiclesInfoVisualHandler();
     void getVehiclesInfoDetailedHandler();
     void getVehiclesInfoDetailedFullHandler();
-    void getVehiclesInfoDetailedNextHandler();
-    void getVehiclesInfoDetailedPrevHandler();
+    void getVehiclesInfoDetailedNextFullHandler();
+    void getVehiclesInfoDetailedPrevFullHandler();
+    void getVehiclesInfoDetailedNextLevelsHandler();
+    void getVehiclesInfoDetailedPrevLevelsHandler();
+    void getVehiclesInfoDetailedLevelsHandler();
 };
 #endif // WIDGET_H
