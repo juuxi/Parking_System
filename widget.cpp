@@ -10,6 +10,11 @@ Widget::Widget(QWidget *parent)
     setupGetInfoUI();
 
     is_getting_vehicles_info = false;
+
+    Vehicle v;
+    v.updateDuration();
+    lvl.lines[4][2] = v;
+    lvl.lines[4][5] = v;
 }
 
 void Widget::setupLoginUI() {
@@ -94,9 +99,11 @@ void Widget::setupGetInfoUI() {
 
     get_info_detailed_next_button = std::make_unique<QPushButton>("Next >", this);
     get_info_detailed_next_button.get()->setFixedSize(75, 30);
+    connect(get_info_detailed_next_button.get(), SIGNAL(clicked()), this, SLOT(getVehiclesInfoDetailedNextHandler()));
 
     get_info_detailed_prev_button = std::make_unique<QPushButton>("< Prev", this);
     get_info_detailed_prev_button.get()->setFixedSize(75, 30);
+    connect(get_info_detailed_prev_button.get(), SIGNAL(clicked()), this, SLOT(getVehiclesInfoDetailedPrevHandler()));
 
     get_info_detailed_card = std::make_unique<QGroupBox>("Инофрмация о ТС", this);
 
@@ -411,14 +418,57 @@ void Widget::getVehiclesInfoDetailedFullHandler() {
     hideGetInfoDetailedUI();
     showGetInfoDetailedFullUI();
 
-    Level lvl;
-    Vehicle v;
-    v.updateDuration();
-    lvl.lines[4][2] = v;
     bool flag = false;
     for (int i = 0; i < lvl.lines.size(); i++) {
         for (int j = 0; j < lvl.lines[i].size(); j++) {
             if (!lvl.lines[i][j].getDuration().isNull()) {
+                Vehicle v = lvl.lines[i][j];
+                get_info_detailed_card_plate_data->setText(v.getPlate());
+                get_info_detailed_card_model_data->setText(v.getModel());
+                get_info_detailed_card_enter_time_data->setText(v.getEnterTime().toString());
+                get_info_detailed_card_duration_data->setText(v.getDuration().toString());
+                get_info_detailed_card_is_placed_correctly_data->setText(QString::number(v.getIsPlacedCorrectly()));
+                get_info_detailed_card_row_data->setText(QString::number(i + 1));
+                get_info_detailed_card_col_data->setText(QString::number(j + 1));
+                flag = true;
+                break;
+            }
+        }
+        if (flag) {
+            break;
+        }
+    }
+}
+
+void Widget::getVehiclesInfoDetailedNextHandler() {
+    bool flag = false;
+    for (int i = get_info_detailed_card_row_data->text().toInt() - 1; i < lvl.lines.size(); i++) {
+        for (int j = get_info_detailed_card_col_data->text().toInt(); j < lvl.lines[i].size(); j++) {
+            if (!lvl.lines[i][j].getDuration().isNull()) {
+                Vehicle v = lvl.lines[i][j];
+                get_info_detailed_card_plate_data->setText(v.getPlate());
+                get_info_detailed_card_model_data->setText(v.getModel());
+                get_info_detailed_card_enter_time_data->setText(v.getEnterTime().toString());
+                get_info_detailed_card_duration_data->setText(v.getDuration().toString());
+                get_info_detailed_card_is_placed_correctly_data->setText(QString::number(v.getIsPlacedCorrectly()));
+                get_info_detailed_card_row_data->setText(QString::number(i + 1));
+                get_info_detailed_card_col_data->setText(QString::number(j + 1));
+                flag = true;
+                break;
+            }
+        }
+        if (flag) {
+            break;
+        }
+    }
+}
+
+void Widget::getVehiclesInfoDetailedPrevHandler() {
+    bool flag = false;
+    for (int i = get_info_detailed_card_row_data->text().toInt() - 1; i >= 0; i--) {
+        for (int j = get_info_detailed_card_col_data->text().toInt() - 2; j >= 0; j--) {
+            if (!lvl.lines[i][j].getDuration().isNull()) {
+                Vehicle v = lvl.lines[i][j];
                 get_info_detailed_card_plate_data->setText(v.getPlate());
                 get_info_detailed_card_model_data->setText(v.getModel());
                 get_info_detailed_card_enter_time_data->setText(v.getEnterTime().toString());

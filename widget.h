@@ -88,6 +88,8 @@ class Widget : public QWidget
     void showGetInfoDetailedUI();
     void showGetInfoDetailedFullUI();
 
+    Level lvl;
+
 public:
     Widget(QWidget *parent = nullptr);
 
@@ -112,5 +114,7 @@ public slots:
     void getVehiclesInfoVisualHandler();
     void getVehiclesInfoDetailedHandler();
     void getVehiclesInfoDetailedFullHandler();
+    void getVehiclesInfoDetailedNextHandler();
+    void getVehiclesInfoDetailedPrevHandler();
 };
 #endif // WIDGET_H
