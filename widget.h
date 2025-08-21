@@ -65,6 +65,7 @@ class Widget : public QWidget
     std::unique_ptr<QLabel> get_info_detailed_card_enter_time_label;
     std::unique_ptr<QLabel> get_info_detailed_card_duration_label;
     std::unique_ptr<QLabel> get_info_detailed_card_is_placed_correctly_label;
+    std::unique_ptr<QLabel> get_info_detailed_card_lvl_label;
     std::unique_ptr<QLabel> get_info_detailed_card_row_label;
     std::unique_ptr<QLabel> get_info_detailed_card_col_label;
     std::unique_ptr<QLabel> get_info_detailed_card_plate_data;
@@ -72,6 +73,7 @@ class Widget : public QWidget
     std::unique_ptr<QLabel> get_info_detailed_card_enter_time_data;
     std::unique_ptr<QLabel> get_info_detailed_card_duration_data;
     std::unique_ptr<QLabel> get_info_detailed_card_is_placed_correctly_data;
+    std::unique_ptr<QLabel> get_info_detailed_card_lvl_data;
     std::unique_ptr<QLabel> get_info_detailed_card_row_data;
     std::unique_ptr<QLabel> get_info_detailed_card_col_data;
     std::unique_ptr<QGridLayout> get_info_detailed_card_layout;
@@ -88,7 +90,7 @@ class Widget : public QWidget
     void showGetInfoDetailedUI();
     void showGetInfoDetailedFullUI();
 
-    Level lvl;
+    QVector<Level> levels;
 
 public:
     Widget(QWidget *parent = nullptr);

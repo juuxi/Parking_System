@@ -1,7 +1,7 @@
 #include "widget.h"
 
 Widget::Widget(QWidget *parent)
-    : QWidget(parent) {
+    : QWidget(parent), levels(6) {
     setWindowTitle("Парковочная система");
     setWindowState(Qt::WindowMaximized);
     setupLoginUI();
@@ -13,8 +13,8 @@ Widget::Widget(QWidget *parent)
 
     Vehicle v;
     v.updateDuration();
-    lvl.lines[4][2] = v;
-    lvl.lines[4][5] = v;
+    levels[0].lines[4][2] = v;
+    levels[0].lines[4][5] = v;
 }
 
 void Widget::setupLoginUI() {
@@ -112,6 +112,7 @@ void Widget::setupGetInfoUI() {
     get_info_detailed_card_enter_time_label = std::make_unique<QLabel>("enter_time: ", this);
     get_info_detailed_card_duration_label = std::make_unique<QLabel>("duration: ", this);
     get_info_detailed_card_is_placed_correctly_label = std::make_unique<QLabel>("is_placed_correctly: ", this);
+    get_info_detailed_card_lvl_label = std::make_unique<QLabel>("level: ", this);
     get_info_detailed_card_row_label = std::make_unique<QLabel>("row: ", this);
     get_info_detailed_card_col_label = std::make_unique<QLabel>("column: ", this);
 
@@ -120,6 +121,7 @@ void Widget::setupGetInfoUI() {
     get_info_detailed_card_enter_time_data = std::make_unique<QLabel>(this);
     get_info_detailed_card_duration_data = std::make_unique<QLabel>(this);
     get_info_detailed_card_is_placed_correctly_data = std::make_unique<QLabel>(this);
+    get_info_detailed_card_lvl_data = std::make_unique<QLabel>(this);
     get_info_detailed_card_row_data = std::make_unique<QLabel>(this);
     get_info_detailed_card_col_data = std::make_unique<QLabel>(this);
 
@@ -129,15 +131,17 @@ void Widget::setupGetInfoUI() {
     get_info_detailed_card_layout.get()->addWidget(get_info_detailed_card_enter_time_label.get(), 2, 0, 1, 1);
     get_info_detailed_card_layout.get()->addWidget(get_info_detailed_card_duration_label.get(), 3, 0, 1, 1);
     get_info_detailed_card_layout.get()->addWidget(get_info_detailed_card_is_placed_correctly_label.get(), 4, 0, 1, 1);
-    get_info_detailed_card_layout.get()->addWidget(get_info_detailed_card_row_label.get(), 5, 0, 1, 1);
-    get_info_detailed_card_layout.get()->addWidget(get_info_detailed_card_col_label.get(), 6, 0, 1, 1);
+    get_info_detailed_card_layout.get()->addWidget(get_info_detailed_card_lvl_label.get(), 5, 0, 1, 1);
+    get_info_detailed_card_layout.get()->addWidget(get_info_detailed_card_row_label.get(), 6, 0, 1, 1);
+    get_info_detailed_card_layout.get()->addWidget(get_info_detailed_card_col_label.get(), 7, 0, 1, 1);
     get_info_detailed_card_layout.get()->addWidget(get_info_detailed_card_plate_data.get(), 0, 1, 1, 1);
     get_info_detailed_card_layout.get()->addWidget(get_info_detailed_card_model_data.get(), 1, 1, 1, 1);
     get_info_detailed_card_layout.get()->addWidget(get_info_detailed_card_enter_time_data.get(), 2, 1, 1, 1);
     get_info_detailed_card_layout.get()->addWidget(get_info_detailed_card_duration_data.get(), 3, 1, 1, 1);
     get_info_detailed_card_layout.get()->addWidget(get_info_detailed_card_is_placed_correctly_data.get(), 4, 1, 1, 1);
-    get_info_detailed_card_layout.get()->addWidget(get_info_detailed_card_row_data.get(), 5, 1, 1, 1);
-    get_info_detailed_card_layout.get()->addWidget(get_info_detailed_card_col_data.get(), 6, 1, 1, 1);
+    get_info_detailed_card_layout.get()->addWidget(get_info_detailed_card_lvl_data.get(), 5, 1, 1, 1);
+    get_info_detailed_card_layout.get()->addWidget(get_info_detailed_card_row_data.get(), 6, 1, 1, 1);
+    get_info_detailed_card_layout.get()->addWidget(get_info_detailed_card_col_data.get(), 7, 1, 1, 1);
     get_info_detailed_card.get()->setLayout(get_info_detailed_card_layout.get());
 
     hideGetInfoUI();
@@ -419,69 +423,81 @@ void Widget::getVehiclesInfoDetailedFullHandler() {
     showGetInfoDetailedFullUI();
 
     bool flag = false;
-    for (int i = 0; i < lvl.lines.size(); i++) {
-        for (int j = 0; j < lvl.lines[i].size(); j++) {
-            if (!lvl.lines[i][j].getDuration().isNull()) {
-                Vehicle v = lvl.lines[i][j];
-                get_info_detailed_card_plate_data->setText(v.getPlate());
-                get_info_detailed_card_model_data->setText(v.getModel());
-                get_info_detailed_card_enter_time_data->setText(v.getEnterTime().toString());
-                get_info_detailed_card_duration_data->setText(v.getDuration().toString());
-                get_info_detailed_card_is_placed_correctly_data->setText(QString::number(v.getIsPlacedCorrectly()));
-                get_info_detailed_card_row_data->setText(QString::number(i + 1));
-                get_info_detailed_card_col_data->setText(QString::number(j + 1));
-                flag = true;
+    for (int i = 0; i < levels.size(); i++) {
+        Level lvl = levels[i];
+        for (int j = 0; j < lvl.lines.size(); j++) {
+            for (int k = 0; k < lvl.lines[j].size(); k++) {
+                if (!lvl.lines[j][k].getDuration().isNull()) {
+                    Vehicle v = lvl.lines[j][k];
+                    get_info_detailed_card_plate_data->setText(v.getPlate());
+                    get_info_detailed_card_model_data->setText(v.getModel());
+                    get_info_detailed_card_enter_time_data->setText(v.getEnterTime().toString());
+                    get_info_detailed_card_duration_data->setText(v.getDuration().toString());
+                    get_info_detailed_card_is_placed_correctly_data->setText(QString::number(v.getIsPlacedCorrectly()));
+                    get_info_detailed_card_lvl_data->setText(QString::number(i + 1));
+                    get_info_detailed_card_row_data->setText(QString::number(j + 1));
+                    get_info_detailed_card_col_data->setText(QString::number(k + 1));
+                    flag = true;
+                    break;
+                }
+            }
+            if (flag) {
                 break;
             }
-        }
-        if (flag) {
-            break;
         }
     }
 }
 
 void Widget::getVehiclesInfoDetailedNextHandler() {
     bool flag = false;
-    for (int i = get_info_detailed_card_row_data->text().toInt() - 1; i < lvl.lines.size(); i++) {
-        for (int j = get_info_detailed_card_col_data->text().toInt(); j < lvl.lines[i].size(); j++) {
-            if (!lvl.lines[i][j].getDuration().isNull()) {
-                Vehicle v = lvl.lines[i][j];
-                get_info_detailed_card_plate_data->setText(v.getPlate());
-                get_info_detailed_card_model_data->setText(v.getModel());
-                get_info_detailed_card_enter_time_data->setText(v.getEnterTime().toString());
-                get_info_detailed_card_duration_data->setText(v.getDuration().toString());
-                get_info_detailed_card_is_placed_correctly_data->setText(QString::number(v.getIsPlacedCorrectly()));
-                get_info_detailed_card_row_data->setText(QString::number(i + 1));
-                get_info_detailed_card_col_data->setText(QString::number(j + 1));
-                flag = true;
+    for (int i = get_info_detailed_card_lvl_data->text().toInt() - 1; i < levels.size(); i++) {
+        Level lvl = levels[i];
+        for (int j = get_info_detailed_card_row_data->text().toInt() - 1; j < lvl.lines.size(); j++) {
+            for (int k = get_info_detailed_card_col_data->text().toInt(); k < lvl.lines[j].size(); k++) {
+                if (!lvl.lines[j][k].getDuration().isNull()) {
+                    Vehicle v = lvl.lines[j][k];
+                    get_info_detailed_card_plate_data->setText(v.getPlate());
+                    get_info_detailed_card_model_data->setText(v.getModel());
+                    get_info_detailed_card_enter_time_data->setText(v.getEnterTime().toString());
+                    get_info_detailed_card_duration_data->setText(v.getDuration().toString());
+                    get_info_detailed_card_is_placed_correctly_data->setText(QString::number(v.getIsPlacedCorrectly()));
+                    get_info_detailed_card_lvl_data->setText(QString::number(i + 1));
+                    get_info_detailed_card_row_data->setText(QString::number(j + 1));
+                    get_info_detailed_card_col_data->setText(QString::number(k + 1));
+                    flag = true;
+                    break;
+                }
+            }
+            if (flag) {
                 break;
             }
-        }
-        if (flag) {
-            break;
         }
     }
 }
 
 void Widget::getVehiclesInfoDetailedPrevHandler() {
     bool flag = false;
-    for (int i = get_info_detailed_card_row_data->text().toInt() - 1; i >= 0; i--) {
-        for (int j = get_info_detailed_card_col_data->text().toInt() - 2; j >= 0; j--) {
-            if (!lvl.lines[i][j].getDuration().isNull()) {
-                Vehicle v = lvl.lines[i][j];
-                get_info_detailed_card_plate_data->setText(v.getPlate());
-                get_info_detailed_card_model_data->setText(v.getModel());
-                get_info_detailed_card_enter_time_data->setText(v.getEnterTime().toString());
-                get_info_detailed_card_duration_data->setText(v.getDuration().toString());
-                get_info_detailed_card_is_placed_correctly_data->setText(QString::number(v.getIsPlacedCorrectly()));
-                get_info_detailed_card_row_data->setText(QString::number(i + 1));
-                get_info_detailed_card_col_data->setText(QString::number(j + 1));
-                flag = true;
+    for (int i = get_info_detailed_card_lvl_data->text().toInt() - 1; i >= 0; i--) {
+        Level lvl = levels[i];
+        for (int j = get_info_detailed_card_row_data->text().toInt() - 1; j >= 0; j--) {
+            for (int k = get_info_detailed_card_col_data->text().toInt() - 2; k >= 0; k--) {
+                if (!lvl.lines[j][k].getDuration().isNull()) {
+                    Vehicle v = lvl.lines[j][k];
+                    get_info_detailed_card_plate_data->setText(v.getPlate());
+                    get_info_detailed_card_model_data->setText(v.getModel());
+                    get_info_detailed_card_enter_time_data->setText(v.getEnterTime().toString());
+                    get_info_detailed_card_duration_data->setText(v.getDuration().toString());
+                    get_info_detailed_card_is_placed_correctly_data->setText(QString::number(v.getIsPlacedCorrectly()));
+                    get_info_detailed_card_lvl_data->setText(QString::number(i + 1));
+                    get_info_detailed_card_row_data->setText(QString::number(j + 1));
+                    get_info_detailed_card_col_data->setText(QString::number(k + 1));
+                    flag = true;
+                    break;
+                }
+            }
+            if (flag) {
                 break;
             }
-        }
-        if (flag) {
-            break;
         }
     }
 }
