@@ -429,14 +429,7 @@ void Widget::getVehiclesInfoDetailedFullHandler() {
             for (int k = 0; k < lvl.lines[j].size(); k++) {
                 if (!lvl.lines[j][k].getDuration().isNull()) {
                     Vehicle v = lvl.lines[j][k];
-                    get_info_detailed_card_plate_data->setText(v.getPlate());
-                    get_info_detailed_card_model_data->setText(v.getModel());
-                    get_info_detailed_card_enter_time_data->setText(v.getEnterTime().toString());
-                    get_info_detailed_card_duration_data->setText(v.getDuration().toString());
-                    get_info_detailed_card_is_placed_correctly_data->setText(QString::number(v.getIsPlacedCorrectly()));
-                    get_info_detailed_card_lvl_data->setText(QString::number(i + 1));
-                    get_info_detailed_card_row_data->setText(QString::number(j + 1));
-                    get_info_detailed_card_col_data->setText(QString::number(k + 1));
+                    setCardData(v, i, j, k);
                     flag = true;
                     break;
                 }
@@ -456,14 +449,7 @@ void Widget::getVehiclesInfoDetailedNextHandler() {
             for (int k = get_info_detailed_card_col_data->text().toInt(); k < lvl.lines[j].size(); k++) {
                 if (!lvl.lines[j][k].getDuration().isNull()) {
                     Vehicle v = lvl.lines[j][k];
-                    get_info_detailed_card_plate_data->setText(v.getPlate());
-                    get_info_detailed_card_model_data->setText(v.getModel());
-                    get_info_detailed_card_enter_time_data->setText(v.getEnterTime().toString());
-                    get_info_detailed_card_duration_data->setText(v.getDuration().toString());
-                    get_info_detailed_card_is_placed_correctly_data->setText(QString::number(v.getIsPlacedCorrectly()));
-                    get_info_detailed_card_lvl_data->setText(QString::number(i + 1));
-                    get_info_detailed_card_row_data->setText(QString::number(j + 1));
-                    get_info_detailed_card_col_data->setText(QString::number(k + 1));
+                    setCardData(v, i, j, k);
                     flag = true;
                     break;
                 }
@@ -483,14 +469,7 @@ void Widget::getVehiclesInfoDetailedPrevHandler() {
             for (int k = get_info_detailed_card_col_data->text().toInt() - 2; k >= 0; k--) {
                 if (!lvl.lines[j][k].getDuration().isNull()) {
                     Vehicle v = lvl.lines[j][k];
-                    get_info_detailed_card_plate_data->setText(v.getPlate());
-                    get_info_detailed_card_model_data->setText(v.getModel());
-                    get_info_detailed_card_enter_time_data->setText(v.getEnterTime().toString());
-                    get_info_detailed_card_duration_data->setText(v.getDuration().toString());
-                    get_info_detailed_card_is_placed_correctly_data->setText(QString::number(v.getIsPlacedCorrectly()));
-                    get_info_detailed_card_lvl_data->setText(QString::number(i + 1));
-                    get_info_detailed_card_row_data->setText(QString::number(j + 1));
-                    get_info_detailed_card_col_data->setText(QString::number(k + 1));
+                    setCardData(v, i, j, k);
                     flag = true;
                     break;
                 }
@@ -500,6 +479,17 @@ void Widget::getVehiclesInfoDetailedPrevHandler() {
             }
         }
     }
+}
+
+void Widget::setCardData(Vehicle v, int i, int j, int k) {
+    get_info_detailed_card_plate_data->setText(v.getPlate());
+    get_info_detailed_card_model_data->setText(v.getModel());
+    get_info_detailed_card_enter_time_data->setText(v.getEnterTime().toString());
+    get_info_detailed_card_duration_data->setText(v.getDuration().toString());
+    get_info_detailed_card_is_placed_correctly_data->setText(QString::number(v.getIsPlacedCorrectly()));
+    get_info_detailed_card_lvl_data->setText(QString::number(i + 1));
+    get_info_detailed_card_row_data->setText(QString::number(j + 1));
+    get_info_detailed_card_col_data->setText(QString::number(k + 1));
 }
 
 Widget::~Widget() {

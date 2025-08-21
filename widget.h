@@ -90,6 +90,8 @@ class Widget : public QWidget
     void showGetInfoDetailedUI();
     void showGetInfoDetailedFullUI();
 
+    void setCardData(Vehicle, int, int, int);
+
     QVector<Level> levels;
 
 public:
