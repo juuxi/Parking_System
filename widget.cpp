@@ -105,12 +105,16 @@ void Widget::setupGetInfoUI() {
     get_info_detailed_card_enter_time_label = std::make_unique<QLabel>("enter_time: ", this);
     get_info_detailed_card_duration_label = std::make_unique<QLabel>("duration: ", this);
     get_info_detailed_card_is_placed_correctly_label = std::make_unique<QLabel>("is_placed_correctly: ", this);
+    get_info_detailed_card_row_label = std::make_unique<QLabel>("row: ", this);
+    get_info_detailed_card_col_label = std::make_unique<QLabel>("column: ", this);
 
     get_info_detailed_card_plate_data = std::make_unique<QLabel>(this);
     get_info_detailed_card_model_data = std::make_unique<QLabel>(this);
     get_info_detailed_card_enter_time_data = std::make_unique<QLabel>(this);
     get_info_detailed_card_duration_data = std::make_unique<QLabel>(this);
     get_info_detailed_card_is_placed_correctly_data = std::make_unique<QLabel>(this);
+    get_info_detailed_card_row_data = std::make_unique<QLabel>(this);
+    get_info_detailed_card_col_data = std::make_unique<QLabel>(this);
 
     get_info_detailed_card_layout = std::make_unique<QGridLayout>(this);
     get_info_detailed_card_layout.get()->addWidget(get_info_detailed_card_plate_label.get(), 0, 0, 1, 1);
@@ -118,11 +122,15 @@ void Widget::setupGetInfoUI() {
     get_info_detailed_card_layout.get()->addWidget(get_info_detailed_card_enter_time_label.get(), 2, 0, 1, 1);
     get_info_detailed_card_layout.get()->addWidget(get_info_detailed_card_duration_label.get(), 3, 0, 1, 1);
     get_info_detailed_card_layout.get()->addWidget(get_info_detailed_card_is_placed_correctly_label.get(), 4, 0, 1, 1);
+    get_info_detailed_card_layout.get()->addWidget(get_info_detailed_card_row_label.get(), 5, 0, 1, 1);
+    get_info_detailed_card_layout.get()->addWidget(get_info_detailed_card_col_label.get(), 6, 0, 1, 1);
     get_info_detailed_card_layout.get()->addWidget(get_info_detailed_card_plate_data.get(), 0, 1, 1, 1);
     get_info_detailed_card_layout.get()->addWidget(get_info_detailed_card_model_data.get(), 1, 1, 1, 1);
     get_info_detailed_card_layout.get()->addWidget(get_info_detailed_card_enter_time_data.get(), 2, 1, 1, 1);
     get_info_detailed_card_layout.get()->addWidget(get_info_detailed_card_duration_data.get(), 3, 1, 1, 1);
     get_info_detailed_card_layout.get()->addWidget(get_info_detailed_card_is_placed_correctly_data.get(), 4, 1, 1, 1);
+    get_info_detailed_card_layout.get()->addWidget(get_info_detailed_card_row_data.get(), 5, 1, 1, 1);
+    get_info_detailed_card_layout.get()->addWidget(get_info_detailed_card_col_data.get(), 6, 1, 1, 1);
     get_info_detailed_card.get()->setLayout(get_info_detailed_card_layout.get());
 
     hideGetInfoUI();
@@ -403,15 +411,22 @@ void Widget::getVehiclesInfoDetailedFullHandler() {
     hideGetInfoDetailedUI();
     showGetInfoDetailedFullUI();
 
+    Level lvl;
+    Vehicle v;
+    v.updateDuration();
+    lvl.lines[4][2] = v;
     bool flag = false;
-    for (const auto& line : lvl.lines) {
-        for (const auto& v : line) {
-            if (!v.getDuration().isNull()) {
+    for (int i = 0; i < lvl.lines.size(); i++) {
+        for (int j = 0; j < lvl.lines[i].size(); j++) {
+            if (!lvl.lines[i][j].getDuration().isNull()) {
                 get_info_detailed_card_plate_data->setText(v.getPlate());
                 get_info_detailed_card_model_data->setText(v.getModel());
                 get_info_detailed_card_enter_time_data->setText(v.getEnterTime().toString());
                 get_info_detailed_card_duration_data->setText(v.getDuration().toString());
                 get_info_detailed_card_is_placed_correctly_data->setText(QString::number(v.getIsPlacedCorrectly()));
+                get_info_detailed_card_row_data->setText(QString::number(i + 1));
+                get_info_detailed_card_col_data->setText(QString::number(j + 1));
+                flag = true;
                 break;
             }
         }
