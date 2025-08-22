@@ -52,6 +52,25 @@ class Widget : public QWidget
     std::unique_ptr<QLabel> account_current_email;
     std::unique_ptr<QPushButton> account_change_button;
 
+    std::unique_ptr<QGroupBox> change_vehicles_card;
+    std::unique_ptr<QLabel> change_vehicles_card_plate_label;
+    std::unique_ptr<QLabel> change_vehicles_card_model_label;
+    std::unique_ptr<QLabel> change_vehicles_card_enter_time_label;
+    std::unique_ptr<QLabel> change_vehicles_card_duration_label;
+    std::unique_ptr<QLabel> change_vehicles_card_is_placed_correctly_label;
+    std::unique_ptr<QLabel> change_vehicles_card_lvl_label;
+    std::unique_ptr<QLabel> change_vehicles_card_row_label;
+    std::unique_ptr<QLabel> change_vehicles_card_col_label;
+    std::unique_ptr<QLabel> change_vehicles_card_plate_data;
+    std::unique_ptr<QLabel> change_vehicles_card_model_data;
+    std::unique_ptr<QLabel> change_vehicles_card_enter_time_data;
+    std::unique_ptr<QLabel> change_vehicles_card_duration_data;
+    std::unique_ptr<QLabel> change_vehicles_card_is_placed_correctly_data;
+    std::unique_ptr<QLabel> change_vehicles_card_lvl_data;
+    std::unique_ptr<QLabel> change_vehicles_card_row_data;
+    std::unique_ptr<QLabel> change_vehicles_card_col_data;
+    std::unique_ptr<QGridLayout> change_vehicles_card_layout;
+
     std::unique_ptr<QPushButton> get_info_visual_button;
     std::unique_ptr<QPushButton> get_info_detailed_button;
     std::unique_ptr<QPushButton> get_info_detailed_levels_button;
@@ -111,6 +130,7 @@ public:
     void setupMainMenuUI();
     void setupAccountUI();
     void setupGetInfoUI();
+    void setupChangeVehiclesUI();
     void repositionLoginUI();
     void repositionMainMenuUI();
     void repositionAccountUI();
@@ -121,6 +141,7 @@ public slots:
     void loginHandler();
     void accountHandler();
     void accountChangeHandler();
+    void changeVehiclesHandler();
     void getVehiclesInfoHandler();
     void getVehiclesInfoVisualHandler();
     void getVehiclesInfoDetailedHandler();

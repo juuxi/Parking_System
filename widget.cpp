@@ -45,6 +45,7 @@ void Widget::setupMainMenuUI() {
 
     change_vehicles_info_button = std::make_unique<QPushButton>("Change Vehicles", this);
     change_vehicles_info_button.get()->hide();
+    connect(account_button.get(), SIGNAL(clicked()), this, SLOT(changeVehiclesHandler()));
 
     get_vehicles_info_button = std::make_unique<QPushButton>("Get Vehicles Info", this);
     get_vehicles_info_button.get()->hide();
@@ -83,6 +84,47 @@ void Widget::setupAccountUI() {
     account_change_button.get()->setFixedSize(200, 50);
     connect(account_change_button.get(), SIGNAL(clicked()), this, SLOT(accountChangeHandler()));
     hideAccountUI();
+}
+
+void Widget::setupChangeVehiclesUI()  {
+    change_vehicles_card = std::make_unique<QGroupBox>("Инофрмация о ТС", this);
+
+    change_vehicles_card_plate_label = std::make_unique<QLabel>("plate: ", this);
+    change_vehicles_card_model_label = std::make_unique<QLabel>("model: ", this);
+    change_vehicles_card_enter_time_label = std::make_unique<QLabel>("enter_time: ", this);
+    change_vehicles_card_duration_label = std::make_unique<QLabel>("duration: ", this);
+    change_vehicles_card_is_placed_correctly_label = std::make_unique<QLabel>("is_placed_correctly: ", this);
+    change_vehicles_card_lvl_label = std::make_unique<QLabel>("level: ", this);
+    change_vehicles_card_row_label = std::make_unique<QLabel>("row: ", this);
+    change_vehicles_card_col_label = std::make_unique<QLabel>("column: ", this);
+
+    change_vehicles_card_plate_data = std::make_unique<QLabel>(this);
+    change_vehicles_card_model_data = std::make_unique<QLabel>(this);
+    change_vehicles_card_enter_time_data = std::make_unique<QLabel>(this);
+    change_vehicles_card_duration_data = std::make_unique<QLabel>(this);
+    change_vehicles_card_is_placed_correctly_data = std::make_unique<QLabel>(this);
+    change_vehicles_card_lvl_data = std::make_unique<QLabel>(this);
+    change_vehicles_card_row_data = std::make_unique<QLabel>(this);
+    change_vehicles_card_col_data = std::make_unique<QLabel>(this);
+
+    change_vehicles_card_layout = std::make_unique<QGridLayout>(this);
+    change_vehicles_card_layout.get()->addWidget(change_vehicles_card_plate_label.get(), 0, 0, 1, 1);
+    change_vehicles_card_layout.get()->addWidget(change_vehicles_card_model_label.get(), 1, 0, 1, 1);
+    change_vehicles_card_layout.get()->addWidget(change_vehicles_card_enter_time_label.get(), 2, 0, 1, 1);
+    change_vehicles_card_layout.get()->addWidget(change_vehicles_card_duration_label.get(), 3, 0, 1, 1);
+    change_vehicles_card_layout.get()->addWidget(change_vehicles_card_is_placed_correctly_label.get(), 4, 0, 1, 1);
+    change_vehicles_card_layout.get()->addWidget(change_vehicles_card_lvl_label.get(), 5, 0, 1, 1);
+    change_vehicles_card_layout.get()->addWidget(change_vehicles_card_row_label.get(), 6, 0, 1, 1);
+    change_vehicles_card_layout.get()->addWidget(change_vehicles_card_col_label.get(), 7, 0, 1, 1);
+    change_vehicles_card_layout.get()->addWidget(change_vehicles_card_plate_data.get(), 0, 1, 1, 1);
+    change_vehicles_card_layout.get()->addWidget(change_vehicles_card_model_data.get(), 1, 1, 1, 1);
+    change_vehicles_card_layout.get()->addWidget(change_vehicles_card_enter_time_data.get(), 2, 1, 1, 1);
+    change_vehicles_card_layout.get()->addWidget(change_vehicles_card_duration_data.get(), 3, 1, 1, 1);
+    change_vehicles_card_layout.get()->addWidget(change_vehicles_card_is_placed_correctly_data.get(), 4, 1, 1, 1);
+    change_vehicles_card_layout.get()->addWidget(change_vehicles_card_lvl_data.get(), 5, 1, 1, 1);
+    change_vehicles_card_layout.get()->addWidget(change_vehicles_card_row_data.get(), 6, 1, 1, 1);
+    change_vehicles_card_layout.get()->addWidget(change_vehicles_card_col_data.get(), 7, 1, 1, 1);
+    change_vehicles_card.get()->setLayout(change_vehicles_card_layout.get());
 }
 
 void Widget::setupGetInfoUI() {
@@ -430,6 +472,10 @@ void Widget::accountChangeHandler() {
             return;
         }
     }
+}
+
+void Widget::changeVehiclesHandler() {
+
 }
 
 void Widget::getVehiclesInfoHandler() {
