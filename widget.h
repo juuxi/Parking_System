@@ -78,15 +78,22 @@ class Widget : public QWidget
     std::unique_ptr<QLabel> get_info_detailed_card_col_data;
     std::unique_ptr<QGridLayout> get_info_detailed_card_layout;
 
+    std::unique_ptr<QPushButton> get_info_detailed_internal_back_button;
+    std::unique_ptr<QPushButton> get_info_detailed_back_button;
+    std::unique_ptr<QPushButton> get_info_visual_back_button;
+    std::unique_ptr<QPushButton> get_info_back_button;
+
     void hideLoginUI();
     void hideMainMenuUI();
     void hideAccountUI();
     void hideGetInfoUI();
+    void hideGetInfoVisualUI();
     void hideGetInfoDetailedUI();
-    void hideGetInfoDetailedFullUI();
+    void hideGetInfoDetailedInternalUI();
     void showMainMenuUI();
     void showAccountUI();
     void showGetInfoUI();
+    void showGetInfoVisualUI();
     void showGetInfoDetailedUI();
     void showGetInfoDetailedInternalUI();
 
@@ -123,5 +130,9 @@ public slots:
     void getVehiclesInfoDetailedNextLevelsHandler();
     void getVehiclesInfoDetailedPrevLevelsHandler();
     void getVehiclesInfoDetailedLevelsHandler();
+    void getVehiclesInfoBackHandler();
+    void getVehiclesInfoVisualBackHandler();
+    void getVehiclesInfoDetailedBackHandler();
+    void getVehiclesInfoDetailedInternalBackHandler();
 };
 #endif // WIDGET_H

@@ -143,12 +143,29 @@ void Widget::setupGetInfoUI() {
     get_info_detailed_card_layout.get()->addWidget(get_info_detailed_card_col_data.get(), 7, 1, 1, 1);
     get_info_detailed_card.get()->setLayout(get_info_detailed_card_layout.get());
 
+    get_info_back_button = std::make_unique<QPushButton>("Back", this);
+    get_info_back_button.get()->setGeometry(10, 10, 50, 20);
+    connect(get_info_back_button.get(), SIGNAL(clicked()), this, SLOT(getVehiclesInfoBackHandler()));
+
+    get_info_detailed_back_button = std::make_unique<QPushButton>("Back", this);
+    get_info_detailed_back_button.get()->setGeometry(10, 10, 50, 20);
+    connect(get_info_detailed_back_button.get(), SIGNAL(clicked()), this, SLOT(getVehiclesInfoDetailedBackHandler()));
+
+    get_info_detailed_internal_back_button = std::make_unique<QPushButton>("Back", this);
+    get_info_detailed_internal_back_button.get()->setGeometry(10, 10, 50, 20);
+    connect(get_info_detailed_internal_back_button.get(), SIGNAL(clicked()), this, SLOT(getVehiclesInfoDetailedInternalBackHandler()));
+
+    get_info_visual_back_button = std::make_unique<QPushButton>("Back", this);
+    get_info_visual_back_button.get()->setGeometry(10, 10, 50, 20);
+    connect(get_info_visual_back_button.get(), SIGNAL(clicked()), this, SLOT(getVehiclesInfoVisualBackHandler()));
+
     hideGetInfoUI();
+    hideGetInfoVisualUI();
     hideGetInfoDetailedUI();
-    hideGetInfoDetailedFullUI();
+    hideGetInfoDetailedInternalUI();
 }
 
-void Widget::paintEvent(QPaintEvent*) {
+void Widget::paintEvent(QPaintEvent* event) {
     QPainter p;
     p.begin(this);
     if (is_getting_vehicles_info) {
@@ -266,17 +283,24 @@ void Widget::hideAccountUI() {
 void Widget::hideGetInfoUI() {
     get_info_visual_button.get()->hide();
     get_info_detailed_button.get()->hide();
+    get_info_back_button.get()->hide();
+}
+
+void Widget::hideGetInfoVisualUI() {
+    get_info_visual_back_button->hide();
 }
 
 void Widget::hideGetInfoDetailedUI() {
     get_info_detailed_levels_button.get()->hide();
     get_info_detailed_full_button.get()->hide();
+    get_info_detailed_back_button.get()->hide();
 }
 
-void Widget::hideGetInfoDetailedFullUI() {
+void Widget::hideGetInfoDetailedInternalUI() {
     get_info_detailed_next_button->hide();
     get_info_detailed_prev_button->hide();
     get_info_detailed_card->hide();
+    get_info_detailed_internal_back_button->hide();
 }
 
 void Widget::showMainMenuUI() {
@@ -303,17 +327,24 @@ void Widget::showAccountUI() {
 void Widget::showGetInfoUI() {
     get_info_visual_button.get()->show();
     get_info_detailed_button.get()->show();
+    get_info_back_button.get()->show();
+}
+
+void Widget::showGetInfoVisualUI() {
+    get_info_visual_back_button->show();
 }
 
 void Widget::showGetInfoDetailedUI() {
     get_info_detailed_levels_button.get()->show();
     get_info_detailed_full_button.get()->show();
+    get_info_detailed_back_button.get()->show();
 }
 
 void Widget::showGetInfoDetailedInternalUI() {
     get_info_detailed_next_button->show();
     get_info_detailed_prev_button->show();
     get_info_detailed_card->show();
+    get_info_detailed_internal_back_button->show();
 }
 
 void Widget::loginHandler() {
@@ -410,6 +441,7 @@ void Widget::getVehiclesInfoVisualHandler() {
     hideGetInfoUI();
     is_getting_vehicles_info = true;
     update();
+    showGetInfoVisualUI();
 }
 
 void Widget::getVehiclesInfoDetailedHandler() {
@@ -560,6 +592,27 @@ void Widget::getVehiclesInfoDetailedPrevLevelsHandler() {
     }
 }
 
+void Widget::getVehiclesInfoBackHandler() {
+    hideGetInfoUI();
+    showMainMenuUI();
+}
+
+void Widget::getVehiclesInfoVisualBackHandler() {
+    hideGetInfoVisualUI();
+    showGetInfoUI();
+    is_getting_vehicles_info = false;
+    update();
+}
+
+void Widget::getVehiclesInfoDetailedBackHandler() {
+    hideGetInfoDetailedUI();
+    showGetInfoUI();
+}
+
+void Widget::getVehiclesInfoDetailedInternalBackHandler() {
+    hideGetInfoDetailedInternalUI();
+    showGetInfoDetailedUI();
+}
 
 Widget::~Widget() {
 }
