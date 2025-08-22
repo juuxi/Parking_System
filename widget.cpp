@@ -7,6 +7,7 @@ Widget::Widget(QWidget *parent)
     setupLoginUI();
     setupMainMenuUI();
     setupAccountUI();
+    setupChangeVehiclesUI();
     setupGetInfoUI();
 
     is_getting_vehicles_info = false;
@@ -45,7 +46,7 @@ void Widget::setupMainMenuUI() {
 
     change_vehicles_info_button = std::make_unique<QPushButton>("Change Vehicles", this);
     change_vehicles_info_button.get()->hide();
-    connect(account_button.get(), SIGNAL(clicked()), this, SLOT(changeVehiclesHandler()));
+    connect(change_vehicles_info_button.get(), SIGNAL(clicked()), this, SLOT(changeVehiclesHandler()));
 
     get_vehicles_info_button = std::make_unique<QPushButton>("Get Vehicles Info", this);
     get_vehicles_info_button.get()->hide();
@@ -485,8 +486,83 @@ void Widget::accountChangeHandler() {
 }
 
 void Widget::changeVehiclesHandler() {
+    hideMainMenuUI();
+    QMessageBox msgBox;
+    msgBox.setText("Insert known data and click OK. For unknown data click Cancel or don't insert and click OK");
+    msgBox.exec();
+    bool ok{};
+    QString plate = "UNDEFINED", model = "UNDEFINED";
+    int lvl = INT_MAX, row = INT_MAX, col = INT_MAX;
 
+    QString input = QInputDialog::getText(this, "Insert data", "plate:", QLineEdit::Normal, QString(), &ok);
+    if (!input.isEmpty() && ok) {
+        plate = input;
+    }
+
+    input = QInputDialog::getText(this, "Insert data", "model:", QLineEdit::Normal, QString(), &ok);
+    if (!input.isEmpty() && ok) {
+        model = input;
+    }
+
+    int num = QInputDialog::getInt(this, "Insert Data", "level", 1, 1, levels.size(), 1, &ok);
+    if  (ok) {
+        lvl = num - 1;
+    }
+
+    num = QInputDialog::getInt(this, "Insert Data", "row", 1, 1, 6, 1, &ok); //если не введен lvl - блокировать дальше?
+    if  (ok) {
+        row = num - 1;
+    }
+
+    num = QInputDialog::getInt(this, "Insert Data", "col", 1, 1, 30, 1, &ok);
+    if  (ok) {
+        col = num - 1;
+    }
+
+    bool flag = false;
+    for (int i = 0; i < levels.size(); i++) {
+        Level level = levels[i];
+        for (int j = 0; j < level.lines.size(); j++) {
+            for (int k = 0; k < level.lines[j].size(); k++) {
+                Vehicle v = level.lines[j][k];
+                if (v.getPlate() == plate) {
+                    setChangeCardData(v, i, j, k);
+                    flag = true;
+                    break;
+                }
+                if (v.getModel() == model) {
+                    setChangeCardData(v, i, j, k);
+                    flag = true;
+                    break;
+                }
+                if (i == lvl && j == row && k == col && !v.getDuration().isNull()) {
+                    setChangeCardData(v, i, j, k);
+                    flag = true;
+                    break;
+                }
+            }
+            if (flag) {
+                break;
+            }
+        }
+        if (flag) {
+            break;
+        }
+    }
+    showChangeVehiclesUI();
 }
+
+void Widget::setChangeCardData(Vehicle v, int i, int j, int k) {
+    change_vehicles_card_plate_data->setText(v.getPlate());
+    change_vehicles_card_model_data->setText(v.getModel());
+    change_vehicles_card_enter_time_data->setText(v.getEnterTime().toString());
+    change_vehicles_card_duration_data->setText(v.getDuration().toString());
+    change_vehicles_card_is_placed_correctly_data->setText(QString::number(v.getIsPlacedCorrectly()));
+    change_vehicles_card_lvl_data->setText(QString::number(i + 1));
+    change_vehicles_card_row_data->setText(QString::number(j + 1));
+    change_vehicles_card_col_data->setText(QString::number(k + 1));
+}
+
 
 void Widget::getVehiclesInfoHandler() {
     hideMainMenuUI();
