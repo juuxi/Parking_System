@@ -105,12 +105,14 @@ class Widget : public QWidget
     void hideLoginUI();
     void hideMainMenuUI();
     void hideAccountUI();
+    void hideChangeVehiclesUI();
     void hideGetInfoUI();
     void hideGetInfoVisualUI();
     void hideGetInfoDetailedUI();
     void hideGetInfoDetailedInternalUI();
     void showMainMenuUI();
     void showAccountUI();
+    void showChangeVehiclesUI();
     void showGetInfoUI();
     void showGetInfoVisualUI();
     void showGetInfoDetailedUI();

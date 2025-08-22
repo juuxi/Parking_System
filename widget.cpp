@@ -125,6 +125,8 @@ void Widget::setupChangeVehiclesUI()  {
     change_vehicles_card_layout.get()->addWidget(change_vehicles_card_row_data.get(), 6, 1, 1, 1);
     change_vehicles_card_layout.get()->addWidget(change_vehicles_card_col_data.get(), 7, 1, 1, 1);
     change_vehicles_card.get()->setLayout(change_vehicles_card_layout.get());
+
+    hideChangeVehiclesUI();
 }
 
 void Widget::setupGetInfoUI() {
@@ -322,6 +324,10 @@ void Widget::hideAccountUI() {
     account_change_button.get()->hide();
 }
 
+void Widget::hideChangeVehiclesUI() {
+    change_vehicles_card->hide();
+}
+
 void Widget::hideGetInfoUI() {
     get_info_visual_button.get()->hide();
     get_info_detailed_button.get()->hide();
@@ -364,6 +370,10 @@ void Widget::showAccountUI() {
     account_current_email.get()->show();
 
     account_change_button.get()->show();
+}
+
+void Widget::showChangeVehiclesUI() {
+    change_vehicles_card->show();
 }
 
 void Widget::showGetInfoUI() {
@@ -598,7 +608,6 @@ void Widget::getVehiclesInfoDetailedLevelsHandler() {
         }
     }
 }
-
 
 void Widget::getVehiclesInfoDetailedNextLevelsHandler() {
     bool flag = false;
