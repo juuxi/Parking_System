@@ -69,6 +69,7 @@ class Widget : public QWidget
     std::unique_ptr<QLabel> change_vehicles_card_lvl_data;
     std::unique_ptr<QLabel> change_vehicles_card_row_data;
     std::unique_ptr<QLabel> change_vehicles_card_col_data;
+    std::unique_ptr<QPushButton> change_vehicles_card_button;
     std::unique_ptr<QGridLayout> change_vehicles_card_layout;
 
     std::unique_ptr<QPushButton> get_info_visual_button;
@@ -145,6 +146,7 @@ public slots:
     void accountHandler();
     void accountChangeHandler();
     void changeVehiclesHandler();
+    void changeVehiclesInternalHandler();
     void getVehiclesInfoHandler();
     void getVehiclesInfoVisualHandler();
     void getVehiclesInfoDetailedHandler();

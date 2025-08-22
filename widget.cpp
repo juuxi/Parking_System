@@ -108,6 +108,9 @@ void Widget::setupChangeVehiclesUI()  {
     change_vehicles_card_row_data = std::make_unique<QLabel>(this);
     change_vehicles_card_col_data = std::make_unique<QLabel>(this);
 
+    change_vehicles_card_button = std::make_unique<QPushButton>("Change", this);
+    connect(change_vehicles_card_button.get(), SIGNAL(clicked()), this, SLOT(changeVehiclesInternalHandler()));
+
     change_vehicles_card_layout = std::make_unique<QGridLayout>(this);
     change_vehicles_card_layout.get()->addWidget(change_vehicles_card_plate_label.get(), 0, 0, 1, 1);
     change_vehicles_card_layout.get()->addWidget(change_vehicles_card_model_label.get(), 1, 0, 1, 1);
@@ -125,6 +128,7 @@ void Widget::setupChangeVehiclesUI()  {
     change_vehicles_card_layout.get()->addWidget(change_vehicles_card_lvl_data.get(), 5, 1, 1, 1);
     change_vehicles_card_layout.get()->addWidget(change_vehicles_card_row_data.get(), 6, 1, 1, 1);
     change_vehicles_card_layout.get()->addWidget(change_vehicles_card_col_data.get(), 7, 1, 1, 1);
+    change_vehicles_card_layout.get()->addWidget(change_vehicles_card_button.get(), 8, 1, 1, 2);
     change_vehicles_card.get()->setLayout(change_vehicles_card_layout.get());
 
     hideChangeVehiclesUI();
@@ -563,6 +567,59 @@ void Widget::setChangeCardData(Vehicle v, int i, int j, int k) {
     change_vehicles_card_col_data->setText(QString::number(k + 1));
 }
 
+void Widget::changeVehiclesInternalHandler() {
+    QMessageBox msgBox;
+    msgBox.setText("Insert data if you want to change it, don't insert or click Cancel otherwise");
+    msgBox.exec();
+
+    int curr_lvl = change_vehicles_card_lvl_data->text().toInt() - 1;
+    int curr_row = change_vehicles_card_row_data->text().toInt() - 1;
+    int curr_col = change_vehicles_card_col_data->text().toInt() - 1;
+    Vehicle v = levels[curr_lvl].lines[curr_row][curr_col];
+
+    QString plate, model;
+    int lvl, row, col;
+    bool ok{};
+    QString input = QInputDialog::getText(this, "Insert data", "plate:", QLineEdit::Normal, QString(), &ok);
+    if (!input.isEmpty() && ok) {
+        v.setPlate(input);
+        levels[curr_lvl].lines[curr_row][curr_col] = v;
+        change_vehicles_card_plate_data->setText(input);
+    }
+
+    input = QInputDialog::getText(this, "Insert data", "model:", QLineEdit::Normal, QString(), &ok);
+    if (!input.isEmpty() && ok) {
+        v.setModel(input);
+        levels[curr_lvl].lines[curr_row][curr_col] = v;
+        change_vehicles_card_model_data->setText(input);
+    }
+
+    int num = QInputDialog::getInt(this, "Insert Data", "level", 1, 1, levels.size(), 1, &ok);
+    if  (ok) {
+        lvl = num - 1;
+        levels[lvl].lines[curr_row][curr_col] = v;
+        levels[curr_lvl].lines[curr_row][curr_col] = Vehicle();
+        curr_lvl = lvl;
+        change_vehicles_card_lvl_data->setText(QString::number(num));
+    }
+
+    num = QInputDialog::getInt(this, "Insert Data", "row", 1, 1, 6, 1, &ok); //если не введен lvl - блокировать дальше?
+    if  (ok) {
+        row = num - 1;
+        levels[curr_lvl].lines[row][curr_col] = v;
+        levels[curr_lvl].lines[curr_row][curr_col] = Vehicle();
+        curr_row = row;
+        change_vehicles_card_row_data->setText(QString::number(num));
+    }
+
+    num = QInputDialog::getInt(this, "Insert Data", "col", 1, 1, 30, 1, &ok);
+    if  (ok) {
+        col = num - 1;
+        levels[curr_lvl].lines[curr_row][col] = v;
+        levels[curr_lvl].lines[curr_row][curr_col] = Vehicle();
+        change_vehicles_card_col_data->setText(QString::number(num));
+    }
+}
 
 void Widget::getVehiclesInfoHandler() {
     hideMainMenuUI();
