@@ -98,6 +98,9 @@ class Widget : public QWidget
     std::unique_ptr<QLabel> get_info_detailed_card_col_data;
     std::unique_ptr<QGridLayout> get_info_detailed_card_layout;
 
+    std::unique_ptr<QPushButton> operate_close_level_button;
+    std::unique_ptr<QLabel> operate_current_level;
+
 
     std::unique_ptr<QPushButton> account_back_button;
 
@@ -108,6 +111,8 @@ class Widget : public QWidget
     std::unique_ptr<QPushButton> get_info_visual_back_button;
     std::unique_ptr<QPushButton> get_info_back_button;
 
+    std::unique_ptr<QPushButton> operate_back_button;
+
     void hideLoginUI();
     void hideMainMenuUI();
     void hideAccountUI();
@@ -116,6 +121,7 @@ class Widget : public QWidget
     void hideGetInfoVisualUI();
     void hideGetInfoDetailedUI();
     void hideGetInfoDetailedInternalUI();
+    void hideOperateUI();
     void showMainMenuUI();
     void showAccountUI();
     void showChangeVehiclesUI();
@@ -123,6 +129,7 @@ class Widget : public QWidget
     void showGetInfoVisualUI();
     void showGetInfoDetailedUI();
     void showGetInfoDetailedInternalUI();
+    void showOperateUI();
 
     void setCardData(Vehicle, int, int, int);
     void setChangeCardData(Vehicle, int, int, int);
@@ -140,10 +147,12 @@ public:
     void setupAccountUI();
     void setupGetInfoUI();
     void setupChangeVehiclesUI();
+    void setupOperateUI();
     void repositionLoginUI();
     void repositionMainMenuUI();
     void repositionAccountUI();
     void repositionGetInfoUI();
+    void repositionOperateUI();
 
     ~Widget();
 public slots:
@@ -168,5 +177,7 @@ public slots:
     void getVehiclesInfoDetailedBackHandler();
     void getVehiclesInfoDetailedInternalBackHandler();
     void operateHandler();
+    void operateCloseLevelHandler();
+    void operateBackHandler();
 };
 #endif // WIDGET_H

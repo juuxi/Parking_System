@@ -9,6 +9,7 @@ Widget::Widget(QWidget *parent)
     setupAccountUI();
     setupChangeVehiclesUI();
     setupGetInfoUI();
+    setupOperateUI();
 
     is_getting_vehicles_info = false;
 
@@ -232,6 +233,21 @@ void Widget::setupGetInfoUI() {
     hideGetInfoDetailedInternalUI();
 }
 
+void Widget::setupOperateUI() {
+    operate_close_level_button = std::make_unique<QPushButton>("Закрыть этаж", this);
+    connect(operate_close_level_button.get(), SIGNAL(clicked()), this, SLOT(operateCloseLevelHandler()));
+    operate_close_level_button->setFixedSize(200, 50);
+
+    operate_back_button = std::make_unique<QPushButton>("Back", this);
+    connect(operate_back_button.get(), SIGNAL(clicked()), this, SLOT(operateBackHandler()));
+    operate_back_button.get()->setGeometry(10, 10, 50, 20);
+
+    operate_current_level = std::make_unique<QLabel>(this);
+    operate_current_level->setFixedSize(60, 30);
+
+    hideOperateUI();
+}
+
 void Widget::paintEvent(QPaintEvent* event) {
     QPainter p;
     p.begin(this);
@@ -251,6 +267,7 @@ void Widget::resizeEvent(QResizeEvent *event) {
     repositionMainMenuUI();
     repositionAccountUI();
     repositionGetInfoUI();
+    repositionOperateUI();
 }
 
 void Widget::repositionLoginUI() {
@@ -317,6 +334,16 @@ void Widget::repositionGetInfoUI() {
     get_info_detailed_card->move(screen_width / 2 - get_info_detailed_card->width() / 2, screen_height / 2 - get_info_detailed_card->height() / 2);
 }
 
+void Widget::repositionOperateUI() {
+    int screen_width = this->width();
+    int screen_height = this->height();
+    operate_close_level_button->move(screen_width / 2 - operate_close_level_button->width() / 2,
+                                     screen_height / 2 - operate_close_level_button->height() / 2);
+
+    operate_current_level->move(screen_width / 2 - operate_current_level->width() / 2,
+                                screen_height / 4 - operate_current_level->height() / 2);
+}
+
 void Widget::hideLoginUI() {
     login_label.get()->hide();
     username_label.get()->hide();
@@ -377,6 +404,12 @@ void Widget::hideGetInfoDetailedInternalUI() {
     get_info_detailed_internal_back_button->hide();
 }
 
+void Widget::hideOperateUI() {
+    operate_close_level_button->hide();
+    operate_current_level->hide();
+    operate_back_button->hide();
+}
+
 void Widget::showMainMenuUI() {
     account_button.get()->show();
     change_vehicles_info_button.get()->show();
@@ -426,6 +459,12 @@ void Widget::showGetInfoDetailedInternalUI() {
     get_info_detailed_prev_button->show();
     get_info_detailed_card->show();
     get_info_detailed_internal_back_button->show();
+}
+
+void Widget::showOperateUI() {
+    operate_close_level_button->show();
+    operate_current_level->show();
+    operate_back_button->show();
 }
 
 void Widget::loginHandler() {
@@ -838,11 +877,24 @@ void Widget::getVehiclesInfoDetailedInternalBackHandler() {
 
 void Widget::operateHandler() {
     bool ok{};
-    int level = QInputDialog::getInt(this, "Выберите этаж", "Этаж", 1, 1, levels.size(), 1, &ok) - 1;
+    int level = QInputDialog::getInt(this, "Выберите этаж", "Этаж", 1, 1, levels.size(), 1, &ok);
     if (!ok) {
         return;
     }
+    QString s = "Этаж: ";
+    s += QString::number(level);
+    operate_current_level->setText(s);
     hideMainMenuUI();
+    showOperateUI();
+}
+
+void Widget::operateCloseLevelHandler() {
+
+}
+
+void Widget::operateBackHandler() {
+    hideOperateUI();
+    showMainMenuUI();
 }
 
 Widget::~Widget() {
