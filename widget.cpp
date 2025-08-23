@@ -20,7 +20,7 @@ Widget::Widget(QWidget *parent)
     tl = std::make_shared<TrafficLight>();
     br = std::make_shared<Barrier>();
 
-    for (Level level : levels) {
+    for (Level& level : levels) {
         level.add_control_element(tl);
         level.add_control_element(br);
     }
@@ -62,6 +62,7 @@ void Widget::setupMainMenuUI() {
 
     operate_button = std::make_unique<QPushButton>("Operate", this);
     operate_button.get()->hide();
+    connect(operate_button.get(), SIGNAL(clicked()), this, SLOT(operateHandler()));
 }
 
 void Widget::setupAccountUI() {
@@ -833,6 +834,15 @@ void Widget::getVehiclesInfoDetailedBackHandler() {
 void Widget::getVehiclesInfoDetailedInternalBackHandler() {
     hideGetInfoDetailedInternalUI();
     showGetInfoDetailedUI();
+}
+
+void Widget::operateHandler() {
+    bool ok{};
+    int level = QInputDialog::getInt(this, "Выберите этаж", "Этаж", 1, 1, levels.size(), 1, &ok) - 1;
+    if (!ok) {
+        return;
+    }
+    hideMainMenuUI();
 }
 
 Widget::~Widget() {

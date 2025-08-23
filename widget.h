@@ -167,5 +167,6 @@ public slots:
     void getVehiclesInfoVisualBackHandler();
     void getVehiclesInfoDetailedBackHandler();
     void getVehiclesInfoDetailedInternalBackHandler();
+    void operateHandler();
 };
 #endif // WIDGET_H
