@@ -242,8 +242,38 @@ void Widget::setupOperateUI() {
     connect(operate_back_button.get(), SIGNAL(clicked()), this, SLOT(operateBackHandler()));
     operate_back_button.get()->setGeometry(10, 10, 50, 20);
 
+    operate_all_ce_button = std::make_unique<QPushButton>("Все УЭ", this);
+    connect(operate_all_ce_button.get(), SIGNAL(clicked()), this, SLOT(operateAllCeHandler()));
+    operate_all_ce_button.get()->setFixedSize(200, 50);
+
     operate_current_level = std::make_unique<QLabel>(this);
     operate_current_level->setFixedSize(60, 30);
+
+    operate_card = std::make_unique<QGroupBox>("УЭ", this);
+
+    operate_card_type_label = std::make_unique<QLabel>("Тип", this);
+    operate_card_type_label->setFixedSize(100, 30);
+    operate_card_type_data = std::make_unique<QLabel>(this);
+    operate_card_type_data->setFixedSize(100, 30);
+
+    operate_card_is_opened_label = std::make_unique<QLabel>("Открыт", this);
+    operate_card_is_opened_label->setFixedSize(100, 30);
+    operate_card_is_opened_data = std::make_unique<QLabel>(this);
+    operate_card_is_opened_data->setFixedSize(100, 30);
+
+    operate_card_number_label = std::make_unique<QLabel>("Номер", this);
+    operate_card_number_label->setFixedSize(100, 30);
+    operate_card_number_data = std::make_unique<QLabel>(this);
+    operate_card_number_data->setFixedSize(100, 30);
+
+    operate_card_layout = std::make_unique<QGridLayout>(this);
+    operate_card_layout->addWidget(operate_card_type_label.get(), 0, 0, 1, 1);
+    operate_card_layout->addWidget(operate_card_type_data.get(), 0, 1, 1, 1);
+    operate_card_layout->addWidget(operate_card_is_opened_label.get(), 1, 0, 1, 1);
+    operate_card_layout->addWidget(operate_card_is_opened_data.get(), 1, 1, 1, 1);
+    operate_card_layout->addWidget(operate_card_number_label.get(), 2, 0, 1, 1);
+    operate_card_layout->addWidget(operate_card_number_data.get(), 2, 1, 1, 1);
+    operate_card.get()->setLayout(operate_card_layout.get());
 
     hideOperateUI();
 }
@@ -338,10 +368,16 @@ void Widget::repositionOperateUI() {
     int screen_width = this->width();
     int screen_height = this->height();
     operate_close_level_button->move(screen_width / 2 - operate_close_level_button->width() / 2,
-                                     screen_height / 2 - operate_close_level_button->height() / 2);
+                                     screen_height / 2 - operate_close_level_button->height());
+
+    operate_all_ce_button->move(screen_width / 2 - operate_all_ce_button->width() / 2,
+                                screen_height / 2);
 
     operate_current_level->move(screen_width / 2 - operate_current_level->width() / 2,
                                 screen_height / 4 - operate_current_level->height() / 2);
+
+    operate_card->move(screen_width / 2 - operate_card->width() / 2,
+                       screen_height / 2 - operate_card->height() / 2);
 }
 
 void Widget::hideLoginUI() {
@@ -408,6 +444,12 @@ void Widget::hideOperateUI() {
     operate_close_level_button->hide();
     operate_current_level->hide();
     operate_back_button->hide();
+    operate_all_ce_button->hide();
+    hideOperateAllCeUI();
+}
+
+void Widget::hideOperateAllCeUI() {
+    operate_card->hide();
 }
 
 void Widget::showMainMenuUI() {
@@ -465,6 +507,11 @@ void Widget::showOperateUI() {
     operate_close_level_button->show();
     operate_current_level->show();
     operate_back_button->show();
+    operate_all_ce_button->show();
+}
+
+void Widget::showOperateAllCeUI() {
+    operate_card->show();
 }
 
 void Widget::loginHandler() {
@@ -892,6 +939,27 @@ void Widget::operateCloseLevelHandler() {
     QString s = operate_current_level->text(); //работает только если этаж - одна цирфа
     int curr_lvl = s.back().digitValue() - 1;
     levels[curr_lvl].close();
+}
+
+void Widget::operateAllCeHandler() {
+    hideOperateUI();
+    showOperateAllCeUI();
+    QString s = operate_current_level->text(); //работает только если этаж - одна цирфа
+    int curr_lvl = s.back().digitValue() - 1;
+    std::shared_ptr<ControlElement> curr_ce = levels[curr_lvl].get_control_elements()[0];
+    if (curr_ce.get()->type == TRAFFIC_LIGHT) {
+        operate_card_type_data->setText("Traffic Light");
+    }
+    else {
+        operate_card_type_data->setText("Barrier");
+    }
+    if (curr_ce.get()->get_is_opened()) {
+        operate_card_is_opened_data->setText("true");
+    }
+    else {
+        operate_card_is_opened_data->setText("false");
+    }
+    operate_card_number_data->setText(QString::number(1));
 }
 
 void Widget::operateBackHandler() {

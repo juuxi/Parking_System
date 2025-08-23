@@ -29,6 +29,10 @@ void Level::remove_control_element(std::shared_ptr<ControlElement> ce) {
     }
 }
 
+const QVector<std::shared_ptr<ControlElement>>& Level::get_control_elements() const {
+    return control_elements;
+}
+
 void Level::close() {
     for (const auto& ce : control_elements) {
         ce.get()->close();

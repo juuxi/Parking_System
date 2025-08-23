@@ -15,3 +15,7 @@ void ControlElement::open() {
 void ControlElement::close() {
     is_opened = false;
 }
+
+bool ControlElement::get_is_opened() {
+    return is_opened;
+}

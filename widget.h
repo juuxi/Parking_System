@@ -100,6 +100,16 @@ class Widget : public QWidget
 
     std::unique_ptr<QPushButton> operate_close_level_button;
     std::unique_ptr<QLabel> operate_current_level;
+    std::unique_ptr<QPushButton> operate_all_ce_button;
+
+    std::unique_ptr<QGroupBox> operate_card;
+    std::unique_ptr<QLabel> operate_card_type_label;
+    std::unique_ptr<QLabel> operate_card_is_opened_label;
+    std::unique_ptr<QLabel> operate_card_type_data;
+    std::unique_ptr<QLabel> operate_card_is_opened_data;
+    std::unique_ptr<QLabel> operate_card_number_label;
+    std::unique_ptr<QLabel> operate_card_number_data;
+    std::unique_ptr<QGridLayout> operate_card_layout;
 
 
     std::unique_ptr<QPushButton> account_back_button;
@@ -122,6 +132,7 @@ class Widget : public QWidget
     void hideGetInfoDetailedUI();
     void hideGetInfoDetailedInternalUI();
     void hideOperateUI();
+    void hideOperateAllCeUI();
     void showMainMenuUI();
     void showAccountUI();
     void showChangeVehiclesUI();
@@ -130,6 +141,7 @@ class Widget : public QWidget
     void showGetInfoDetailedUI();
     void showGetInfoDetailedInternalUI();
     void showOperateUI();
+    void showOperateAllCeUI();
 
     void setCardData(Vehicle, int, int, int);
     void setChangeCardData(Vehicle, int, int, int);
@@ -179,5 +191,6 @@ public slots:
     void operateHandler();
     void operateCloseLevelHandler();
     void operateBackHandler();
+    void operateAllCeHandler();
 };
 #endif // WIDGET_H

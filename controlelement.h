@@ -17,6 +17,7 @@ public:
     ControlElement(int);
     void open();
     void close();
+    bool get_is_opened();
     virtual void draw(QPainter *) = 0;
 };
 

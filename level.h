@@ -26,6 +26,7 @@ public:
     void remove_vehicle(Vehicle);
     void add_control_element(std::shared_ptr<ControlElement>);
     void remove_control_element(std::shared_ptr<ControlElement>);
+    const QVector<std::shared_ptr<ControlElement>>& get_control_elements() const;
     void close();
     void draw(QPainter*);
 };
