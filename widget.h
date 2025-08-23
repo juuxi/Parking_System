@@ -25,8 +25,8 @@ class Widget : public QWidget
 {
     Q_OBJECT
 
-    TrafficLight tl;
-    Barrier br;
+    std::shared_ptr<TrafficLight> tl;
+    std::shared_ptr<Barrier> br;
 
     bool is_getting_vehicles_info;
 

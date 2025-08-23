@@ -5,13 +5,13 @@
 #include "trafficlight.h"
 #include "barrier.h"
 #include <QVector>
-#include <QSharedPointer>
+#include <memory>
 #include <algorithm>
 
 class Level
 {
     int serial_number;
-    QVector<QSharedPointer<ControlElement>> control_elements;
+    QVector<std::shared_ptr<ControlElement>> control_elements;
     bool is_opened;
 
     void drawLine(const QVector<Vehicle>&, int, QPainter*);
@@ -24,8 +24,8 @@ public:
 
     void add_vehicle(Vehicle, int, int);
     void remove_vehicle(Vehicle);
-    void add_control_element(QSharedPointer<ControlElement>&);
-    void remove_control_element(QSharedPointer<ControlElement>&);
+    void add_control_element(std::shared_ptr<ControlElement>);
+    void remove_control_element(std::shared_ptr<ControlElement>);
     void draw(QPainter*);
 };
 

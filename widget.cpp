@@ -16,6 +16,14 @@ Widget::Widget(QWidget *parent)
     v.updateDuration();
     levels[0].lines[4][2] = v;
     levels[0].lines[4][5] = v;
+
+    tl = std::make_shared<TrafficLight>();
+    br = std::make_shared<Barrier>();
+
+    for (Level level : levels) {
+        level.add_control_element(tl);
+        level.add_control_element(br);
+    }
 }
 
 void Widget::setupLoginUI() {
