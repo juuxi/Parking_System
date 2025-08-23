@@ -84,6 +84,11 @@ void Widget::setupAccountUI() {
     account_change_button = std::make_unique<QPushButton>("Изменить", this);
     account_change_button.get()->setFixedSize(200, 50);
     connect(account_change_button.get(), SIGNAL(clicked()), this, SLOT(accountChangeHandler()));
+
+    account_back_button = std::make_unique<QPushButton>("Back", this);
+    account_back_button.get()->setGeometry(10, 10, 50, 20);
+    connect(account_back_button.get(), SIGNAL(clicked()), this, SLOT(accountBackHandler()));
+
     hideAccountUI();
 }
 
@@ -130,6 +135,10 @@ void Widget::setupChangeVehiclesUI()  {
     change_vehicles_card_layout.get()->addWidget(change_vehicles_card_col_data.get(), 7, 1, 1, 1);
     change_vehicles_card_layout.get()->addWidget(change_vehicles_card_button.get(), 8, 1, 1, 2);
     change_vehicles_card.get()->setLayout(change_vehicles_card_layout.get());
+
+    change_vehicles_back_button = std::make_unique<QPushButton>("Back", this);
+    change_vehicles_back_button.get()->setGeometry(10, 10, 50, 20);
+    connect(change_vehicles_back_button.get(), SIGNAL(clicked()), this, SLOT(changeVehiclesBackHandler()));
 
     hideChangeVehiclesUI();
 }
@@ -327,10 +336,13 @@ void Widget::hideAccountUI() {
     account_current_email.get()->hide();
 
     account_change_button.get()->hide();
+
+    account_back_button.get()->hide();
 }
 
 void Widget::hideChangeVehiclesUI() {
     change_vehicles_card->hide();
+    change_vehicles_back_button->hide();
 }
 
 void Widget::hideGetInfoUI() {
@@ -375,10 +387,13 @@ void Widget::showAccountUI() {
     account_current_email.get()->show();
 
     account_change_button.get()->show();
+
+    account_back_button.get()->show();
 }
 
 void Widget::showChangeVehiclesUI() {
     change_vehicles_card->show();
+    change_vehicles_back_button->show();
 }
 
 void Widget::showGetInfoUI() {
@@ -487,6 +502,11 @@ void Widget::accountChangeHandler() {
             return;
         }
     }
+}
+
+void Widget::accountBackHandler() {
+    hideAccountUI();
+    showMainMenuUI();
 }
 
 void Widget::changeVehiclesHandler() {
@@ -619,6 +639,11 @@ void Widget::changeVehiclesInternalHandler() {
         levels[curr_lvl].lines[curr_row][curr_col] = Vehicle();
         change_vehicles_card_col_data->setText(QString::number(num));
     }
+}
+
+void Widget::changeVehiclesBackHandler() {
+    hideChangeVehiclesUI();
+    showMainMenuUI();
 }
 
 void Widget::getVehiclesInfoHandler() {
