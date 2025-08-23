@@ -29,6 +29,14 @@ void Level::remove_control_element(std::shared_ptr<ControlElement> ce) {
     }
 }
 
+void Level::close() {
+    for (const auto& ce : control_elements) {
+        ce.get()->close();
+    }
+
+    is_opened = false;
+}
+
 void Level::drawLine(const QVector<Vehicle>& line, int index, QPainter* p) {
     int line_height = p->device()->height() / lines.size();
     int spot_width = p->device()->width() / line.size();

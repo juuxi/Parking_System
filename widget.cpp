@@ -889,7 +889,9 @@ void Widget::operateHandler() {
 }
 
 void Widget::operateCloseLevelHandler() {
-
+    QString s = operate_current_level->text(); //работает только если этаж - одна цирфа
+    int curr_lvl = s.back().digitValue() - 1;
+    levels[curr_lvl].close();
 }
 
 void Widget::operateBackHandler() {
