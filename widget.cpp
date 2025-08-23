@@ -267,19 +267,19 @@ void Widget::setupOperateUI() {
     operate_card_number_data->setFixedSize(100, 30);
 
     operate_close_ce_button = std::make_unique<QPushButton>("Закрыть", this);
-    connect(operate_close_ce_button.get(), SIGNAL(clicked()), this, SLOT(aaa()));
+    connect(operate_close_ce_button.get(), SIGNAL(clicked()), this, SLOT(operateCloseCeHandler()));
     operate_close_ce_button.get()->setFixedSize(100, 50);
 
     operate_open_ce_button = std::make_unique<QPushButton>("Открыть", this);
-    connect(operate_open_ce_button.get(), SIGNAL(clicked()), this, SLOT(aaa()));
+    connect(operate_open_ce_button.get(), SIGNAL(clicked()), this, SLOT(operateOpenCeHandler()));
     operate_open_ce_button.get()->setFixedSize(100, 50);
 
     operate_next_ce_button = std::make_unique<QPushButton>("Next >", this);
-    connect(operate_next_ce_button.get(), SIGNAL(clicked()), this, SLOT(aaa()));
+    connect(operate_next_ce_button.get(), SIGNAL(clicked()), this, SLOT(operateNextCeHandler()));
     operate_next_ce_button.get()->setFixedSize(75, 30);
 
     operate_prev_ce_button = std::make_unique<QPushButton>("< Prev", this);
-    connect(operate_prev_ce_button.get(), SIGNAL(clicked()), this, SLOT(aaa()));
+    connect(operate_prev_ce_button.get(), SIGNAL(clicked()), this, SLOT(operatePrevCeHandler()));
     operate_prev_ce_button.get()->setFixedSize(75, 30);
 
     operate_card_layout = std::make_unique<QGridLayout>(this);
@@ -996,6 +996,72 @@ void Widget::operateAllCeHandler() {
 void Widget::operateBackHandler() {
     hideOperateUI();
     showMainMenuUI();
+}
+
+void Widget::operateCloseCeHandler() {
+    QString s = operate_current_level->text(); //работает только если этаж - одна цирфа
+    int curr_lvl = s.back().digitValue() - 1;
+    int curr_ce = operate_card_number_data->text().toInt() - 1;
+    std::shared_ptr<ControlElement> ce = levels[curr_lvl].get_control_elements()[curr_ce];
+    ce.get()->close();
+    operate_card_is_opened_data->setText("false");
+}
+
+void Widget::operateOpenCeHandler() {
+    QString s = operate_current_level->text(); //работает только если этаж - одна цирфа
+    int curr_lvl = s.back().digitValue() - 1;
+    int curr_ce = operate_card_number_data->text().toInt() - 1;
+    std::shared_ptr<ControlElement> ce = levels[curr_lvl].get_control_elements()[curr_ce];
+    ce.get()->open();
+    operate_card_is_opened_data->setText("true");
+}
+
+void Widget::operateNextCeHandler() {
+    QString s = operate_current_level->text(); //работает только если этаж - одна цирфа
+    int curr_lvl = s.back().digitValue() - 1;
+    int curr_ce = operate_card_number_data->text().toInt();
+    if (curr_ce >= levels[curr_lvl].get_control_elements().size()) {
+        return;
+    }
+    std::shared_ptr<ControlElement> ce = levels[curr_lvl].get_control_elements()[curr_ce];
+
+    if (ce.get()->type == TRAFFIC_LIGHT) {
+        operate_card_type_data->setText("Traffic Light");
+    }
+    else {
+        operate_card_type_data->setText("Barrier");
+    }
+    if (ce.get()->get_is_opened()) {
+        operate_card_is_opened_data->setText("true");
+    }
+    else {
+        operate_card_is_opened_data->setText("false");
+    }
+    operate_card_number_data->setText(QString::number(curr_ce + 1));
+}
+
+void Widget::operatePrevCeHandler() {
+    QString s = operate_current_level->text(); //работает только если этаж - одна цирфа
+    int curr_lvl = s.back().digitValue() - 1;
+    int curr_ce = operate_card_number_data->text().toInt() - 2;
+    if (curr_ce < 0) {
+        return;
+    }
+    std::shared_ptr<ControlElement> ce = levels[curr_lvl].get_control_elements()[curr_ce];
+
+    if (ce.get()->type == TRAFFIC_LIGHT) {
+        operate_card_type_data->setText("Traffic Light");
+    }
+    else {
+        operate_card_type_data->setText("Barrier");
+    }
+    if (ce.get()->get_is_opened()) {
+        operate_card_is_opened_data->setText("true");
+    }
+    else {
+        operate_card_is_opened_data->setText("false");
+    }
+    operate_card_number_data->setText(QString::number(curr_ce + 1));
 }
 
 Widget::~Widget() {

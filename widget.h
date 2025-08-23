@@ -196,5 +196,9 @@ public slots:
     void operateCloseLevelHandler();
     void operateBackHandler();
     void operateAllCeHandler();
+    void operateCloseCeHandler();
+    void operateOpenCeHandler();
+    void operateNextCeHandler();
+    void operatePrevCeHandler();
 };
 #endif // WIDGET_H
