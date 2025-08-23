@@ -291,6 +291,10 @@ void Widget::setupOperateUI() {
     operate_card_layout->addWidget(operate_card_number_data.get(), 2, 1, 1, 1);
     operate_card.get()->setLayout(operate_card_layout.get());
 
+    operate_all_ce_back_button = std::make_unique<QPushButton>("Back", this);
+    connect(operate_all_ce_back_button.get(), SIGNAL(clicked()), this, SLOT(operateAllCeBackHandler()));
+    operate_all_ce_back_button.get()->setGeometry(10, 10, 50, 20);
+
     hideOperateUI();
 }
 
@@ -477,6 +481,7 @@ void Widget::hideOperateAllCeUI() {
     operate_open_ce_button->hide();
     operate_next_ce_button->hide();
     operate_prev_ce_button->hide();
+    operate_all_ce_back_button->hide();
 }
 
 void Widget::showMainMenuUI() {
@@ -543,6 +548,7 @@ void Widget::showOperateAllCeUI() {
     operate_open_ce_button->show();
     operate_next_ce_button->show();
     operate_prev_ce_button->show();
+    operate_all_ce_back_button->show();
 }
 
 void Widget::loginHandler() {
@@ -1062,6 +1068,11 @@ void Widget::operatePrevCeHandler() {
         operate_card_is_opened_data->setText("false");
     }
     operate_card_number_data->setText(QString::number(curr_ce + 1));
+}
+
+void Widget::operateAllCeBackHandler() {
+    hideOperateAllCeUI();
+    showOperateUI();
 }
 
 Widget::~Widget() {

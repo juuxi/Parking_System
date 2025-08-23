@@ -126,6 +126,7 @@ class Widget : public QWidget
     std::unique_ptr<QPushButton> get_info_back_button;
 
     std::unique_ptr<QPushButton> operate_back_button;
+    std::unique_ptr<QPushButton> operate_all_ce_back_button;
 
     void hideLoginUI();
     void hideMainMenuUI();
@@ -194,11 +195,12 @@ public slots:
     void getVehiclesInfoDetailedInternalBackHandler();
     void operateHandler();
     void operateCloseLevelHandler();
-    void operateBackHandler();
     void operateAllCeHandler();
     void operateCloseCeHandler();
     void operateOpenCeHandler();
     void operateNextCeHandler();
     void operatePrevCeHandler();
+    void operateAllCeBackHandler();
+    void operateBackHandler();
 };
 #endif // WIDGET_H
