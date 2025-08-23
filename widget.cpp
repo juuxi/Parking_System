@@ -266,6 +266,22 @@ void Widget::setupOperateUI() {
     operate_card_number_data = std::make_unique<QLabel>(this);
     operate_card_number_data->setFixedSize(100, 30);
 
+    operate_close_ce_button = std::make_unique<QPushButton>("Закрыть", this);
+    connect(operate_close_ce_button.get(), SIGNAL(clicked()), this, SLOT(aaa()));
+    operate_close_ce_button.get()->setFixedSize(100, 50);
+
+    operate_open_ce_button = std::make_unique<QPushButton>("Открыть", this);
+    connect(operate_open_ce_button.get(), SIGNAL(clicked()), this, SLOT(aaa()));
+    operate_open_ce_button.get()->setFixedSize(100, 50);
+
+    operate_next_ce_button = std::make_unique<QPushButton>("Next >", this);
+    connect(operate_next_ce_button.get(), SIGNAL(clicked()), this, SLOT(aaa()));
+    operate_next_ce_button.get()->setFixedSize(75, 30);
+
+    operate_prev_ce_button = std::make_unique<QPushButton>("< Prev", this);
+    connect(operate_prev_ce_button.get(), SIGNAL(clicked()), this, SLOT(aaa()));
+    operate_prev_ce_button.get()->setFixedSize(75, 30);
+
     operate_card_layout = std::make_unique<QGridLayout>(this);
     operate_card_layout->addWidget(operate_card_type_label.get(), 0, 0, 1, 1);
     operate_card_layout->addWidget(operate_card_type_data.get(), 0, 1, 1, 1);
@@ -377,7 +393,14 @@ void Widget::repositionOperateUI() {
                                 screen_height / 4 - operate_current_level->height() / 2);
 
     operate_card->move(screen_width / 2 - operate_card->width() / 2,
-                       screen_height / 2 - operate_card->height() / 2);
+                       screen_height / 4 - operate_card->height() / 2);
+
+
+    operate_close_ce_button->move(5 * screen_width / 8, 5 * screen_height / 8);
+    operate_open_ce_button->move(3 * screen_width / 8, 5 * screen_height / 8);
+
+    operate_next_ce_button->move(3 * screen_width / 4, 3 * screen_height / 4);
+    operate_prev_ce_button->move(screen_width / 4, 3 * screen_height / 4);
 }
 
 void Widget::hideLoginUI() {
@@ -450,6 +473,10 @@ void Widget::hideOperateUI() {
 
 void Widget::hideOperateAllCeUI() {
     operate_card->hide();
+    operate_close_ce_button->hide();
+    operate_open_ce_button->hide();
+    operate_next_ce_button->hide();
+    operate_prev_ce_button->hide();
 }
 
 void Widget::showMainMenuUI() {
@@ -512,6 +539,10 @@ void Widget::showOperateUI() {
 
 void Widget::showOperateAllCeUI() {
     operate_card->show();
+    operate_close_ce_button->show();
+    operate_open_ce_button->show();
+    operate_next_ce_button->show();
+    operate_prev_ce_button->show();
 }
 
 void Widget::loginHandler() {

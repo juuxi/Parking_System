@@ -101,6 +101,10 @@ class Widget : public QWidget
     std::unique_ptr<QPushButton> operate_close_level_button;
     std::unique_ptr<QLabel> operate_current_level;
     std::unique_ptr<QPushButton> operate_all_ce_button;
+    std::unique_ptr<QPushButton> operate_close_ce_button;
+    std::unique_ptr<QPushButton> operate_open_ce_button;
+    std::unique_ptr<QPushButton> operate_next_ce_button;
+    std::unique_ptr<QPushButton> operate_prev_ce_button;
 
     std::unique_ptr<QGroupBox> operate_card;
     std::unique_ptr<QLabel> operate_card_type_label;
