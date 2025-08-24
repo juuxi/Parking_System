@@ -29,74 +29,74 @@ Widget::Widget(QWidget *parent)
 
 void Widget::setupLoginUI() {
     login_label = std::make_unique<QLabel>("Введите имя пользователя и пароль", this);
-    login_label.get()->setFixedSize(260, 30);
+    login_label->setFixedSize(260, 30);
 
     username_label = std::make_unique<QLabel>("Имя пользователя: ", this);
-    username_label.get()->setFixedSize(150, 30);
+    username_label->setFixedSize(150, 30);
 
     password_label = std::make_unique<QLabel>("Пароль: ", this);
-    password_label.get()->setFixedSize(150, 30);
+    password_label->setFixedSize(150, 30);
 
     username_line_edit = std::make_unique<QLineEdit>(this);
-    username_line_edit.get()->setFixedSize(260, 30);
+    username_line_edit->setFixedSize(260, 30);
 
     password_line_edit = std::make_unique<QLineEdit>(this);
-    password_line_edit.get()->setFixedSize(260, 30);
+    password_line_edit->setFixedSize(260, 30);
 
     login_push_button = std::make_unique<QPushButton>("Log in", this);
-    login_push_button.get()->setFixedSize(260, 80);
+    login_push_button->setFixedSize(260, 80);
     connect(login_push_button.get(), SIGNAL(clicked()), this, SLOT(loginHandler()));
 }
 
 void Widget::setupMainMenuUI() {
     account_button = std::make_unique<QPushButton>("Account", this);
-    account_button.get()->hide();
+    account_button->hide();
     connect(account_button.get(), SIGNAL(clicked()), this, SLOT(accountHandler()));
 
     change_vehicles_info_button = std::make_unique<QPushButton>("Change Vehicles", this);
-    change_vehicles_info_button.get()->hide();
+    change_vehicles_info_button->hide();
     connect(change_vehicles_info_button.get(), SIGNAL(clicked()), this, SLOT(changeVehiclesHandler()));
 
     get_vehicles_info_button = std::make_unique<QPushButton>("Get Vehicles Info", this);
-    get_vehicles_info_button.get()->hide();
+    get_vehicles_info_button->hide();
     connect(get_vehicles_info_button.get(), SIGNAL(clicked()), this, SLOT(getVehiclesInfoHandler()));
 
     operate_button = std::make_unique<QPushButton>("Operate", this);
-    operate_button.get()->hide();
+    operate_button->hide();
     connect(operate_button.get(), SIGNAL(clicked()), this, SLOT(operateHandler()));
 }
 
 void Widget::setupAccountUI() {
     account_name_label = std::make_unique<QLabel>("ФИО: ", this);
-    account_name_label.get()->setFixedSize(150, 50);
+    account_name_label->setFixedSize(150, 50);
 
     account_birth_date_label = std::make_unique<QLabel>("Дата рождения: ", this);
-    account_birth_date_label.get()->setFixedSize(150, 50);
+    account_birth_date_label->setFixedSize(150, 50);
 
     account_phone_label = std::make_unique<QLabel>("Номер телефона: ", this);
-    account_phone_label.get()->setFixedSize(150, 50);
+    account_phone_label->setFixedSize(150, 50);
 
     account_email_label = std::make_unique<QLabel>("Email: ", this);
-    account_email_label.get()->setFixedSize(150, 50);
+    account_email_label->setFixedSize(150, 50);
 
     account_current_name = std::make_unique<QLabel>("1", this);
-    account_current_name.get()->setFixedSize(250, 50);
+    account_current_name->setFixedSize(250, 50);
 
     account_current_birth_date = std::make_unique<QLabel>("2", this);
-    account_current_birth_date.get()->setFixedSize(250, 50);
+    account_current_birth_date->setFixedSize(250, 50);
 
     account_current_phone = std::make_unique<QLabel>("3", this);
-    account_current_phone.get()->setFixedSize(250, 50);
+    account_current_phone->setFixedSize(250, 50);
 
     account_current_email = std::make_unique<QLabel>("4", this);
-    account_current_email.get()->setFixedSize(250, 50);
+    account_current_email->setFixedSize(250, 50);
 
     account_change_button = std::make_unique<QPushButton>("Изменить", this);
-    account_change_button.get()->setFixedSize(200, 50);
+    account_change_button->setFixedSize(200, 50);
     connect(account_change_button.get(), SIGNAL(clicked()), this, SLOT(accountChangeHandler()));
 
     account_back_button = std::make_unique<QPushButton>("Back", this);
-    account_back_button.get()->setGeometry(10, 10, 50, 20);
+    account_back_button->setGeometry(10, 10, 50, 20);
     connect(account_back_button.get(), SIGNAL(clicked()), this, SLOT(accountBackHandler()));
 
     account_internal_dlg = std::make_unique<QInputDialog>(this);
@@ -130,27 +130,27 @@ void Widget::setupChangeVehiclesUI()  {
     connect(change_vehicles_card_button.get(), SIGNAL(clicked()), this, SLOT(changeVehiclesInternalHandler()));
 
     change_vehicles_card_layout = std::make_unique<QGridLayout>(this);
-    change_vehicles_card_layout.get()->addWidget(change_vehicles_card_plate_label.get(), 0, 0, 1, 1);
-    change_vehicles_card_layout.get()->addWidget(change_vehicles_card_model_label.get(), 1, 0, 1, 1);
-    change_vehicles_card_layout.get()->addWidget(change_vehicles_card_enter_time_label.get(), 2, 0, 1, 1);
-    change_vehicles_card_layout.get()->addWidget(change_vehicles_card_duration_label.get(), 3, 0, 1, 1);
-    change_vehicles_card_layout.get()->addWidget(change_vehicles_card_is_placed_correctly_label.get(), 4, 0, 1, 1);
-    change_vehicles_card_layout.get()->addWidget(change_vehicles_card_lvl_label.get(), 5, 0, 1, 1);
-    change_vehicles_card_layout.get()->addWidget(change_vehicles_card_row_label.get(), 6, 0, 1, 1);
-    change_vehicles_card_layout.get()->addWidget(change_vehicles_card_col_label.get(), 7, 0, 1, 1);
-    change_vehicles_card_layout.get()->addWidget(change_vehicles_card_plate_data.get(), 0, 1, 1, 1);
-    change_vehicles_card_layout.get()->addWidget(change_vehicles_card_model_data.get(), 1, 1, 1, 1);
-    change_vehicles_card_layout.get()->addWidget(change_vehicles_card_enter_time_data.get(), 2, 1, 1, 1);
-    change_vehicles_card_layout.get()->addWidget(change_vehicles_card_duration_data.get(), 3, 1, 1, 1);
-    change_vehicles_card_layout.get()->addWidget(change_vehicles_card_is_placed_correctly_data.get(), 4, 1, 1, 1);
-    change_vehicles_card_layout.get()->addWidget(change_vehicles_card_lvl_data.get(), 5, 1, 1, 1);
-    change_vehicles_card_layout.get()->addWidget(change_vehicles_card_row_data.get(), 6, 1, 1, 1);
-    change_vehicles_card_layout.get()->addWidget(change_vehicles_card_col_data.get(), 7, 1, 1, 1);
-    change_vehicles_card_layout.get()->addWidget(change_vehicles_card_button.get(), 8, 1, 1, 2);
-    change_vehicles_card.get()->setLayout(change_vehicles_card_layout.get());
+    change_vehicles_card_layout->addWidget(change_vehicles_card_plate_label.get(), 0, 0, 1, 1);
+    change_vehicles_card_layout->addWidget(change_vehicles_card_model_label.get(), 1, 0, 1, 1);
+    change_vehicles_card_layout->addWidget(change_vehicles_card_enter_time_label.get(), 2, 0, 1, 1);
+    change_vehicles_card_layout->addWidget(change_vehicles_card_duration_label.get(), 3, 0, 1, 1);
+    change_vehicles_card_layout->addWidget(change_vehicles_card_is_placed_correctly_label.get(), 4, 0, 1, 1);
+    change_vehicles_card_layout->addWidget(change_vehicles_card_lvl_label.get(), 5, 0, 1, 1);
+    change_vehicles_card_layout->addWidget(change_vehicles_card_row_label.get(), 6, 0, 1, 1);
+    change_vehicles_card_layout->addWidget(change_vehicles_card_col_label.get(), 7, 0, 1, 1);
+    change_vehicles_card_layout->addWidget(change_vehicles_card_plate_data.get(), 0, 1, 1, 1);
+    change_vehicles_card_layout->addWidget(change_vehicles_card_model_data.get(), 1, 1, 1, 1);
+    change_vehicles_card_layout->addWidget(change_vehicles_card_enter_time_data.get(), 2, 1, 1, 1);
+    change_vehicles_card_layout->addWidget(change_vehicles_card_duration_data.get(), 3, 1, 1, 1);
+    change_vehicles_card_layout->addWidget(change_vehicles_card_is_placed_correctly_data.get(), 4, 1, 1, 1);
+    change_vehicles_card_layout->addWidget(change_vehicles_card_lvl_data.get(), 5, 1, 1, 1);
+    change_vehicles_card_layout->addWidget(change_vehicles_card_row_data.get(), 6, 1, 1, 1);
+    change_vehicles_card_layout->addWidget(change_vehicles_card_col_data.get(), 7, 1, 1, 1);
+    change_vehicles_card_layout->addWidget(change_vehicles_card_button.get(), 8, 1, 1, 2);
+    change_vehicles_card->setLayout(change_vehicles_card_layout.get());
 
     change_vehicles_back_button = std::make_unique<QPushButton>("Back", this);
-    change_vehicles_back_button.get()->setGeometry(10, 10, 50, 20);
+    change_vehicles_back_button->setGeometry(10, 10, 50, 20);
     connect(change_vehicles_back_button.get(), SIGNAL(clicked()), this, SLOT(changeVehiclesBackHandler()));
 
     hideChangeVehiclesUI();
@@ -170,10 +170,10 @@ void Widget::setupGetInfoUI() {
     connect(get_info_detailed_full_button.get(), SIGNAL(clicked()), this, SLOT(getVehiclesInfoDetailedFullHandler()));
 
     get_info_detailed_next_button = std::make_unique<QPushButton>("Next >", this);
-    get_info_detailed_next_button.get()->setFixedSize(75, 30);
+    get_info_detailed_next_button->setFixedSize(75, 30);
 
     get_info_detailed_prev_button = std::make_unique<QPushButton>("< Prev", this);
-    get_info_detailed_prev_button.get()->setFixedSize(75, 30);
+    get_info_detailed_prev_button->setFixedSize(75, 30);
 
     get_info_detailed_card = std::make_unique<QGroupBox>("Инофрмация о ТС", this);
 
@@ -196,38 +196,38 @@ void Widget::setupGetInfoUI() {
     get_info_detailed_card_col_data = std::make_unique<QLabel>(this);
 
     get_info_detailed_card_layout = std::make_unique<QGridLayout>(this);
-    get_info_detailed_card_layout.get()->addWidget(get_info_detailed_card_plate_label.get(), 0, 0, 1, 1);
-    get_info_detailed_card_layout.get()->addWidget(get_info_detailed_card_model_label.get(), 1, 0, 1, 1);
-    get_info_detailed_card_layout.get()->addWidget(get_info_detailed_card_enter_time_label.get(), 2, 0, 1, 1);
-    get_info_detailed_card_layout.get()->addWidget(get_info_detailed_card_duration_label.get(), 3, 0, 1, 1);
-    get_info_detailed_card_layout.get()->addWidget(get_info_detailed_card_is_placed_correctly_label.get(), 4, 0, 1, 1);
-    get_info_detailed_card_layout.get()->addWidget(get_info_detailed_card_lvl_label.get(), 5, 0, 1, 1);
-    get_info_detailed_card_layout.get()->addWidget(get_info_detailed_card_row_label.get(), 6, 0, 1, 1);
-    get_info_detailed_card_layout.get()->addWidget(get_info_detailed_card_col_label.get(), 7, 0, 1, 1);
-    get_info_detailed_card_layout.get()->addWidget(get_info_detailed_card_plate_data.get(), 0, 1, 1, 1);
-    get_info_detailed_card_layout.get()->addWidget(get_info_detailed_card_model_data.get(), 1, 1, 1, 1);
-    get_info_detailed_card_layout.get()->addWidget(get_info_detailed_card_enter_time_data.get(), 2, 1, 1, 1);
-    get_info_detailed_card_layout.get()->addWidget(get_info_detailed_card_duration_data.get(), 3, 1, 1, 1);
-    get_info_detailed_card_layout.get()->addWidget(get_info_detailed_card_is_placed_correctly_data.get(), 4, 1, 1, 1);
-    get_info_detailed_card_layout.get()->addWidget(get_info_detailed_card_lvl_data.get(), 5, 1, 1, 1);
-    get_info_detailed_card_layout.get()->addWidget(get_info_detailed_card_row_data.get(), 6, 1, 1, 1);
-    get_info_detailed_card_layout.get()->addWidget(get_info_detailed_card_col_data.get(), 7, 1, 1, 1);
-    get_info_detailed_card.get()->setLayout(get_info_detailed_card_layout.get());
+    get_info_detailed_card_layout->addWidget(get_info_detailed_card_plate_label.get(), 0, 0, 1, 1);
+    get_info_detailed_card_layout->addWidget(get_info_detailed_card_model_label.get(), 1, 0, 1, 1);
+    get_info_detailed_card_layout->addWidget(get_info_detailed_card_enter_time_label.get(), 2, 0, 1, 1);
+    get_info_detailed_card_layout->addWidget(get_info_detailed_card_duration_label.get(), 3, 0, 1, 1);
+    get_info_detailed_card_layout->addWidget(get_info_detailed_card_is_placed_correctly_label.get(), 4, 0, 1, 1);
+    get_info_detailed_card_layout->addWidget(get_info_detailed_card_lvl_label.get(), 5, 0, 1, 1);
+    get_info_detailed_card_layout->addWidget(get_info_detailed_card_row_label.get(), 6, 0, 1, 1);
+    get_info_detailed_card_layout->addWidget(get_info_detailed_card_col_label.get(), 7, 0, 1, 1);
+    get_info_detailed_card_layout->addWidget(get_info_detailed_card_plate_data.get(), 0, 1, 1, 1);
+    get_info_detailed_card_layout->addWidget(get_info_detailed_card_model_data.get(), 1, 1, 1, 1);
+    get_info_detailed_card_layout->addWidget(get_info_detailed_card_enter_time_data.get(), 2, 1, 1, 1);
+    get_info_detailed_card_layout->addWidget(get_info_detailed_card_duration_data.get(), 3, 1, 1, 1);
+    get_info_detailed_card_layout->addWidget(get_info_detailed_card_is_placed_correctly_data.get(), 4, 1, 1, 1);
+    get_info_detailed_card_layout->addWidget(get_info_detailed_card_lvl_data.get(), 5, 1, 1, 1);
+    get_info_detailed_card_layout->addWidget(get_info_detailed_card_row_data.get(), 6, 1, 1, 1);
+    get_info_detailed_card_layout->addWidget(get_info_detailed_card_col_data.get(), 7, 1, 1, 1);
+    get_info_detailed_card->setLayout(get_info_detailed_card_layout.get());
 
     get_info_back_button = std::make_unique<QPushButton>("Back", this);
-    get_info_back_button.get()->setGeometry(10, 10, 50, 20);
+    get_info_back_button->setGeometry(10, 10, 50, 20);
     connect(get_info_back_button.get(), SIGNAL(clicked()), this, SLOT(getVehiclesInfoBackHandler()));
 
     get_info_detailed_back_button = std::make_unique<QPushButton>("Back", this);
-    get_info_detailed_back_button.get()->setGeometry(10, 10, 50, 20);
+    get_info_detailed_back_button->setGeometry(10, 10, 50, 20);
     connect(get_info_detailed_back_button.get(), SIGNAL(clicked()), this, SLOT(getVehiclesInfoDetailedBackHandler()));
 
     get_info_detailed_internal_back_button = std::make_unique<QPushButton>("Back", this);
-    get_info_detailed_internal_back_button.get()->setGeometry(10, 10, 50, 20);
+    get_info_detailed_internal_back_button->setGeometry(10, 10, 50, 20);
     connect(get_info_detailed_internal_back_button.get(), SIGNAL(clicked()), this, SLOT(getVehiclesInfoDetailedInternalBackHandler()));
 
     get_info_visual_back_button = std::make_unique<QPushButton>("Back", this);
-    get_info_visual_back_button.get()->setGeometry(10, 10, 50, 20);
+    get_info_visual_back_button->setGeometry(10, 10, 50, 20);
     connect(get_info_visual_back_button.get(), SIGNAL(clicked()), this, SLOT(getVehiclesInfoVisualBackHandler()));
 
     hideGetInfoUI();
@@ -243,11 +243,11 @@ void Widget::setupOperateUI() {
 
     operate_back_button = std::make_unique<QPushButton>("Back", this);
     connect(operate_back_button.get(), SIGNAL(clicked()), this, SLOT(operateBackHandler()));
-    operate_back_button.get()->setGeometry(10, 10, 50, 20);
+    operate_back_button->setGeometry(10, 10, 50, 20);
 
     operate_all_ce_button = std::make_unique<QPushButton>("Все УЭ", this);
     connect(operate_all_ce_button.get(), SIGNAL(clicked()), this, SLOT(operateAllCeHandler()));
-    operate_all_ce_button.get()->setFixedSize(200, 50);
+    operate_all_ce_button->setFixedSize(200, 50);
 
     operate_current_level = std::make_unique<QLabel>(this);
     operate_current_level->setFixedSize(60, 30);
@@ -271,19 +271,19 @@ void Widget::setupOperateUI() {
 
     operate_close_ce_button = std::make_unique<QPushButton>("Закрыть", this);
     connect(operate_close_ce_button.get(), SIGNAL(clicked()), this, SLOT(operateCloseCeHandler()));
-    operate_close_ce_button.get()->setFixedSize(100, 50);
+    operate_close_ce_button->setFixedSize(100, 50);
 
     operate_open_ce_button = std::make_unique<QPushButton>("Открыть", this);
     connect(operate_open_ce_button.get(), SIGNAL(clicked()), this, SLOT(operateOpenCeHandler()));
-    operate_open_ce_button.get()->setFixedSize(100, 50);
+    operate_open_ce_button->setFixedSize(100, 50);
 
     operate_next_ce_button = std::make_unique<QPushButton>("Next >", this);
     connect(operate_next_ce_button.get(), SIGNAL(clicked()), this, SLOT(operateNextCeHandler()));
-    operate_next_ce_button.get()->setFixedSize(75, 30);
+    operate_next_ce_button->setFixedSize(75, 30);
 
     operate_prev_ce_button = std::make_unique<QPushButton>("< Prev", this);
     connect(operate_prev_ce_button.get(), SIGNAL(clicked()), this, SLOT(operatePrevCeHandler()));
-    operate_prev_ce_button.get()->setFixedSize(75, 30);
+    operate_prev_ce_button->setFixedSize(75, 30);
 
     operate_card_layout = std::make_unique<QGridLayout>(this);
     operate_card_layout->addWidget(operate_card_type_label.get(), 0, 0, 1, 1);
@@ -292,11 +292,11 @@ void Widget::setupOperateUI() {
     operate_card_layout->addWidget(operate_card_is_opened_data.get(), 1, 1, 1, 1);
     operate_card_layout->addWidget(operate_card_number_label.get(), 2, 0, 1, 1);
     operate_card_layout->addWidget(operate_card_number_data.get(), 2, 1, 1, 1);
-    operate_card.get()->setLayout(operate_card_layout.get());
+    operate_card->setLayout(operate_card_layout.get());
 
     operate_all_ce_back_button = std::make_unique<QPushButton>("Back", this);
     connect(operate_all_ce_back_button.get(), SIGNAL(clicked()), this, SLOT(operateAllCeBackHandler()));
-    operate_all_ce_back_button.get()->setGeometry(10, 10, 50, 20);
+    operate_all_ce_back_button->setGeometry(10, 10, 50, 20);
 
     hideOperateUI();
 }
@@ -326,46 +326,46 @@ void Widget::resizeEvent(QResizeEvent *event) {
 void Widget::repositionLoginUI() {
     int mid_screen = this->width() / 2;
 
-    login_label.get()->move(mid_screen - 130, 500);
-    username_label.get()->move(mid_screen - 280, 550);
-    password_label.get()->move(mid_screen - 280, 600);
+    login_label->move(mid_screen - 130, 500);
+    username_label->move(mid_screen - 280, 550);
+    password_label->move(mid_screen - 280, 600);
 
-    username_line_edit.get()->move(mid_screen - 130, 550);
-    password_line_edit.get()->move(mid_screen - 130, 600);
+    username_line_edit->move(mid_screen - 130, 550);
+    password_line_edit->move(mid_screen - 130, 600);
 
-    login_push_button.get()->move(mid_screen - 130, 650);
+    login_push_button->move(mid_screen - 130, 650);
 }
 
 void Widget::repositionMainMenuUI() {
     int mid_width = this->width() / 2;
     int mid_height = this->height() / 2;
 
-    account_button.get()->setFixedSize(mid_width, mid_height);
-    change_vehicles_info_button.get()->setFixedSize(mid_width, mid_height);
-    get_vehicles_info_button.get()->setFixedSize(mid_width, mid_height);
-    operate_button.get()->setFixedSize(mid_width, mid_height);
+    account_button->setFixedSize(mid_width, mid_height);
+    change_vehicles_info_button->setFixedSize(mid_width, mid_height);
+    get_vehicles_info_button->setFixedSize(mid_width, mid_height);
+    operate_button->setFixedSize(mid_width, mid_height);
 
-    account_button.get()->move(0, 0);
-    change_vehicles_info_button.get()->move(mid_width, 0);
-    get_vehicles_info_button.get()->move(0, mid_height);
-    operate_button.get()->move(mid_width, mid_height);
+    account_button->move(0, 0);
+    change_vehicles_info_button->move(mid_width, 0);
+    get_vehicles_info_button->move(0, mid_height);
+    operate_button->move(mid_width, mid_height);
 }
 
 void Widget::repositionAccountUI() {
     int mid_width = this->width() / 2;
     int mid_height = this->height() / 2;
 
-    account_name_label.get()->move(mid_width - 150, mid_height - 75);
-    account_birth_date_label.get()->move(mid_width - 150, mid_height - 25);
-    account_phone_label.get()->move(mid_width - 150, mid_height + 25);
-    account_email_label.get()->move(mid_width - 150, mid_height + 75);
+    account_name_label->move(mid_width - 150, mid_height - 75);
+    account_birth_date_label->move(mid_width - 150, mid_height - 25);
+    account_phone_label->move(mid_width - 150, mid_height + 25);
+    account_email_label->move(mid_width - 150, mid_height + 75);
 
-    account_current_name.get()->move(mid_width + 50, mid_height - 75);
-    account_current_birth_date.get()->move(mid_width + 50, mid_height - 25);
-    account_current_phone.get()->move(mid_width + 50, mid_height + 25);
-    account_current_email.get()->move(mid_width + 50, mid_height + 75);
+    account_current_name->move(mid_width + 50, mid_height - 75);
+    account_current_birth_date->move(mid_width + 50, mid_height - 25);
+    account_current_phone->move(mid_width + 50, mid_height + 25);
+    account_current_email->move(mid_width + 50, mid_height + 75);
 
-    account_change_button.get()->move(mid_width - 100, mid_height + 125);
+    account_change_button->move(mid_width - 100, mid_height + 125);
 }
 
 void Widget::repositionGetInfoUI() {
@@ -411,35 +411,35 @@ void Widget::repositionOperateUI() {
 }
 
 void Widget::hideLoginUI() {
-    login_label.get()->hide();
-    username_label.get()->hide();
-    password_label.get()->hide();
-    username_line_edit.get()->hide();
-    password_line_edit.get()->hide();
-    login_push_button.get()->hide();
+    login_label->hide();
+    username_label->hide();
+    password_label->hide();
+    username_line_edit->hide();
+    password_line_edit->hide();
+    login_push_button->hide();
 }
 
 void Widget::hideMainMenuUI() {
-    account_button.get()->hide();
-    change_vehicles_info_button.get()->hide();
-    get_vehicles_info_button.get()->hide();
-    operate_button.get()->hide();
+    account_button->hide();
+    change_vehicles_info_button->hide();
+    get_vehicles_info_button->hide();
+    operate_button->hide();
 }
 
 void Widget::hideAccountUI() {
-    account_name_label.get()->hide();
-    account_birth_date_label.get()->hide();
-    account_phone_label.get()->hide();
-    account_email_label.get()->hide();
+    account_name_label->hide();
+    account_birth_date_label->hide();
+    account_phone_label->hide();
+    account_email_label->hide();
 
-    account_current_name.get()->hide();
-    account_current_birth_date.get()->hide();
-    account_current_phone.get()->hide();
-    account_current_email.get()->hide();
+    account_current_name->hide();
+    account_current_birth_date->hide();
+    account_current_phone->hide();
+    account_current_email->hide();
 
-    account_change_button.get()->hide();
+    account_change_button->hide();
 
-    account_back_button.get()->hide();
+    account_back_button->hide();
 }
 
 void Widget::hideChangeVehiclesUI() {
@@ -448,9 +448,9 @@ void Widget::hideChangeVehiclesUI() {
 }
 
 void Widget::hideGetInfoUI() {
-    get_info_visual_button.get()->hide();
-    get_info_detailed_button.get()->hide();
-    get_info_back_button.get()->hide();
+    get_info_visual_button->hide();
+    get_info_detailed_button->hide();
+    get_info_back_button->hide();
 }
 
 void Widget::hideGetInfoVisualUI() {
@@ -458,9 +458,9 @@ void Widget::hideGetInfoVisualUI() {
 }
 
 void Widget::hideGetInfoDetailedUI() {
-    get_info_detailed_levels_button.get()->hide();
-    get_info_detailed_full_button.get()->hide();
-    get_info_detailed_back_button.get()->hide();
+    get_info_detailed_levels_button->hide();
+    get_info_detailed_full_button->hide();
+    get_info_detailed_back_button->hide();
 }
 
 void Widget::hideGetInfoDetailedInternalUI() {
@@ -488,26 +488,26 @@ void Widget::hideOperateAllCeUI() {
 }
 
 void Widget::showMainMenuUI() {
-    account_button.get()->show();
-    change_vehicles_info_button.get()->show();
-    get_vehicles_info_button.get()->show();
-    operate_button.get()->show();
+    account_button->show();
+    change_vehicles_info_button->show();
+    get_vehicles_info_button->show();
+    operate_button->show();
 }
 
 void Widget::showAccountUI() {
-    account_name_label.get()->show();
-    account_birth_date_label.get()->show();
-    account_phone_label.get()->show();
-    account_email_label.get()->show();
+    account_name_label->show();
+    account_birth_date_label->show();
+    account_phone_label->show();
+    account_email_label->show();
 
-    account_current_name.get()->show();
-    account_current_birth_date.get()->show();
-    account_current_phone.get()->show();
-    account_current_email.get()->show();
+    account_current_name->show();
+    account_current_birth_date->show();
+    account_current_phone->show();
+    account_current_email->show();
 
-    account_change_button.get()->show();
+    account_change_button->show();
 
-    account_back_button.get()->show();
+    account_back_button->show();
 }
 
 void Widget::showChangeVehiclesUI() {
@@ -516,9 +516,9 @@ void Widget::showChangeVehiclesUI() {
 }
 
 void Widget::showGetInfoUI() {
-    get_info_visual_button.get()->show();
-    get_info_detailed_button.get()->show();
-    get_info_back_button.get()->show();
+    get_info_visual_button->show();
+    get_info_detailed_button->show();
+    get_info_back_button->show();
 }
 
 void Widget::showGetInfoVisualUI() {
@@ -526,9 +526,9 @@ void Widget::showGetInfoVisualUI() {
 }
 
 void Widget::showGetInfoDetailedUI() {
-    get_info_detailed_levels_button.get()->show();
-    get_info_detailed_full_button.get()->show();
-    get_info_detailed_back_button.get()->show();
+    get_info_detailed_levels_button->show();
+    get_info_detailed_full_button->show();
+    get_info_detailed_back_button->show();
 }
 
 void Widget::showGetInfoDetailedInternalUI() {
@@ -556,8 +556,8 @@ void Widget::showOperateAllCeUI() {
 
 void Widget::loginHandler() {
     DataBase db;
-    bool is_correct = db.check_login(username_line_edit.get()->text(), password_line_edit.get()->text());
-    login_label.get()->setText(QString::number(is_correct));
+    bool is_correct = db.check_login(username_line_edit->text(), password_line_edit->text());
+    login_label->setText(QString::number(is_correct));
     if (is_correct) {
         hideLoginUI();
         showMainMenuUI();
@@ -577,24 +577,24 @@ void Widget::accountChangeHandler() {
 
     bool ok{};
     QString item;
-    account_dlg.get()->setWindowTitle("Изменение информации аккаунта");
-    account_dlg.get()->setLabelText("Что изменить?");
-    account_dlg.get()->setComboBoxItems(items);
-    account_dlg.get()->resize(400, 300);
-    account_dlg.get()->move(1000, 500);
-    if (account_dlg.get()->exec() == QDialog::Accepted) {
-        item = account_dlg.get()->textValue();
+    account_dlg->setWindowTitle("Изменение информации аккаунта");
+    account_dlg->setLabelText("Что изменить?");
+    account_dlg->setComboBoxItems(items);
+    account_dlg->resize(400, 300);
+    account_dlg->move(1000, 500);
+    if (account_dlg->exec() == QDialog::Accepted) {
+        item = account_dlg->textValue();
     }
     else {
         return;
     }
 
     if (item == "ФИО") {
-        account_internal_dlg.get()->setWindowTitle("Изменение ФИО");
-        account_internal_dlg.get()->setLabelText("Новое ФИО:");
-        account_internal_dlg.get()->resize(300, 300);
-        if (account_internal_dlg.get()->exec() == QDialog::Accepted && !account_internal_dlg.get()->textValue().isNull()) {
-            QString input = account_internal_dlg.get()->textValue();
+        account_internal_dlg->setWindowTitle("Изменение ФИО");
+        account_internal_dlg->setLabelText("Новое ФИО:");
+        account_internal_dlg->resize(300, 300);
+        if (account_internal_dlg->exec() == QDialog::Accepted && !account_internal_dlg->textValue().isNull()) {
+            QString input = account_internal_dlg->textValue();
             account_current_name->setText(input);
         }
         else {
@@ -604,11 +604,11 @@ void Widget::accountChangeHandler() {
 
     if (item == "Дата рождения") {
         while (true) {
-            account_internal_dlg.get()->setWindowTitle("Изменение даты рождения");
-            account_internal_dlg.get()->setLabelText("Новая дата рождения:");
-            account_internal_dlg.get()->resize(300, 300);
-            if (account_internal_dlg.get()->exec() == QDialog::Accepted && !account_internal_dlg.get()->textValue().isNull()) {
-                QString input = account_internal_dlg.get()->textValue();
+            account_internal_dlg->setWindowTitle("Изменение даты рождения");
+            account_internal_dlg->setLabelText("Новая дата рождения:");
+            account_internal_dlg->resize(300, 300);
+            if (account_internal_dlg->exec() == QDialog::Accepted && !account_internal_dlg->textValue().isNull()) {
+                QString input = account_internal_dlg->textValue();
                 if (!accountIsBirthDateCorrect(input)) {
                     continue;
                 }
@@ -623,15 +623,15 @@ void Widget::accountChangeHandler() {
 
     if (item == "Номер телефона") {
         while (true) {
-            account_internal_dlg.get()->setWindowTitle("Изменение номера телефона");
-            account_internal_dlg.get()->setLabelText("Новый номер телефона:");
-            account_internal_dlg.get()->resize(300, 300);
-            if (account_internal_dlg.get()->exec() == QDialog::Accepted && !account_internal_dlg.get()->textValue().isNull()) {
-                QString input = account_internal_dlg.get()->textValue();
+            account_internal_dlg->setWindowTitle("Изменение номера телефона");
+            account_internal_dlg->setLabelText("Новый номер телефона:");
+            account_internal_dlg->resize(300, 300);
+            if (account_internal_dlg->exec() == QDialog::Accepted && !account_internal_dlg->textValue().isNull()) {
+                QString input = account_internal_dlg->textValue();
                 if (!accountIsNumberCorrect(input)) {
                     continue;
                 }
-                account_current_phone->setText(account_internal_dlg.get()->textValue());
+                account_current_phone->setText(account_internal_dlg->textValue());
                 return;
             }
             else {
@@ -642,11 +642,11 @@ void Widget::accountChangeHandler() {
 
     if (item == "Email") {
         while (true) {
-            account_internal_dlg.get()->setWindowTitle("Изменение Email");
-            account_internal_dlg.get()->setLabelText("Новый Email:");
-            account_internal_dlg.get()->resize(300, 300);
-            if (account_internal_dlg.get()->exec() == QDialog::Accepted && !account_internal_dlg.get()->textValue().isNull()) {
-                QString input = account_internal_dlg.get()->textValue();
+            account_internal_dlg->setWindowTitle("Изменение Email");
+            account_internal_dlg->setLabelText("Новый Email:");
+            account_internal_dlg->resize(300, 300);
+            if (account_internal_dlg->exec() == QDialog::Accepted && !account_internal_dlg->textValue().isNull()) {
+                QString input = account_internal_dlg->textValue();
                 if (!accountIsEmailCorrect(input)) {
                     continue;
                 }
@@ -1054,13 +1054,13 @@ void Widget::operateAllCeHandler() {
     QString s = operate_current_level->text(); //работает только если этаж - одна цирфа
     int curr_lvl = s.back().digitValue() - 1;
     std::shared_ptr<ControlElement> curr_ce = levels[curr_lvl].get_control_elements()[0];
-    if (curr_ce.get()->type == TRAFFIC_LIGHT) {
+    if (curr_ce->type == TRAFFIC_LIGHT) {
         operate_card_type_data->setText("Traffic Light");
     }
     else {
         operate_card_type_data->setText("Barrier");
     }
-    if (curr_ce.get()->get_is_opened()) {
+    if (curr_ce->get_is_opened()) {
         operate_card_is_opened_data->setText("true");
     }
     else {
@@ -1079,7 +1079,7 @@ void Widget::operateCloseCeHandler() {
     int curr_lvl = s.back().digitValue() - 1;
     int curr_ce = operate_card_number_data->text().toInt() - 1;
     std::shared_ptr<ControlElement> ce = levels[curr_lvl].get_control_elements()[curr_ce];
-    ce.get()->close();
+    ce->close();
     operate_card_is_opened_data->setText("false");
 }
 
@@ -1088,7 +1088,7 @@ void Widget::operateOpenCeHandler() {
     int curr_lvl = s.back().digitValue() - 1;
     int curr_ce = operate_card_number_data->text().toInt() - 1;
     std::shared_ptr<ControlElement> ce = levels[curr_lvl].get_control_elements()[curr_ce];
-    ce.get()->open();
+    ce->open();
     operate_card_is_opened_data->setText("true");
 }
 
@@ -1101,13 +1101,13 @@ void Widget::operateNextCeHandler() {
     }
     std::shared_ptr<ControlElement> ce = levels[curr_lvl].get_control_elements()[curr_ce];
 
-    if (ce.get()->type == TRAFFIC_LIGHT) {
+    if (ce->type == TRAFFIC_LIGHT) {
         operate_card_type_data->setText("Traffic Light");
     }
     else {
         operate_card_type_data->setText("Barrier");
     }
-    if (ce.get()->get_is_opened()) {
+    if (ce->get_is_opened()) {
         operate_card_is_opened_data->setText("true");
     }
     else {
@@ -1125,13 +1125,13 @@ void Widget::operatePrevCeHandler() {
     }
     std::shared_ptr<ControlElement> ce = levels[curr_lvl].get_control_elements()[curr_ce];
 
-    if (ce.get()->type == TRAFFIC_LIGHT) {
+    if (ce->type == TRAFFIC_LIGHT) {
         operate_card_type_data->setText("Traffic Light");
     }
     else {
         operate_card_type_data->setText("Barrier");
     }
-    if (ce.get()->get_is_opened()) {
+    if (ce->get_is_opened()) {
         operate_card_is_opened_data->setText("true");
     }
     else {
