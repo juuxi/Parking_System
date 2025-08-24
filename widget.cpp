@@ -99,6 +99,9 @@ void Widget::setupAccountUI() {
     account_back_button.get()->setGeometry(10, 10, 50, 20);
     connect(account_back_button.get(), SIGNAL(clicked()), this, SLOT(accountBackHandler()));
 
+    account_internal_dlg = std::make_unique<QInputDialog>(this);
+    account_dlg = std::make_unique<QInputDialog>(this);
+
     hideAccountUI();
 }
 
@@ -574,25 +577,24 @@ void Widget::accountChangeHandler() {
 
     bool ok{};
     QString item;
-    QInputDialog dlg;
-    dlg.setWindowTitle("Изменение информации аккаунта");
-    dlg.setLabelText("Что изменить?");
-    dlg.setComboBoxItems(items);
-    dlg.resize(400, 300); //проблемы с местом появления
-    if (dlg.exec() == QDialog::Accepted) {
-        item = dlg.textValue();
+    account_dlg.get()->setWindowTitle("Изменение информации аккаунта");
+    account_dlg.get()->setLabelText("Что изменить?");
+    account_dlg.get()->setComboBoxItems(items);
+    account_dlg.get()->resize(400, 300);
+    account_dlg.get()->move(1000, 500);
+    if (account_dlg.get()->exec() == QDialog::Accepted) {
+        item = account_dlg.get()->textValue();
     }
     else {
         return;
     }
 
-    QInputDialog internal_dlg;
     if (item == "ФИО") {
-        internal_dlg.setWindowTitle("Изменение ФИО");
-        internal_dlg.setLabelText("Новое ФИО:");
-        internal_dlg.resize(300, 300);
-        if (internal_dlg.exec() == QDialog::Accepted && !internal_dlg.textValue().isNull()) {
-            QString input = internal_dlg.textValue();
+        account_internal_dlg.get()->setWindowTitle("Изменение ФИО");
+        account_internal_dlg.get()->setLabelText("Новое ФИО:");
+        account_internal_dlg.get()->resize(300, 300);
+        if (account_internal_dlg.get()->exec() == QDialog::Accepted && !account_internal_dlg.get()->textValue().isNull()) {
+            QString input = account_internal_dlg.get()->textValue();
             account_current_name->setText(input);
         }
         else {
@@ -602,11 +604,11 @@ void Widget::accountChangeHandler() {
 
     if (item == "Дата рождения") {
         while (true) {
-            internal_dlg.setWindowTitle("Изменение даты рождения");
-            internal_dlg.setLabelText("Новая дата рождения:");
-            internal_dlg.resize(300, 300);
-            if (internal_dlg.exec() == QDialog::Accepted && !internal_dlg.textValue().isNull()) {
-                QString input = internal_dlg.textValue();
+            account_internal_dlg.get()->setWindowTitle("Изменение даты рождения");
+            account_internal_dlg.get()->setLabelText("Новая дата рождения:");
+            account_internal_dlg.get()->resize(300, 300);
+            if (account_internal_dlg.get()->exec() == QDialog::Accepted && !account_internal_dlg.get()->textValue().isNull()) {
+                QString input = account_internal_dlg.get()->textValue();
                 if (!accountIsBirthDateCorrect(input)) {
                     continue;
                 }
@@ -621,15 +623,15 @@ void Widget::accountChangeHandler() {
 
     if (item == "Номер телефона") {
         while (true) {
-            internal_dlg.setWindowTitle("Изменение номера телефона");
-            internal_dlg.setLabelText("Новый номер телефона:");
-            internal_dlg.resize(300, 300);
-            if (internal_dlg.exec() == QDialog::Accepted && !internal_dlg.textValue().isNull()) {
-                QString input = internal_dlg.textValue();
+            account_internal_dlg.get()->setWindowTitle("Изменение номера телефона");
+            account_internal_dlg.get()->setLabelText("Новый номер телефона:");
+            account_internal_dlg.get()->resize(300, 300);
+            if (account_internal_dlg.get()->exec() == QDialog::Accepted && !account_internal_dlg.get()->textValue().isNull()) {
+                QString input = account_internal_dlg.get()->textValue();
                 if (!accountIsNumberCorrect(input)) {
                     continue;
                 }
-                account_current_phone->setText(internal_dlg.textValue());
+                account_current_phone->setText(account_internal_dlg.get()->textValue());
                 return;
             }
             else {
@@ -640,11 +642,11 @@ void Widget::accountChangeHandler() {
 
     if (item == "Email") {
         while (true) {
-            internal_dlg.setWindowTitle("Изменение Email");
-            internal_dlg.setLabelText("Новый Email:");
-            internal_dlg.resize(300, 300);
-            if (internal_dlg.exec() == QDialog::Accepted && !internal_dlg.textValue().isNull()) {
-                QString input = internal_dlg.textValue();
+            account_internal_dlg.get()->setWindowTitle("Изменение Email");
+            account_internal_dlg.get()->setLabelText("Новый Email:");
+            account_internal_dlg.get()->resize(300, 300);
+            if (account_internal_dlg.get()->exec() == QDialog::Accepted && !account_internal_dlg.get()->textValue().isNull()) {
+                QString input = account_internal_dlg.get()->textValue();
                 if (!accountIsEmailCorrect(input)) {
                     continue;
                 }

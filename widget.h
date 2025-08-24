@@ -51,6 +51,8 @@ class Widget : public QWidget
     std::unique_ptr<QLabel> account_current_phone;
     std::unique_ptr<QLabel> account_current_email;
     std::unique_ptr<QPushButton> account_change_button;
+    std::unique_ptr<QInputDialog> account_dlg;
+    std::unique_ptr<QInputDialog> account_internal_dlg;
 
     std::unique_ptr<QGroupBox> change_vehicles_card;
     std::unique_ptr<QLabel> change_vehicles_card_plate_label;
