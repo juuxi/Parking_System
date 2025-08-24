@@ -591,8 +591,9 @@ void Widget::accountChangeHandler() {
         internal_dlg.setWindowTitle("Изменение ФИО");
         internal_dlg.setLabelText("Новое ФИО:");
         internal_dlg.resize(300, 300);
-        if (internal_dlg.exec() == QDialog::Accepted) {
-            account_current_name->setText(internal_dlg.textValue());
+        if (internal_dlg.exec() == QDialog::Accepted && !internal_dlg.textValue().isNull()) {
+            QString input = internal_dlg.textValue();
+            account_current_name->setText(input);
         }
         else {
             return;
@@ -600,14 +601,21 @@ void Widget::accountChangeHandler() {
     }
 
     if (item == "Дата рождения") {
-        internal_dlg.setWindowTitle("Изменение даты рождения");
-        internal_dlg.setLabelText("Новая дата рождения:");
-        internal_dlg.resize(300, 300);
-        if (internal_dlg.exec() == QDialog::Accepted) {
-            account_current_birth_date->setText(internal_dlg.textValue());
-        }
-        else {
-            return;
+        while (true) {
+            internal_dlg.setWindowTitle("Изменение даты рождения");
+            internal_dlg.setLabelText("Новая дата рождения:");
+            internal_dlg.resize(300, 300);
+            if (internal_dlg.exec() == QDialog::Accepted && !internal_dlg.textValue().isNull()) {
+                QString input = internal_dlg.textValue();
+                if (!accountIsBirthDateCorrect(input)) {
+                    continue;
+                }
+                account_current_birth_date->setText(input);
+                return;
+            }
+            else {
+                return;
+            }
         }
     }
 
@@ -631,14 +639,21 @@ void Widget::accountChangeHandler() {
     }
 
     if (item == "Email") {
-        internal_dlg.setWindowTitle("Изменение Email");
-        internal_dlg.setLabelText("Новый Email:");
-        internal_dlg.resize(300, 300);
-        if (internal_dlg.exec() == QDialog::Accepted) {
-            account_current_email->setText(internal_dlg.textValue());
-        }
-        else {
-            return;
+        while (true) {
+            internal_dlg.setWindowTitle("Изменение Email");
+            internal_dlg.setLabelText("Новый Email:");
+            internal_dlg.resize(300, 300);
+            if (internal_dlg.exec() == QDialog::Accepted && !internal_dlg.textValue().isNull()) {
+                QString input = internal_dlg.textValue();
+                if (!accountIsEmailCorrect(input)) {
+                    continue;
+                }
+                account_current_email->setText(input);
+                return;
+            }
+            else {
+                return;
+            }
         }
     }
 }
@@ -656,6 +671,40 @@ bool Widget::accountIsNumberCorrect(QString input) {
         if (!input[i].isDigit()) {
             return false;
         }
+    }
+    return true;
+}
+
+bool Widget::accountIsBirthDateCorrect(QString input) {
+    if (input.size() != 10) {
+        return false;
+    }
+    for (int i = 0; i < 10; i++) { //dd.mm.yyyy doesn't check correct day/month, maybe Msg w/ correct format?
+        if (i == 2 || i == 5) {
+            if (input[i] != '.') {
+                return false;
+            }
+        }
+        else {
+            if (!input[i].isDigit()) {
+                return false;
+            }
+        }
+    }
+    return true;
+}
+
+bool Widget::accountIsEmailCorrect(QString input) {
+    int at = input.indexOf('@');
+    int dot = input.lastIndexOf('.');
+    if (at == -1 || dot == -1) {
+        return false;
+    }
+    if (dot >= input.size() - 1) {
+        return false;
+    }
+    if (at > dot) {
+        return false;
     }
     return true;
 }

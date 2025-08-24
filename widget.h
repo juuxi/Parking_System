@@ -152,6 +152,8 @@ class Widget : public QWidget
     void setChangeCardData(Vehicle, int, int, int);
 
     bool accountIsNumberCorrect(QString);
+    bool accountIsBirthDateCorrect(QString);
+    bool accountIsEmailCorrect(QString);
 
     QVector<Level> levels;
 
