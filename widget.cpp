@@ -612,14 +612,21 @@ void Widget::accountChangeHandler() {
     }
 
     if (item == "Номер телефона") {
-        internal_dlg.setWindowTitle("Изменение номера телефона");
-        internal_dlg.setLabelText("Новый номер телефона:");
-        internal_dlg.resize(300, 300);
-        if (internal_dlg.exec() == QDialog::Accepted) {
-            account_current_phone->setText(internal_dlg.textValue());
-        }
-        else {
-            return;
+        while (true) {
+            internal_dlg.setWindowTitle("Изменение номера телефона");
+            internal_dlg.setLabelText("Новый номер телефона:");
+            internal_dlg.resize(300, 300);
+            if (internal_dlg.exec() == QDialog::Accepted && !internal_dlg.textValue().isNull()) {
+                QString input = internal_dlg.textValue();
+                if (!accountIsNumberCorrect(input)) {
+                    continue;
+                }
+                account_current_phone->setText(internal_dlg.textValue());
+                return;
+            }
+            else {
+                return;
+            }
         }
     }
 
@@ -639,6 +646,18 @@ void Widget::accountChangeHandler() {
 void Widget::accountBackHandler() {
     hideAccountUI();
     showMainMenuUI();
+}
+
+bool Widget::accountIsNumberCorrect(QString input) {
+    if (!input[0].isDigit() && input[0] != '+') {
+        return false;
+    }
+    for (int i = 1; i < input.size(); i++) {
+        if (!input[i].isDigit()) {
+            return false;
+        }
+    }
+    return true;
 }
 
 void Widget::changeVehiclesHandler() {
