@@ -530,7 +530,7 @@ void Widget::accountChangeHandler() {
             account_internal_dlg->resize(300, 300);
             if (account_internal_dlg->exec() == QDialog::Accepted && !account_internal_dlg->textValue().isNull()) {
                 QString input = account_internal_dlg->textValue();
-                if (!accountIsBirthDateCorrect(input)) {
+                if (!account_supervisor.accountIsBirthDateCorrect(input)) {
                     continue;
                 }
                 account_current_birth_date->setText(input);
@@ -549,7 +549,7 @@ void Widget::accountChangeHandler() {
             account_internal_dlg->resize(300, 300);
             if (account_internal_dlg->exec() == QDialog::Accepted && !account_internal_dlg->textValue().isNull()) {
                 QString input = account_internal_dlg->textValue();
-                if (!accountIsNumberCorrect(input)) {
+                if (!account_supervisor.accountIsNumberCorrect(input)) {
                     continue;
                 }
                 account_current_phone->setText(account_internal_dlg->textValue());
@@ -568,7 +568,7 @@ void Widget::accountChangeHandler() {
             account_internal_dlg->resize(300, 300);
             if (account_internal_dlg->exec() == QDialog::Accepted && !account_internal_dlg->textValue().isNull()) {
                 QString input = account_internal_dlg->textValue();
-                if (!accountIsEmailCorrect(input)) {
+                if (!account_supervisor.accountIsEmailCorrect(input)) {
                     continue;
                 }
                 account_current_email->setText(input);
@@ -584,52 +584,6 @@ void Widget::accountChangeHandler() {
 void Widget::accountBackHandler() {
     hideAccountUI();
     showMainMenuUI();
-}
-
-bool Widget::accountIsNumberCorrect(QString input) {
-    if (!input[0].isDigit() && input[0] != '+') {
-        return false;
-    }
-    for (int i = 1; i < input.size(); i++) {
-        if (!input[i].isDigit()) {
-            return false;
-        }
-    }
-    return true;
-}
-
-bool Widget::accountIsBirthDateCorrect(QString input) {
-    if (input.size() != 10) {
-        return false;
-    }
-    for (int i = 0; i < 10; i++) { //dd.mm.yyyy doesn't check correct day/month, maybe Msg w/ correct format?
-        if (i == 2 || i == 5) {
-            if (input[i] != '.') {
-                return false;
-            }
-        }
-        else {
-            if (!input[i].isDigit()) {
-                return false;
-            }
-        }
-    }
-    return true;
-}
-
-bool Widget::accountIsEmailCorrect(QString input) {
-    int at = input.indexOf('@');
-    int dot = input.lastIndexOf('.');
-    if (at == -1 || dot == -1) {
-        return false;
-    }
-    if (dot >= input.size() - 1) {
-        return false;
-    }
-    if (at > dot) {
-        return false;
-    }
-    return true;
 }
 
 void Widget::changeVehiclesHandler() {

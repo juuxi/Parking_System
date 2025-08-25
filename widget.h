@@ -21,6 +21,7 @@
 #include "database.h"
 #include "xml.h"
 #include "infocard.h"
+#include "accountsupervisor.h"
 
 class Widget : public QWidget
 {
@@ -54,6 +55,8 @@ class Widget : public QWidget
     std::unique_ptr<QPushButton> account_change_button;
     std::unique_ptr<QInputDialog> account_dlg;
     std::unique_ptr<QInputDialog> account_internal_dlg;
+
+    AccountSupervisor account_supervisor;
 
     std::unique_ptr<QPushButton> get_info_visual_button;
     std::unique_ptr<QPushButton> get_info_detailed_button;
@@ -113,10 +116,6 @@ class Widget : public QWidget
     void showGetInfoDetailedInternalUI();
     void showOperateUI();
     void showOperateAllCeUI();
-
-    bool accountIsNumberCorrect(QString);
-    bool accountIsBirthDateCorrect(QString);
-    bool accountIsEmailCorrect(QString);
 
     QVector<Level> levels;
 

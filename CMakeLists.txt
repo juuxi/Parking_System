@@ -49,6 +49,7 @@ else()
             xml.h xml.cpp
             infocard.h
             infocard.cpp
+            accountsupervisor.h
 
 
         )
