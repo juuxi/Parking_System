@@ -1,7 +1,7 @@
 #include "widget.h"
 
 Widget::Widget(QWidget *parent)
-    : QWidget(parent), levels(6) {
+    : QWidget(parent), levels(6), card(this) {
     setWindowTitle("Парковочная система");
     setWindowState(Qt::WindowMaximized);
     setupLoginUI();
@@ -384,7 +384,7 @@ void Widget::repositionGetInfoUI() {
 
     get_info_detailed_next_button->move(3 * screen_width / 4, 3 * screen_height / 4);
     get_info_detailed_prev_button->move(screen_width / 4, 3 * screen_height / 4);
-    get_info_detailed_card->move(screen_width / 2 - get_info_detailed_card->width() / 2, screen_height / 2 - get_info_detailed_card->height() / 2);
+    card.move(screen_width / 2 - card.width() / 2, screen_height / 2 - card.height() / 2);
 }
 
 void Widget::repositionOperateUI() {
@@ -444,6 +444,8 @@ void Widget::hideAccountUI() {
 
 void Widget::hideChangeVehiclesUI() {
     change_vehicles_card->hide();
+    card.makeUnchangeable();
+    card.hide();
     change_vehicles_back_button->hide();
 }
 
@@ -467,6 +469,7 @@ void Widget::hideGetInfoDetailedInternalUI() {
     get_info_detailed_next_button->hide();
     get_info_detailed_prev_button->hide();
     get_info_detailed_card->hide();
+    card.hide();
     get_info_detailed_internal_back_button->hide();
 }
 
@@ -511,7 +514,8 @@ void Widget::showAccountUI() {
 }
 
 void Widget::showChangeVehiclesUI() {
-    change_vehicles_card->show();
+    card.show();
+    card.makeChangeable();
     change_vehicles_back_button->show();
 }
 
@@ -534,7 +538,8 @@ void Widget::showGetInfoDetailedUI() {
 void Widget::showGetInfoDetailedInternalUI() {
     get_info_detailed_next_button->show();
     get_info_detailed_prev_button->show();
-    get_info_detailed_card->show();
+    //get_info_detailed_card->show();
+    card.show();
     get_info_detailed_internal_back_button->show();
 }
 
@@ -752,17 +757,17 @@ void Widget::changeVehiclesHandler() {
             for (int k = 0; k < level.lines[j].size(); k++) {
                 Vehicle v = level.lines[j][k];
                 if (v.getPlate() == plate) {
-                    setChangeCardData(v, i, j, k);
+                    card.setCardData(v, i, j, k);
                     flag = true;
                     break;
                 }
                 if (v.getModel() == model) {
-                    setChangeCardData(v, i, j, k);
+                    card.setCardData(v, i, j, k);
                     flag = true;
                     break;
                 }
                 if (i == lvl && j == row && k == col && !v.getDuration().isNull()) {
-                    setChangeCardData(v, i, j, k);
+                    card.setCardData(v, i, j, k);
                     flag = true;
                     break;
                 }
@@ -794,9 +799,9 @@ void Widget::changeVehiclesInternalHandler() {
     msgBox.setText("Insert data if you want to change it, don't insert or click Cancel otherwise");
     msgBox.exec();
 
-    int curr_lvl = change_vehicles_card_lvl_data->text().toInt() - 1;
-    int curr_row = change_vehicles_card_row_data->text().toInt() - 1;
-    int curr_col = change_vehicles_card_col_data->text().toInt() - 1;
+    int curr_lvl = card.lvl_data->text().toInt() - 1;
+    int curr_row = card.row_data->text().toInt() - 1;
+    int curr_col = card.col_data->text().toInt() - 1;
     Vehicle v = levels[curr_lvl].lines[curr_row][curr_col];
 
     QString plate, model;
@@ -806,14 +811,14 @@ void Widget::changeVehiclesInternalHandler() {
     if (!input.isEmpty() && ok) {
         v.setPlate(input);
         levels[curr_lvl].lines[curr_row][curr_col] = v;
-        change_vehicles_card_plate_data->setText(input);
+        card.plate_data->setText(input);
     }
 
     input = QInputDialog::getText(this, "Insert data", "model:", QLineEdit::Normal, QString(), &ok);
     if (!input.isEmpty() && ok) {
         v.setModel(input);
         levels[curr_lvl].lines[curr_row][curr_col] = v;
-        change_vehicles_card_model_data->setText(input);
+        card.model_data->setText(input);
     }
 
     int num = QInputDialog::getInt(this, "Insert Data", "level", 1, 1, levels.size(), 1, &ok);
@@ -822,7 +827,7 @@ void Widget::changeVehiclesInternalHandler() {
         levels[lvl].lines[curr_row][curr_col] = v;
         levels[curr_lvl].lines[curr_row][curr_col] = Vehicle();
         curr_lvl = lvl;
-        change_vehicles_card_lvl_data->setText(QString::number(num));
+        card.lvl_data->setText(QString::number(num));
     }
 
     num = QInputDialog::getInt(this, "Insert Data", "row", 1, 1, 6, 1, &ok); //если не введен lvl - блокировать дальше?
@@ -831,7 +836,7 @@ void Widget::changeVehiclesInternalHandler() {
         levels[curr_lvl].lines[row][curr_col] = v;
         levels[curr_lvl].lines[curr_row][curr_col] = Vehicle();
         curr_row = row;
-        change_vehicles_card_row_data->setText(QString::number(num));
+        card.row_data->setText(QString::number(num));
     }
 
     num = QInputDialog::getInt(this, "Insert Data", "col", 1, 1, 30, 1, &ok);
@@ -839,7 +844,7 @@ void Widget::changeVehiclesInternalHandler() {
         col = num - 1;
         levels[curr_lvl].lines[curr_row][col] = v;
         levels[curr_lvl].lines[curr_row][curr_col] = Vehicle();
-        change_vehicles_card_col_data->setText(QString::number(num));
+        card.col_data->setText(QString::number(num));
     }
 }
 
@@ -878,7 +883,7 @@ void Widget::getVehiclesInfoDetailedFullHandler() {
             for (int k = 0; k < lvl.lines[j].size(); k++) {
                 if (!lvl.lines[j][k].getDuration().isNull()) {
                     Vehicle v = lvl.lines[j][k];
-                    setCardData(v, i, j, k);
+                    card.setCardData(v, i, j, k);
                     flag = true;
                     break;
                 }
@@ -892,13 +897,13 @@ void Widget::getVehiclesInfoDetailedFullHandler() {
 
 void Widget::getVehiclesInfoDetailedNextFullHandler() {
     bool flag = false;
-    for (int i = get_info_detailed_card_lvl_data->text().toInt() - 1; i < levels.size(); i++) {
+    for (int i = card.lvl_data->text().toInt() - 1; i < levels.size(); i++) {
         Level lvl = levels[i];
-        for (int j = get_info_detailed_card_row_data->text().toInt() - 1; j < lvl.lines.size(); j++) {
-            for (int k = get_info_detailed_card_col_data->text().toInt(); k < lvl.lines[j].size(); k++) {
+        for (int j = card.row_data->text().toInt() - 1; j < lvl.lines.size(); j++) {
+            for (int k = card.col_data->text().toInt(); k < lvl.lines[j].size(); k++) {
                 if (!lvl.lines[j][k].getDuration().isNull()) {
                     Vehicle v = lvl.lines[j][k];
-                    setCardData(v, i, j, k);
+                    card.setCardData(v, i, j, k);
                     flag = true;
                     break;
                 }
@@ -912,13 +917,13 @@ void Widget::getVehiclesInfoDetailedNextFullHandler() {
 
 void Widget::getVehiclesInfoDetailedPrevFullHandler() {
     bool flag = false;
-    for (int i = get_info_detailed_card_lvl_data->text().toInt() - 1; i >= 0; i--) {
+    for (int i = card.lvl_data->text().toInt() - 1; i >= 0; i--) {
         Level lvl = levels[i];
-        for (int j = get_info_detailed_card_row_data->text().toInt() - 1; j >= 0; j--) {
-            for (int k = get_info_detailed_card_col_data->text().toInt() - 2; k >= 0; k--) {
+        for (int j = card.row_data->text().toInt() - 1; j >= 0; j--) {
+            for (int k = card.col_data->text().toInt() - 2; k >= 0; k--) {
                 if (!lvl.lines[j][k].getDuration().isNull()) {
                     Vehicle v = lvl.lines[j][k];
-                    setCardData(v, i, j, k);
+                    card.setCardData(v, i, j, k);
                     flag = true;
                     break;
                 }
@@ -971,10 +976,10 @@ void Widget::getVehiclesInfoDetailedLevelsHandler() {
 
 void Widget::getVehiclesInfoDetailedNextLevelsHandler() {
     bool flag = false;
-    int level = get_info_detailed_card_lvl_data->text().toInt() - 1;
+    int level = card.lvl_data->text().toInt() - 1;
     Level lvl = levels[level];
-    for (int j = get_info_detailed_card_row_data->text().toInt() - 1; j < lvl.lines.size(); j++) {
-        for (int k = get_info_detailed_card_col_data->text().toInt(); k < lvl.lines[j].size(); k++) {
+    for (int j = card.row_data->text().toInt() - 1; j < lvl.lines.size(); j++) {
+        for (int k = card.col_data->text().toInt(); k < lvl.lines[j].size(); k++) {
             if (!lvl.lines[j][k].getDuration().isNull()) {
                 Vehicle v = lvl.lines[j][k];
                 setCardData(v, level, j, k);
@@ -990,10 +995,10 @@ void Widget::getVehiclesInfoDetailedNextLevelsHandler() {
 
 void Widget::getVehiclesInfoDetailedPrevLevelsHandler() {
     bool flag = false;
-    int level = get_info_detailed_card_lvl_data->text().toInt() - 1;
+    int level = card.lvl_data->text().toInt() - 1;
     Level lvl = levels[level];
-    for (int j = get_info_detailed_card_row_data->text().toInt() - 1; j >= 0; j--) {
-        for (int k = get_info_detailed_card_col_data->text().toInt() - 2; k >= 0; k--) {
+    for (int j = card.row_data->text().toInt() - 1; j >= 0; j--) {
+        for (int k = card.col_data->text().toInt() - 2; k >= 0; k--) {
             if (!lvl.lines[j][k].getDuration().isNull()) {
                 Vehicle v = lvl.lines[j][k];
                 setCardData(v, level, j, k);

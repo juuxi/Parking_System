@@ -20,6 +20,7 @@
 #include "level.h"
 #include "database.h"
 #include "xml.h"
+#include "infocard.h"
 
 class Widget : public QWidget
 {
@@ -99,6 +100,8 @@ class Widget : public QWidget
     std::unique_ptr<QLabel> get_info_detailed_card_row_data;
     std::unique_ptr<QLabel> get_info_detailed_card_col_data;
     std::unique_ptr<QGridLayout> get_info_detailed_card_layout;
+
+    InfoCard card;
 
     std::unique_ptr<QPushButton> operate_close_level_button;
     std::unique_ptr<QLabel> operate_current_level;

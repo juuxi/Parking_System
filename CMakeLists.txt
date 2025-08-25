@@ -47,6 +47,8 @@ else()
             pgconnection.h pgconnection.cpp
             database.h database.cpp
             xml.h xml.cpp
+            infocard.h
+            infocard.cpp
 
 
         )
