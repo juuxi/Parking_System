@@ -158,7 +158,7 @@ void Widget::setupGetInfoUI() {
 void Widget::setupOperateUI() {
     operate_close_level_button = std::make_unique<QPushButton>("Закрыть этаж", this);
     connect(operate_close_level_button.get(), SIGNAL(clicked()), this, SLOT(operateCloseLevelHandler()));
-    operate_close_level_button->setFixedSize(200, 50);
+    operate_close_level_button->setFixedSize(400, 100);
 
     operate_back_button = std::make_unique<QPushButton>("Back", this);
     connect(operate_back_button.get(), SIGNAL(clicked()), this, SLOT(operateBackHandler()));
@@ -166,7 +166,7 @@ void Widget::setupOperateUI() {
 
     operate_all_ce_button = std::make_unique<QPushButton>("Все УЭ", this);
     connect(operate_all_ce_button.get(), SIGNAL(clicked()), this, SLOT(operateAllCeHandler()));
-    operate_all_ce_button->setFixedSize(200, 50);
+    operate_all_ce_button->setFixedSize(400, 100);
 
     operate_current_level = std::make_unique<QLabel>(this);
     operate_current_level->setFixedSize(60, 30);
@@ -216,6 +216,14 @@ void Widget::setupOperateUI() {
     operate_all_ce_back_button = std::make_unique<QPushButton>("Back", this);
     connect(operate_all_ce_back_button.get(), SIGNAL(clicked()), this, SLOT(operateAllCeBackHandler()));
     operate_all_ce_back_button->setGeometry(10, 10, 50, 20);
+
+    operate_add_vehilce_button = std::make_unique<QPushButton>("Добавить ТС", this);
+    connect(operate_add_vehilce_button.get(), SIGNAL(clicked()), this, SLOT(operateAddVehicleHandler()));
+    operate_add_vehilce_button->setFixedSize(400, 100);
+
+    operate_add_ce_button = std::make_unique<QPushButton>("Добавить УЭ", this);
+    connect(operate_add_ce_button.get(), SIGNAL(clicked()), this, SLOT(operateAddCeHandler()));
+    operate_add_ce_button->setFixedSize(400, 100);
 
     hideOperateUI();
 }
@@ -310,13 +318,19 @@ void Widget::repositionOperateUI() {
     int screen_width = this->width();
     int screen_height = this->height();
     operate_close_level_button->move(screen_width / 2 - operate_close_level_button->width() / 2,
-                                     screen_height / 2 - operate_close_level_button->height());
+                                     screen_height / 4);
 
     operate_all_ce_button->move(screen_width / 2 - operate_all_ce_button->width() / 2,
-                                screen_height / 2);
+                                3 * screen_height / 8);
+
+    operate_add_vehilce_button->move(screen_width / 2 - operate_all_ce_button->width() / 2,
+                                     screen_height / 2);
+
+    operate_add_ce_button->move(screen_width / 2 - operate_all_ce_button->width() / 2,
+                                     5 * screen_height / 8);
 
     operate_current_level->move(screen_width / 2 - operate_current_level->width() / 2,
-                                screen_height / 4 - operate_current_level->height() / 2);
+                                screen_height / 8 - operate_current_level->height() / 2);
 
     operate_card->move(screen_width / 2 - operate_card->width() / 2,
                        screen_height / 4 - operate_card->height() / 2);
@@ -395,6 +409,8 @@ void Widget::hideOperateUI() {
     operate_current_level->hide();
     operate_back_button->hide();
     operate_all_ce_button->hide();
+    operate_add_vehilce_button->hide();
+    operate_add_ce_button->hide();
     hideOperateAllCeUI();
 }
 
@@ -464,6 +480,8 @@ void Widget::showOperateUI() {
     operate_current_level->show();
     operate_back_button->show();
     operate_all_ce_button->show();
+    operate_add_vehilce_button->show();
+    operate_add_ce_button->show();
 }
 
 void Widget::showOperateAllCeUI() {
@@ -1031,6 +1049,46 @@ void Widget::operatePrevCeHandler() {
         operate_card_is_opened_data->setText("false");
     }
     operate_card_number_data->setText(QString::number(curr_ce + 1));
+}
+
+void Widget::operateAddVehicleHandler() {
+    QMessageBox msgBox;
+    msgBox.setText("Insert known data and click OK. For unknown data click Cancel or don't insert and click OK");
+    msgBox.exec();
+    bool ok{};
+    QString plate = "UNDEFINED", model = "UNDEFINED";
+    int row = INT_MAX, col = INT_MAX;
+
+    QString input = QInputDialog::getText(this, "Insert data", "plate:", QLineEdit::Normal, QString(), &ok);
+    if (!input.isEmpty() && ok) {
+        plate = input;
+    }
+
+    input = QInputDialog::getText(this, "Insert data", "model:", QLineEdit::Normal, QString(), &ok);
+    if (!input.isEmpty() && ok) {
+        model = input;
+    }
+
+    int num = QInputDialog::getInt(this, "Insert Data", "row", 1, 1, 6, 1, &ok); //если не введен lvl - блокировать дальше?
+    if  (ok) {
+        row = num - 1;
+    }
+
+    num = QInputDialog::getInt(this, "Insert Data", "col", 1, 1, 30, 1, &ok);
+    if  (ok) {
+        col = num - 1;
+    }
+
+    Vehicle v;
+    v.setModel(model);
+    v.setPlate(plate);
+    v.updateDuration();
+    int lvl = operate_current_level->text().back().digitValue() - 1;
+    levels[lvl].lines[row][col] = v;
+}
+
+void Widget::operateAddCeHandler() {
+
 }
 
 void Widget::operateAllCeBackHandler() {

@@ -74,6 +74,8 @@ class Widget : public QWidget
     std::unique_ptr<QPushButton> operate_open_ce_button;
     std::unique_ptr<QPushButton> operate_next_ce_button;
     std::unique_ptr<QPushButton> operate_prev_ce_button;
+    std::unique_ptr<QPushButton> operate_add_vehilce_button;
+    std::unique_ptr<QPushButton> operate_add_ce_button;
 
     std::unique_ptr<QGroupBox> operate_card;
     std::unique_ptr<QLabel> operate_card_type_label;
@@ -167,6 +169,8 @@ public slots:
     void operateNextCeHandler();
     void operatePrevCeHandler();
     void operateAllCeBackHandler();
+    void operateAddVehicleHandler();
+    void operateAddCeHandler();
     void operateBackHandler();
 };
 #endif // WIDGET_H
