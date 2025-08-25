@@ -751,15 +751,32 @@ void Widget::getVehiclesInfoDetailedFullHandler() {
                 break;
             }
         }
+        if (flag) {
+            break;
+        }
     }
 }
 
-void Widget::getVehiclesInfoDetailedNextFullHandler() {
+void Widget::getVehiclesInfoDetailedNextFullHandler() { //если мы ушли хотя бы на row дальше чем предыдущее - нужно начинать с начала row/col
     bool flag = false;
     for (int i = card.lvl_data->text().toInt() - 1; i < levels.size(); i++) {
         Level lvl = levels[i];
-        for (int j = card.row_data->text().toInt() - 1; j < lvl.lines.size(); j++) {
-            for (int k = card.col_data->text().toInt(); k < lvl.lines[j].size(); k++) {
+        int j;
+        if (i == card.lvl_data->text().toInt() - 1) {
+            j = card.row_data->text().toInt() - 1;
+        }
+        else {
+            j = 0;
+        }
+        for (; j < lvl.lines.size(); j++) {
+            int k;
+            if (i == card.lvl_data->text().toInt() - 1 && j == card.row_data->text().toInt() - 1) {
+                k = card.col_data->text().toInt();
+            }
+            else {
+                k = 0;
+            }
+            for (; k < lvl.lines[j].size(); k++) {
                 if (!lvl.lines[j][k].getDuration().isNull()) {
                     Vehicle v = lvl.lines[j][k];
                     card.setCardData(v, i, j, k);
@@ -771,6 +788,9 @@ void Widget::getVehiclesInfoDetailedNextFullHandler() {
                 break;
             }
         }
+        if (flag) {
+            break;
+        }
     }
 }
 
@@ -778,8 +798,22 @@ void Widget::getVehiclesInfoDetailedPrevFullHandler() {
     bool flag = false;
     for (int i = card.lvl_data->text().toInt() - 1; i >= 0; i--) {
         Level lvl = levels[i];
-        for (int j = card.row_data->text().toInt() - 1; j >= 0; j--) {
-            for (int k = card.col_data->text().toInt() - 2; k >= 0; k--) {
+        int j;
+        if (i == card.lvl_data->text().toInt() - 1) {
+            j = card.row_data->text().toInt() - 1;
+        }
+        else {
+            j = lvl.lines.size() - 1;
+        }
+        for (; j >= 0; j--) {
+            int k;
+            if (i == card.lvl_data->text().toInt() - 1 && j == card.row_data->text().toInt() - 1) {
+                k = card.col_data->text().toInt() - 2;
+            }
+            else {
+                k = lvl.lines[j].size() - 1;
+            }
+            for (; k >= 0; k--) {
                 if (!lvl.lines[j][k].getDuration().isNull()) {
                     Vehicle v = lvl.lines[j][k];
                     card.setCardData(v, i, j, k);
@@ -790,6 +824,9 @@ void Widget::getVehiclesInfoDetailedPrevFullHandler() {
             if (flag) {
                 break;
             }
+        }
+        if (flag) {
+            break;
         }
     }
 }
@@ -880,6 +917,9 @@ void Widget::getVehiclesInfoDetailedBackHandler() {
 void Widget::getVehiclesInfoDetailedInternalBackHandler() {
     hideGetInfoDetailedInternalUI();
     showGetInfoDetailedUI();
+
+    disconnect(get_info_detailed_next_button.get(), nullptr, this, nullptr);
+    disconnect(get_info_detailed_prev_button.get(), nullptr, this, nullptr);
 }
 
 void Widget::operateHandler() {
