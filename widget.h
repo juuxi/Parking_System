@@ -55,51 +55,12 @@ class Widget : public QWidget
     std::unique_ptr<QInputDialog> account_dlg;
     std::unique_ptr<QInputDialog> account_internal_dlg;
 
-    std::unique_ptr<QGroupBox> change_vehicles_card;
-    std::unique_ptr<QLabel> change_vehicles_card_plate_label;
-    std::unique_ptr<QLabel> change_vehicles_card_model_label;
-    std::unique_ptr<QLabel> change_vehicles_card_enter_time_label;
-    std::unique_ptr<QLabel> change_vehicles_card_duration_label;
-    std::unique_ptr<QLabel> change_vehicles_card_is_placed_correctly_label;
-    std::unique_ptr<QLabel> change_vehicles_card_lvl_label;
-    std::unique_ptr<QLabel> change_vehicles_card_row_label;
-    std::unique_ptr<QLabel> change_vehicles_card_col_label;
-    std::unique_ptr<QLabel> change_vehicles_card_plate_data;
-    std::unique_ptr<QLabel> change_vehicles_card_model_data;
-    std::unique_ptr<QLabel> change_vehicles_card_enter_time_data;
-    std::unique_ptr<QLabel> change_vehicles_card_duration_data;
-    std::unique_ptr<QLabel> change_vehicles_card_is_placed_correctly_data;
-    std::unique_ptr<QLabel> change_vehicles_card_lvl_data;
-    std::unique_ptr<QLabel> change_vehicles_card_row_data;
-    std::unique_ptr<QLabel> change_vehicles_card_col_data;
-    std::unique_ptr<QPushButton> change_vehicles_card_button;
-    std::unique_ptr<QGridLayout> change_vehicles_card_layout;
-
     std::unique_ptr<QPushButton> get_info_visual_button;
     std::unique_ptr<QPushButton> get_info_detailed_button;
     std::unique_ptr<QPushButton> get_info_detailed_levels_button;
     std::unique_ptr<QPushButton> get_info_detailed_full_button;
     std::unique_ptr<QPushButton> get_info_detailed_next_button;
     std::unique_ptr<QPushButton> get_info_detailed_prev_button;
-
-    std::unique_ptr<QGroupBox> get_info_detailed_card;
-    std::unique_ptr<QLabel> get_info_detailed_card_plate_label;
-    std::unique_ptr<QLabel> get_info_detailed_card_model_label;
-    std::unique_ptr<QLabel> get_info_detailed_card_enter_time_label;
-    std::unique_ptr<QLabel> get_info_detailed_card_duration_label;
-    std::unique_ptr<QLabel> get_info_detailed_card_is_placed_correctly_label;
-    std::unique_ptr<QLabel> get_info_detailed_card_lvl_label;
-    std::unique_ptr<QLabel> get_info_detailed_card_row_label;
-    std::unique_ptr<QLabel> get_info_detailed_card_col_label;
-    std::unique_ptr<QLabel> get_info_detailed_card_plate_data;
-    std::unique_ptr<QLabel> get_info_detailed_card_model_data;
-    std::unique_ptr<QLabel> get_info_detailed_card_enter_time_data;
-    std::unique_ptr<QLabel> get_info_detailed_card_duration_data;
-    std::unique_ptr<QLabel> get_info_detailed_card_is_placed_correctly_data;
-    std::unique_ptr<QLabel> get_info_detailed_card_lvl_data;
-    std::unique_ptr<QLabel> get_info_detailed_card_row_data;
-    std::unique_ptr<QLabel> get_info_detailed_card_col_data;
-    std::unique_ptr<QGridLayout> get_info_detailed_card_layout;
 
     InfoCard card;
 
@@ -152,9 +113,6 @@ class Widget : public QWidget
     void showGetInfoDetailedInternalUI();
     void showOperateUI();
     void showOperateAllCeUI();
-
-    void setCardData(Vehicle, int, int, int);
-    void setChangeCardData(Vehicle, int, int, int);
 
     bool accountIsNumberCorrect(QString);
     bool accountIsBirthDateCorrect(QString);

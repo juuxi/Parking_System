@@ -106,48 +106,6 @@ void Widget::setupAccountUI() {
 }
 
 void Widget::setupChangeVehiclesUI()  {
-    change_vehicles_card = std::make_unique<QGroupBox>("Инофрмация о ТС", this);
-
-    change_vehicles_card_plate_label = std::make_unique<QLabel>("plate: ", this);
-    change_vehicles_card_model_label = std::make_unique<QLabel>("model: ", this);
-    change_vehicles_card_enter_time_label = std::make_unique<QLabel>("enter_time: ", this);
-    change_vehicles_card_duration_label = std::make_unique<QLabel>("duration: ", this);
-    change_vehicles_card_is_placed_correctly_label = std::make_unique<QLabel>("is_placed_correctly: ", this);
-    change_vehicles_card_lvl_label = std::make_unique<QLabel>("level: ", this);
-    change_vehicles_card_row_label = std::make_unique<QLabel>("row: ", this);
-    change_vehicles_card_col_label = std::make_unique<QLabel>("column: ", this);
-
-    change_vehicles_card_plate_data = std::make_unique<QLabel>(this);
-    change_vehicles_card_model_data = std::make_unique<QLabel>(this);
-    change_vehicles_card_enter_time_data = std::make_unique<QLabel>(this);
-    change_vehicles_card_duration_data = std::make_unique<QLabel>(this);
-    change_vehicles_card_is_placed_correctly_data = std::make_unique<QLabel>(this);
-    change_vehicles_card_lvl_data = std::make_unique<QLabel>(this);
-    change_vehicles_card_row_data = std::make_unique<QLabel>(this);
-    change_vehicles_card_col_data = std::make_unique<QLabel>(this);
-
-    change_vehicles_card_button = std::make_unique<QPushButton>("Change", this);
-    connect(change_vehicles_card_button.get(), SIGNAL(clicked()), this, SLOT(changeVehiclesInternalHandler()));
-
-    change_vehicles_card_layout = std::make_unique<QGridLayout>(this);
-    change_vehicles_card_layout->addWidget(change_vehicles_card_plate_label.get(), 0, 0, 1, 1);
-    change_vehicles_card_layout->addWidget(change_vehicles_card_model_label.get(), 1, 0, 1, 1);
-    change_vehicles_card_layout->addWidget(change_vehicles_card_enter_time_label.get(), 2, 0, 1, 1);
-    change_vehicles_card_layout->addWidget(change_vehicles_card_duration_label.get(), 3, 0, 1, 1);
-    change_vehicles_card_layout->addWidget(change_vehicles_card_is_placed_correctly_label.get(), 4, 0, 1, 1);
-    change_vehicles_card_layout->addWidget(change_vehicles_card_lvl_label.get(), 5, 0, 1, 1);
-    change_vehicles_card_layout->addWidget(change_vehicles_card_row_label.get(), 6, 0, 1, 1);
-    change_vehicles_card_layout->addWidget(change_vehicles_card_col_label.get(), 7, 0, 1, 1);
-    change_vehicles_card_layout->addWidget(change_vehicles_card_plate_data.get(), 0, 1, 1, 1);
-    change_vehicles_card_layout->addWidget(change_vehicles_card_model_data.get(), 1, 1, 1, 1);
-    change_vehicles_card_layout->addWidget(change_vehicles_card_enter_time_data.get(), 2, 1, 1, 1);
-    change_vehicles_card_layout->addWidget(change_vehicles_card_duration_data.get(), 3, 1, 1, 1);
-    change_vehicles_card_layout->addWidget(change_vehicles_card_is_placed_correctly_data.get(), 4, 1, 1, 1);
-    change_vehicles_card_layout->addWidget(change_vehicles_card_lvl_data.get(), 5, 1, 1, 1);
-    change_vehicles_card_layout->addWidget(change_vehicles_card_row_data.get(), 6, 1, 1, 1);
-    change_vehicles_card_layout->addWidget(change_vehicles_card_col_data.get(), 7, 1, 1, 1);
-    change_vehicles_card_layout->addWidget(change_vehicles_card_button.get(), 8, 1, 1, 2);
-    change_vehicles_card->setLayout(change_vehicles_card_layout.get());
 
     change_vehicles_back_button = std::make_unique<QPushButton>("Back", this);
     change_vehicles_back_button->setGeometry(10, 10, 50, 20);
@@ -174,45 +132,6 @@ void Widget::setupGetInfoUI() {
 
     get_info_detailed_prev_button = std::make_unique<QPushButton>("< Prev", this);
     get_info_detailed_prev_button->setFixedSize(75, 30);
-
-    get_info_detailed_card = std::make_unique<QGroupBox>("Инофрмация о ТС", this);
-
-    get_info_detailed_card_plate_label = std::make_unique<QLabel>("plate: ", this);
-    get_info_detailed_card_model_label = std::make_unique<QLabel>("model: ", this);
-    get_info_detailed_card_enter_time_label = std::make_unique<QLabel>("enter_time: ", this);
-    get_info_detailed_card_duration_label = std::make_unique<QLabel>("duration: ", this);
-    get_info_detailed_card_is_placed_correctly_label = std::make_unique<QLabel>("is_placed_correctly: ", this);
-    get_info_detailed_card_lvl_label = std::make_unique<QLabel>("level: ", this);
-    get_info_detailed_card_row_label = std::make_unique<QLabel>("row: ", this);
-    get_info_detailed_card_col_label = std::make_unique<QLabel>("column: ", this);
-
-    get_info_detailed_card_plate_data = std::make_unique<QLabel>(this);
-    get_info_detailed_card_model_data = std::make_unique<QLabel>(this);
-    get_info_detailed_card_enter_time_data = std::make_unique<QLabel>(this);
-    get_info_detailed_card_duration_data = std::make_unique<QLabel>(this);
-    get_info_detailed_card_is_placed_correctly_data = std::make_unique<QLabel>(this);
-    get_info_detailed_card_lvl_data = std::make_unique<QLabel>(this);
-    get_info_detailed_card_row_data = std::make_unique<QLabel>(this);
-    get_info_detailed_card_col_data = std::make_unique<QLabel>(this);
-
-    get_info_detailed_card_layout = std::make_unique<QGridLayout>(this);
-    get_info_detailed_card_layout->addWidget(get_info_detailed_card_plate_label.get(), 0, 0, 1, 1);
-    get_info_detailed_card_layout->addWidget(get_info_detailed_card_model_label.get(), 1, 0, 1, 1);
-    get_info_detailed_card_layout->addWidget(get_info_detailed_card_enter_time_label.get(), 2, 0, 1, 1);
-    get_info_detailed_card_layout->addWidget(get_info_detailed_card_duration_label.get(), 3, 0, 1, 1);
-    get_info_detailed_card_layout->addWidget(get_info_detailed_card_is_placed_correctly_label.get(), 4, 0, 1, 1);
-    get_info_detailed_card_layout->addWidget(get_info_detailed_card_lvl_label.get(), 5, 0, 1, 1);
-    get_info_detailed_card_layout->addWidget(get_info_detailed_card_row_label.get(), 6, 0, 1, 1);
-    get_info_detailed_card_layout->addWidget(get_info_detailed_card_col_label.get(), 7, 0, 1, 1);
-    get_info_detailed_card_layout->addWidget(get_info_detailed_card_plate_data.get(), 0, 1, 1, 1);
-    get_info_detailed_card_layout->addWidget(get_info_detailed_card_model_data.get(), 1, 1, 1, 1);
-    get_info_detailed_card_layout->addWidget(get_info_detailed_card_enter_time_data.get(), 2, 1, 1, 1);
-    get_info_detailed_card_layout->addWidget(get_info_detailed_card_duration_data.get(), 3, 1, 1, 1);
-    get_info_detailed_card_layout->addWidget(get_info_detailed_card_is_placed_correctly_data.get(), 4, 1, 1, 1);
-    get_info_detailed_card_layout->addWidget(get_info_detailed_card_lvl_data.get(), 5, 1, 1, 1);
-    get_info_detailed_card_layout->addWidget(get_info_detailed_card_row_data.get(), 6, 1, 1, 1);
-    get_info_detailed_card_layout->addWidget(get_info_detailed_card_col_data.get(), 7, 1, 1, 1);
-    get_info_detailed_card->setLayout(get_info_detailed_card_layout.get());
 
     get_info_back_button = std::make_unique<QPushButton>("Back", this);
     get_info_back_button->setGeometry(10, 10, 50, 20);
@@ -443,7 +362,6 @@ void Widget::hideAccountUI() {
 }
 
 void Widget::hideChangeVehiclesUI() {
-    change_vehicles_card->hide();
     card.makeUnchangeable();
     card.hide();
     change_vehicles_back_button->hide();
@@ -468,7 +386,6 @@ void Widget::hideGetInfoDetailedUI() {
 void Widget::hideGetInfoDetailedInternalUI() {
     get_info_detailed_next_button->hide();
     get_info_detailed_prev_button->hide();
-    get_info_detailed_card->hide();
     card.hide();
     get_info_detailed_internal_back_button->hide();
 }
@@ -538,7 +455,6 @@ void Widget::showGetInfoDetailedUI() {
 void Widget::showGetInfoDetailedInternalUI() {
     get_info_detailed_next_button->show();
     get_info_detailed_prev_button->show();
-    //get_info_detailed_card->show();
     card.show();
     get_info_detailed_internal_back_button->show();
 }
@@ -783,17 +699,6 @@ void Widget::changeVehiclesHandler() {
     showChangeVehiclesUI();
 }
 
-void Widget::setChangeCardData(Vehicle v, int i, int j, int k) {
-    change_vehicles_card_plate_data->setText(v.getPlate());
-    change_vehicles_card_model_data->setText(v.getModel());
-    change_vehicles_card_enter_time_data->setText(v.getEnterTime().toString());
-    change_vehicles_card_duration_data->setText(v.getDuration().toString());
-    change_vehicles_card_is_placed_correctly_data->setText(QString::number(v.getIsPlacedCorrectly()));
-    change_vehicles_card_lvl_data->setText(QString::number(i + 1));
-    change_vehicles_card_row_data->setText(QString::number(j + 1));
-    change_vehicles_card_col_data->setText(QString::number(k + 1));
-}
-
 void Widget::changeVehiclesInternalHandler() {
     QMessageBox msgBox;
     msgBox.setText("Insert data if you want to change it, don't insert or click Cancel otherwise");
@@ -935,17 +840,6 @@ void Widget::getVehiclesInfoDetailedPrevFullHandler() {
     }
 }
 
-void Widget::setCardData(Vehicle v, int i, int j, int k) {
-    get_info_detailed_card_plate_data->setText(v.getPlate());
-    get_info_detailed_card_model_data->setText(v.getModel());
-    get_info_detailed_card_enter_time_data->setText(v.getEnterTime().toString());
-    get_info_detailed_card_duration_data->setText(v.getDuration().toString());
-    get_info_detailed_card_is_placed_correctly_data->setText(QString::number(v.getIsPlacedCorrectly()));
-    get_info_detailed_card_lvl_data->setText(QString::number(i + 1));
-    get_info_detailed_card_row_data->setText(QString::number(j + 1));
-    get_info_detailed_card_col_data->setText(QString::number(k + 1));
-}
-
 void Widget::getVehiclesInfoDetailedLevelsHandler() {
     bool ok{};
     int level = QInputDialog::getInt(this, "Выберите этаж", "Этаж", 1, 1, levels.size(), 1, &ok) - 1;
@@ -963,7 +857,7 @@ void Widget::getVehiclesInfoDetailedLevelsHandler() {
         for (int k = 0; k < lvl.lines[j].size(); k++) {
             if (!lvl.lines[j][k].getDuration().isNull()) {
                 Vehicle v = lvl.lines[j][k];
-                setCardData(v, level, j, k);
+                card.setCardData(v, level, j, k);
                 flag = true;
                 break;
             }
@@ -982,7 +876,7 @@ void Widget::getVehiclesInfoDetailedNextLevelsHandler() {
         for (int k = card.col_data->text().toInt(); k < lvl.lines[j].size(); k++) {
             if (!lvl.lines[j][k].getDuration().isNull()) {
                 Vehicle v = lvl.lines[j][k];
-                setCardData(v, level, j, k);
+                card.setCardData(v, level, j, k);
                 flag = true;
                 break;
             }
@@ -1001,7 +895,7 @@ void Widget::getVehiclesInfoDetailedPrevLevelsHandler() {
         for (int k = card.col_data->text().toInt() - 2; k >= 0; k--) {
             if (!lvl.lines[j][k].getDuration().isNull()) {
                 Vehicle v = lvl.lines[j][k];
-                setCardData(v, level, j, k);
+                card.setCardData(v, level, j, k);
                 flag = true;
                 break;
             }
