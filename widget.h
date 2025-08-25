@@ -76,6 +76,7 @@ class Widget : public QWidget
     std::unique_ptr<QPushButton> operate_prev_ce_button;
     std::unique_ptr<QPushButton> operate_add_vehilce_button;
     std::unique_ptr<QPushButton> operate_add_ce_button;
+    std::unique_ptr<QInputDialog> operate_dlg;
 
     std::unique_ptr<QGroupBox> operate_card;
     std::unique_ptr<QLabel> operate_card_type_label;

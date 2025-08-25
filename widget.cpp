@@ -225,6 +225,8 @@ void Widget::setupOperateUI() {
     connect(operate_add_ce_button.get(), SIGNAL(clicked()), this, SLOT(operateAddCeHandler()));
     operate_add_ce_button->setFixedSize(400, 100);
 
+    operate_dlg = std::make_unique<QInputDialog>(this);
+
     hideOperateUI();
 }
 
@@ -1088,7 +1090,26 @@ void Widget::operateAddVehicleHandler() {
 }
 
 void Widget::operateAddCeHandler() {
+    const QStringList items{tr("Светофор"), tr("Шлагбаум")};
 
+    bool ok{};
+    QString item;
+    operate_dlg->setWindowTitle("Выбор типа УЭ");
+    operate_dlg->setComboBoxItems(items);
+    operate_dlg->resize(400, 300);
+    operate_dlg->move(1000, 500);
+    if (operate_dlg->exec() == QDialog::Accepted) {
+        item = operate_dlg->textValue();
+    }
+    else {
+        return;
+    }
+
+    if (item == "Светофор") {
+        auto ce = std::make_shared<TrafficLight>();
+        int lvl = operate_current_level->text().back().digitValue() - 1;
+        levels[lvl].add_control_element(ce);
+    }
 }
 
 void Widget::operateAllCeBackHandler() {
