@@ -1113,6 +1113,12 @@ void Widget::operateAddCeHandler() {
         int lvl = operate_current_level->text().back().digitValue() - 1;
         levels[lvl].add_control_element(ce);
     }
+
+    if (item == "Шлагбаум") {
+        auto ce = std::make_shared<Barrier>();
+        int lvl = operate_current_level->text().back().digitValue() - 1;
+        levels[lvl].add_control_element(ce);
+    }
 }
 
 void Widget::operateAllCeBackHandler() {
