@@ -3,24 +3,41 @@
 InfoCard::InfoCard(QWidget* _parent) {
     setParent(_parent);
     plate_label = std::make_unique<QLabel>("plate: ", this);
+    plate_label->setFixedSize(150, 30);
     model_label = std::make_unique<QLabel>("model: ", this);
+    model_label->setFixedSize(150, 30);
     enter_time_label = std::make_unique<QLabel>("enter_time: ", this);
+    enter_time_label->setFixedSize(150, 30);
     duration_label = std::make_unique<QLabel>("duration: ", this);
+    duration_label->setFixedSize(150, 30);
     is_placed_correctly_label = std::make_unique<QLabel>("is_placed_correctly: ", this);
+    is_placed_correctly_label->setFixedSize(150, 30);
     lvl_label = std::make_unique<QLabel>("level: ", this);
+    lvl_label->setFixedSize(150, 30);
     row_label = std::make_unique<QLabel>("row: ", this);
+    row_label->setFixedSize(150, 30);
     col_label = std::make_unique<QLabel>("column: ", this);
+    col_label->setFixedSize(150, 30);
 
     plate_data = std::make_unique<QLabel>(this);
+    plate_data->setFixedSize(150, 30);
     model_data = std::make_unique<QLabel>(this);
+    model_data->setFixedSize(150, 30);
     enter_time_data = std::make_unique<QLabel>(this);
+    enter_time_data->setFixedSize(150, 30);
     duration_data = std::make_unique<QLabel>(this);
+    duration_data->setFixedSize(150, 30);
     is_placed_correctly_data = std::make_unique<QLabel>(this);
+    is_placed_correctly_data->setFixedSize(150, 30);
     lvl_data = std::make_unique<QLabel>(this);
+    lvl_data->setFixedSize(150, 30);
     row_data = std::make_unique<QLabel>(this);
+    row_data->setFixedSize(150, 30);
     col_data = std::make_unique<QLabel>(this);
+    col_data->setFixedSize(150, 30);
 
     button = std::make_unique<QPushButton>("Change", this);
+    button->setFixedSize(300, 50);
     button->hide();
     connect(button.get(), SIGNAL(clicked()), parentWidget(), SLOT(changeVehiclesInternalHandler()));
 
@@ -42,6 +59,7 @@ InfoCard::InfoCard(QWidget* _parent) {
     grid->addWidget(row_data.get(), 6, 1, 1, 1);
     grid->addWidget(col_data.get(), 7, 1, 1, 1);
     this->setLayout(grid.get());
+    this->adjustSize();
 }
 
 void InfoCard::setCardData(Vehicle v, int i, int j, int k) {
@@ -59,10 +77,12 @@ void InfoCard::makeChangeable() {
     grid->addWidget(button.get(), 8, 0, 1, 2);
     button->show();
     this->setLayout(grid.get());
+    this->adjustSize();
 }
 
 void InfoCard::makeUnchangeable() {
     grid->removeWidget(button.get());
     button->hide();
     this->setLayout(grid.get());
+    this->adjustSize();
 }
