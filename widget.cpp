@@ -295,6 +295,8 @@ void Widget::repositionAccountUI() {
     account_current_email->move(mid_width + 50, mid_height + 75);
 
     account_change_button->move(mid_width - 100, mid_height + 125);
+
+    account_dlg->move(mid_width / 2 - account_dlg->width() / 2, mid_height / 2 - account_dlg->height() / 2);
 }
 
 void Widget::repositionGetInfoUI() {
@@ -336,6 +338,9 @@ void Widget::repositionOperateUI() {
 
     operate_card->move(screen_width / 2 - operate_card->width() / 2,
                        screen_height / 4 - operate_card->height() / 2);
+
+    operate_dlg->move(screen_width / 2 - operate_dlg->width() / 2,
+                      screen_height / 2 - operate_dlg->height() / 2);
 
 
     operate_close_ce_button->move(5 * screen_width / 8, 5 * screen_height / 8);
@@ -522,7 +527,6 @@ void Widget::accountChangeHandler() {
     account_dlg->setLabelText("Что изменить?");
     account_dlg->setComboBoxItems(items);
     account_dlg->resize(400, 300);
-    account_dlg->move(1000, 500);
     if (account_dlg->exec() == QDialog::Accepted) {
         item = account_dlg->textValue();
     }
@@ -1097,7 +1101,6 @@ void Widget::operateAddCeHandler() {
     operate_dlg->setWindowTitle("Выбор типа УЭ");
     operate_dlg->setComboBoxItems(items);
     operate_dlg->resize(400, 300);
-    operate_dlg->move(1000, 500);
     if (operate_dlg->exec() == QDialog::Accepted) {
         item = operate_dlg->textValue();
     }
