@@ -234,11 +234,7 @@ void Widget::paintEvent(QPaintEvent* event) {
     QPainter p;
     p.begin(this);
     if (is_getting_vehicles_info) {
-        Level lvl;
-        Vehicle v;
-        v.updateDuration();
-        lvl.add_vehicle(v, 4, 2);
-        lvl.draw(&p);
+        levels[0].draw(&p);
     }
     p.end();
 }
